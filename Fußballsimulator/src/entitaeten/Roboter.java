@@ -16,7 +16,7 @@ public abstract class Roboter {
     	return this.id;
     }
     public double getGeschwindigkeit() {
-    	return this.geschwindigkeit
+    	return this.geschwindigkeit;
     }
     public int getEnergie() {
     	return this.energie;
@@ -49,7 +49,7 @@ public abstract class Roboter {
     public void setX(int x) {
     	this.x = x;
     }
-    public void setX(int y) {
+    public void setY(int y) {
     	this.x = y;
     }
 
