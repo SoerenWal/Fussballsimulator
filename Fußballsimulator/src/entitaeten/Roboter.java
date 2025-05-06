@@ -10,25 +10,25 @@ public abstract class Roboter {
 	private int y;
     
     public String getName() {
-    	return this.name
+    	return this.name;
     }
     public int getId() {
-    	return this.id
+    	return this.id;
     }
     public double getGeschwindigkeit() {
     	return this.geschwindigkeit
     }
     public int getEnergie() {
-    	return this.energie
+    	return this.energie;
     }
     public boolean getHatBallBesitz() {
-    	return this.hatBallBesitz
+    	return this.hatBallBesitz;
     }
     public int getX() {
-    	return this.x
+    	return this.x;
     }
     public int getY() {
-    	return this.y
+    	return this.y;
     }
     
     public void setName(String name) {
