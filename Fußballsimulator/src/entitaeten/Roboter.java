@@ -9,14 +9,15 @@ public abstract class Roboter {
 	private int x;
 	private int y;
     
+	
     public String getName() {
     	return this.name;
     }
     public int getId() {
     	return this.id;
-    }
+    	}
     public double getGeschwindigkeit() {
-    	return this.geschwindigkeit
+    	return this.geschwindigkeit;
     }
     public int getEnergie() {
     	return this.energie;
