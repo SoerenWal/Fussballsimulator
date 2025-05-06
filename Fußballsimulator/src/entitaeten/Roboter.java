@@ -50,7 +50,7 @@ public abstract class Roboter {
     public void setX(int x) {
     	this.x = x;
     }
-    public void setX(int y) {
+    public void setY(int y) {
     	this.x = y;
     }
 
