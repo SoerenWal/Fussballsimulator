@@ -54,6 +54,12 @@ public abstract class Roboter {
     	this.x = y;
     }
 
-
-
+    public void laufen() {}
+    public void passen(Roboter roboter) {}
+    public void schiessen() {}
+    public boolean blocken() {}
+    public void energieAufladen() {}
+    public void ausfallen() {
+    
+    }
 }
