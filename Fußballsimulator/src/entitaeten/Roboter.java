@@ -54,7 +54,10 @@ public abstract class Roboter {
     	this.x = y;
     }
 
-    public void laufen() {}
+    public void laufen(int xSchritte, int ySchritte) {
+    	this.x = this.x + xSchritte;
+    	this.y = this.y + ySchritte;
+    }
     public void passen(Roboter roboter) {}
     public void schiessen() {}
     public boolean blocken() {}
