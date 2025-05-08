@@ -1,6 +1,6 @@
 package entitaeten;
 
-public class Verteidiger {
+public class Verteidiger extends Roboter {
 	
 	public Verteidiger(String name, int id, double geschwindigkeit, double praezision, int energie) {
         this.setName(name);
