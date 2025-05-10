@@ -1,4 +1,4 @@
-package a_gui;
+package a__gui;
 import javax.swing.*;
 
 import b_entitaeten.Spielfeld;
@@ -6,7 +6,7 @@ import b_schiedsrichter.Schiedsrichter;
 
 import java.awt.*;
 
-public class Fußballfeld extends JPanel {
+public class Fußballfeld2 extends JPanel {
 	
 	Schiedsrichter schiedsrichter = new Schiedsrichter();
 
@@ -51,7 +51,7 @@ public class Fußballfeld extends JPanel {
 
 	public static void fußballfeldAnzeigen() {
 		JFrame frame = new JFrame("Fußballfeld");
-		Fußballfeld fußballfeld = new Fußballfeld();
+		Fußballfeld2 fußballfeld = new Fußballfeld2();
 		frame.add(fußballfeld);
 		frame.setSize(800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
