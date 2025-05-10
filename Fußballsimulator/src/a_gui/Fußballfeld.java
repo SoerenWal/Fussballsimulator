@@ -1,7 +1,7 @@
-package gui;
+package a_gui;
 import javax.swing.*;
 
-import entitaeten.Spielfeld;
+import b_entitaeten.Spielfeld;
 
 import java.awt.*;
 

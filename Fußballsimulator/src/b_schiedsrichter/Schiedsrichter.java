@@ -1,4 +1,4 @@
-package schiedsrichter;
+package b_schiedsrichter;
 
 public class Schiedsrichter {
 

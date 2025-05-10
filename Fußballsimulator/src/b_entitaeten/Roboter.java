@@ -1,4 +1,4 @@
-package entitaeten;
+package b_entitaeten;
 
 public abstract class Roboter {
 	private String name;

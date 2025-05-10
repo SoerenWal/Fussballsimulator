@@ -1,4 +1,4 @@
-package entitaeten;
+package b_entitaeten;
 
 public final class Ball {
 
