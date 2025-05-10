@@ -12,7 +12,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//Fußballfeld.fußballfeldAnzeigen();
+		Fußballfeld.fußballfeldAnzeigen();
 		 
 		/*Random random = new Random();
 		
