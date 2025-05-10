@@ -2,10 +2,13 @@ package a_gui;
 import javax.swing.*;
 
 import b_entitaeten.Spielfeld;
+import b_schiedsrichter.Schiedsrichter;
 
 import java.awt.*;
 
 public class Fußballfeld extends JPanel {
+	
+	Schiedsrichter schiedsrichter = new Schiedsrichter();
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -18,7 +21,7 @@ public class Fußballfeld extends JPanel {
 
 		// Draw the outer boundary
 		g2d.setColor(Color.WHITE);
-		g2d.drawRect(Spielfeld.x, Spielfeld.y, Spielfeld.width, Spielfeld.height);
+		g2d.drawRect(Spielfeld.x, Spielfeld.y, Spielfeld.width, Spielfeld.height); // 50 50 700 400
 
 		// Draw the center circle
 		g2d.drawOval(350, 200, 100, 100);
@@ -40,6 +43,10 @@ public class Fußballfeld extends JPanel {
 
 		// Draw the center spot
 		g2d.fillOval(395, 245, 10, 10);
+		
+		// Draw the ball
+		g2d.setColor(Color.BLACK);
+		g2d.fillOval(schiedsrichter.ball.getX(), schiedsrichter.ball.getY(), 8, 8); // Ball muss als Attribut dem Schiedsrichter zugeordnet werden
 	}
 
 	public static void fußballfeldAnzeigen() {

@@ -21,7 +21,7 @@ public final class Ball {
 	
 	public static Ball getInstance() {
 		if(INSTANCE == null) {
-			INSTANCE = new Ball(0, 0);
+			INSTANCE = new Ball(396, 246);
 		}
 		return INSTANCE;
 	}
