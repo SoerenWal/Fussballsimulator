@@ -13,7 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Ball ball = Ball.getInstance(396, 246);
-		Schiedsrichter schiedsrichter = new Schiedsrichter(ball); // Schiedsrichter noch als Singleton implementieren
+		Schiedsrichter schiedsrichter = Schiedsrichter.getInstance(ball);
 		
 		Fußballfeld.schiedsrichter = schiedsrichter;
 		
