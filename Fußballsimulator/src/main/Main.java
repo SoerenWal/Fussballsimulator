@@ -12,8 +12,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		Ball ball = Ball.getInstance(396, 246);
+		Schiedsrichter schiedsrichter = new Schiedsrichter(ball); // Schiedsrichter noch als Singleton implementieren
+		
+		Fußballfeld.schiedsrichter = schiedsrichter;
+		
 		Fußballfeld.fußballfeldAnzeigen();
-		 
+		
 		/*Random random = new Random();
 		
 		double zufallswert = random.nextDouble();
@@ -30,8 +35,6 @@ public class Main {
 		
 		System.out.println(s.getHatBallBesitz());
 		System.out.println(b.getHatBallBesitz());
-
-		
 	}
 
 }
