@@ -75,21 +75,23 @@ public abstract class Roboter {
     	this.y = this.y + ySchritte;
     }
     public void passen(Roboter roboter) {
-    	Random random = new Random();
-    	
-    	double zufallswert = random.nextDouble();
-    	
-    	if(this.hatBallBesitz = true) {
+    	if(this.hatBallBesitz == true) {
+    		
+    		Random random = new Random();
+        	double zufallswert = random.nextDouble();
+        
     		if(this.praezisionPass >= zufallswert) {
         		this.hatBallBesitz = false;
         		roboter.hatBallBesitz = true;
         	}else {
-        		System.out.println("Felpass"); // Eine möglichkeit
+        		this.hatBallBesitz = false;
+        		System.out.println("Fehlpass"); // Eine möglichkeit
         	}
     	}else {
     		System.out.println("Der Spieler hat den ball nicht");
     	}
     }
+    
     public void schiessen() {
     
     }
