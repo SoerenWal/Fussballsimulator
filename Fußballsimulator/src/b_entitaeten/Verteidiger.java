@@ -6,7 +6,8 @@ public class Verteidiger extends Roboter {
         this.setName(name);
         this.setId(id); 
         this.setGeschwindigkeit(geschwindigkeit);
-        this.setPraezision(praezision);
+        this.setPraezisionPass(praezision);
+        this.setPraezisionSchuss(praezision);
         this.setEnergie(energie);
     }
 
