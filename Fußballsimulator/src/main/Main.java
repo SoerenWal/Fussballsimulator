@@ -8,6 +8,8 @@ import c_datenhaltung.*;
 
 public class Main {
 
+
+
 	public static void main(String[] args) {
 		
 		//Fußballfeld.fußballfeldAnzeigen();
@@ -18,6 +20,17 @@ public class Main {
 		
 		System.out.println(); */
 		
+		Mittelfeldspieler s = new Mittelfeldspieler("S", 1, 10, 0.5,0.5 , 1);
+		Mittelfeldspieler b = new Mittelfeldspieler("b", 1, 10, 0.5,0.5 , 1);
+		
+		System.out.println(s.getHatBallBesitz());
+
+		
+		s.passen(b);
+		
+		System.out.println(s.getHatBallBesitz());
+		System.out.println(b.getHatBallBesitz());
+
 		
 	}
 
