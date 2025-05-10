@@ -1,5 +1,8 @@
 package gui;
 import javax.swing.*;
+
+import entitaeten.Spielfeld;
+
 import java.awt.*;
 
 public class Fußballfeld extends JPanel {
@@ -15,7 +18,7 @@ public class Fußballfeld extends JPanel {
 
 		// Draw the outer boundary
 		g2d.setColor(Color.WHITE);
-		g2d.drawRect(50, 50, 700, 400);
+		g2d.drawRect(Spielfeld.x, Spielfeld.y, Spielfeld.width, Spielfeld.height);
 
 		// Draw the center circle
 		g2d.drawOval(350, 200, 100, 100);
