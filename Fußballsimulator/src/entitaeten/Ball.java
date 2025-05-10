@@ -10,9 +10,14 @@ public final class Ball {
 	private boolean imTor;
 	
 	private Ball(int x, int y) {
-		this.setX(x);
-		this.setY(y);
+		this.x;
+		this.y;
 	};
+	
+	public void setKoordinatenAnstoß(Stuermer s) {
+		this.x = s.getX();
+		this.y = s.getY();
+	}
 	
 	public static Ball getInstance() {
 		if(INSTANCE == null) {
@@ -47,10 +52,6 @@ public final class Ball {
 
 	public boolean isAmSpielFeldRand() {
 		return amSpielFeldRand;
-	}
-
-	public void setAmSpielFeldRand(boolean amSpielFeldRand) {
-		this.amSpielFeldRand = amSpielFeldRand;
 	}
 	
 }
