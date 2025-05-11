@@ -10,8 +10,8 @@ public final class Ball {
 	private boolean imTor;
 	
 	private Ball(int x, int y) {
-		this.x;
-		this.y;
+		this.x = x;
+		this.y = y;
 	};
 	
 	public void setKoordinatenAnstoß(Stuermer s) {

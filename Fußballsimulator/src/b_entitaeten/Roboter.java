@@ -61,7 +61,7 @@ public abstract class Roboter {
     	this.x = x;
     }
     public void setY(int y) {
-    	this.x = y;
+    	this.y = y;
     }
     public void setPraezisionPass(double praezisionPass) {
     	this.praezisionPass = praezisionPass;
