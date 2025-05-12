@@ -13,6 +13,7 @@ public abstract class Roboter {
 	private int x;
 	private int y;
     
+	Random random = new Random();
 	
     public String getName() {
     	return this.name;
@@ -76,13 +77,11 @@ public abstract class Roboter {
     }
     public void passen(Roboter roboter) {
     	if(this.hatBallBesitz == true) {
-    		
-    		Random random = new Random();
-        	double zufallswert = random.nextDouble();
         
-    		if(this.praezisionPass >= zufallswert) {
+    		if(this.praezisionPass >= random.nextDouble()) {
         		this.hatBallBesitz = false;
         		roboter.hatBallBesitz = true;
+        		System.out.println("Erfolgreicher Pass");
         	}else {
         		this.hatBallBesitz = false;
         		System.out.println("Fehlpass"); // Eine möglichkeit

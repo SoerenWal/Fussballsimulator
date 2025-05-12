@@ -8,6 +8,7 @@ public final class Ball {
 	private int y;
 	private boolean amSpielFeldRand;
 	private boolean imTor;
+	private int durchmesser = 8;
 	
 	private Ball(int x, int y) {
 		this.x = x;
@@ -19,9 +20,9 @@ public final class Ball {
 		this.y = s.getY();
 	}
 	
-	public static Ball getInstance() {
+	public static Ball getInstance(int x, int y) {
 		if(INSTANCE == null) {
-			INSTANCE = new Ball(396, 246);
+			INSTANCE = new Ball(x, y);
 		}
 		return INSTANCE;
 	}
@@ -52,6 +53,10 @@ public final class Ball {
 
 	public boolean isAmSpielFeldRand() {
 		return amSpielFeldRand;
+	}
+	
+	public int getDurchmesser() {
+		return durchmesser;
 	}
 	
 }
