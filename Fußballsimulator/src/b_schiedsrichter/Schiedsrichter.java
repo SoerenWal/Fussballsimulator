@@ -12,19 +12,18 @@ public final class Schiedsrichter {
 
 	public Mannschaft heimmannschaft;
 	public Mannschaft gastmannschaft;
-	public Roboter[] spieler = new Roboter[2];
 	public Ball ball;
 	
-	private Schiedsrichter(Ball ball, Mittelfeldspieler s, Mittelfeldspieler b2) {
+	private Schiedsrichter(Ball ball) {
 		this.ball = ball;
-		spieler[0] = s;
-		spieler[1] = b2;
 		
 	}
 	
-	public static Schiedsrichter getInstance(Ball b, Mittelfeldspieler s, Mittelfeldspieler b2) {
+	public Schiedsrichter() {}
+
+	public static Schiedsrichter getInstance(Ball ball) {
 		if(INSTANCE == null) {
-			INSTANCE = new Schiedsrichter(b, s, b2);
+			INSTANCE = new Schiedsrichter(ball);
 		}
 		return INSTANCE;
 	}
