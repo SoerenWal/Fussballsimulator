@@ -2,9 +2,6 @@ package a_gui2;
 import javax.swing.*;
 
 import b_entitaeten.*;
-import b_schiedsrichter.Schiedsrichter;
-import a_gui2.Nutzer;
-
 import java.awt.*;
 
 public class Fußballfeld extends JPanel {
@@ -14,16 +11,16 @@ public class Fußballfeld extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 
-		// Set background color
-		g2d.setColor(new Color(34, 139, 34)); // Green color for the field
+		// Hintergrundfarbe setzen
+		g2d.setColor(new Color(34, 139, 34)); // Grüne Farbe für das Spielfeld
 		g2d.fillRect(0, 0, getWidth(), getHeight());
 
-		// Draw the outer boundary
+		// Außenlinie malen
 		g2d.setColor(Color.WHITE);
-		g2d.drawRect(Spielfeld.x, Spielfeld.y, Spielfeld.width, Spielfeld.height); // 50 50 700 400
+		g2d.drawRect(Spielfeld.außenlinie_x, Spielfeld.außenlinie_y, Spielfeld.außenlinie_width, Spielfeld.außenlinie_height);
 
-		// Draw the center circle
-		g2d.drawOval(350, 200, 100, 100);
+		// Mittelpunkt malen
+		g2d.drawOval(Spielfeld.mittelpunkt_x, Spielfeld.mittelpunkt_y, Spielfeld.mittelpunkt_durchmesser, Spielfeld.mittelpunkt_durchmesser);
 
 		// Draw the center line
 		g2d.drawLine(400, 50, 400, 450);
@@ -43,7 +40,7 @@ public class Fußballfeld extends JPanel {
 		// Draw the center spot
 		g2d.fillOval(395, 245, 10, 10);
 		
-		// Draw the ball
+		// Ball malen
 		g2d.setColor(Color.BLACK);
 		g2d.fillOval(Nutzer.schiedsrichter.ball.getX(), Nutzer.schiedsrichter.ball.getY(), Nutzer.schiedsrichter.ball.getDurchmesser(), Nutzer.schiedsrichter.ball.getDurchmesser());
 	}
