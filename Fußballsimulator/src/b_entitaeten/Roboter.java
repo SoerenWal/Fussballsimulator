@@ -82,16 +82,22 @@ public abstract class Roboter {
     	this.y = this.y + ySchritte;
     }
     public void passen(Roboter roboter) {
+    	
+    	
     	if(this.hatBallBesitz == true) {
-        
-    		if(this.praezisionPass + this.faktorPass >= random.nextDouble()) {
-        		this.hatBallBesitz = false;
-        		roboter.hatBallBesitz = true;
-        		System.out.println("Erfolgreicher Pass");
-        	}else {
+    		if(this.energie >= 5) {
+    			
+    			if(this.praezisionPass + this.faktorPass >= random.nextDouble()) {
+    				this.hatBallBesitz = false;
+    				roboter.hatBallBesitz = true;
+    				System.out.println("Erfolgreicher Pass");
+    			}else {
         		this.hatBallBesitz = false;
         		System.out.println("Fehlpass"); // Eine möglichkeit
-        	}
+    			}
+    		}else {
+    		this.energie = this.energie - 5; //Simuliert den 
+    		}
     	}else {
     		System.out.println("Der Spieler hat den ball nicht");
     	}
