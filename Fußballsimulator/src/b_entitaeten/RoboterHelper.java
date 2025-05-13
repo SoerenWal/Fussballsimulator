@@ -1,13 +1,9 @@
 package b_entitaeten;
 
 public class RoboterHelper {
-
-	public static double praeziPassGenM() {
-		return 0.7 + Math.random() * 0.3;
-	}
 	
-	public static double prazisRechner(double faktor) {
-		return 0.4 + faktor + Math.random() * 0.3;
+	public static double praeziRechner(double faktor) {
+		return 0.7 + Math.random() * (faktor - 0.7);
 	}
 	
 	/**

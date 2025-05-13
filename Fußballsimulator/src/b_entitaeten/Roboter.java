@@ -17,6 +17,7 @@ public abstract class Roboter {
 	private int x;
 	private int y;
 	protected double faktorPass;
+	protected double faktorSchuss;
     
 	Random random = new Random();
 	
