@@ -11,10 +11,10 @@ public class Nutzer {
 
 		Mannschaft heimmannschaft = new Mannschaft("gastmannschaft");
 		Stuermer h_s = new Stuermer("Sören");
-		Mittelfeldspieler h_m1 = new Mittelfeldspieler();
-		Mittelfeldspieler h_m2 = new Mittelfeldspieler();
-		Verteidiger h_v = new Verteidiger();
-		Torwart h_t = new Torwart();
+		Mittelfeldspieler h_m1 = new Mittelfeldspieler("Richard");
+		Mittelfeldspieler h_m2 = new Mittelfeldspieler("Richard");
+		Verteidiger h_v = new Verteidiger("Noah");
+		Torwart h_t = new Torwart("Felix");
 
 		Mannschaft gastmannschaft = new Mannschaft("heimmannschaft");
 		Stuermer g_s = new Stuermer();
