@@ -19,7 +19,7 @@ public abstract class Roboter {
 	protected double faktorPass;
 	protected double faktorSchuss;
     
-	Random random = new Random();
+	
 	
     public String getName() {
     	return this.name;
@@ -87,7 +87,7 @@ public abstract class Roboter {
     	if(this.hatBallBesitz == true) {
     		if(this.energie >= 5) {
     			
-    			if(this.praezisionPass + this.faktorPass >= random.nextDouble()) {
+    			if(this.praezisionPass >= RoboterHelper.randomZahl()) {
     				this.hatBallBesitz = false;
     				roboter.hatBallBesitz = true;
     				System.out.println("Erfolgreicher Pass");
