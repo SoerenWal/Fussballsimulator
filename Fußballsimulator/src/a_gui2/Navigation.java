@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Navigation {
 
+	static Scanner sc = new Scanner(System.in);
 	private static String menuText = "1. Mannschaft anlegen\n2. Spiel starten\n3. Spielrunde anzeigen\n4. Spielstand anzeigen\n5. Spiel beenden";
 
 	private static void menu(int menuOption) {
@@ -39,10 +40,8 @@ public class Navigation {
 	}
 
 	private static int menuEingabe() {
-		Scanner sc = new Scanner(System.in);
 		System.out.print("Eingabe: ");
 		int eingabe = sc.nextInt();
-		sc.close();
 		return eingabe;
 	}
 
