@@ -4,6 +4,7 @@ public class Mittelfeldspieler extends Roboter {
 
 	public Mittelfeldspieler(String name) {
 		this.setName(name);
+		this.faktorPass = 0.5;
 		RoboterHelper.erhoeheAnzahlRoboter();
         this.setId(Roboter.anzahlRoboter); 
         this.setGeschwindigkeit(RoboterHelper.praeziPassGenM());

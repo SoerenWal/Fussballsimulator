@@ -6,8 +6,8 @@ public class RoboterHelper {
 		return 0.7 + Math.random() * 0.3;
 	}
 	
-	public static double praeziSchussGenM() { // damit der Bug weg ist ;)
-		return 0.0;
+	public static double prazisRechner(double faktor) {
+		return 0.4 + faktor + Math.random() * 0.3;
 	}
 	
 	/**

@@ -16,6 +16,7 @@ public abstract class Roboter {
 	private double praezisionSchuss;
 	private int x;
 	private int y;
+	protected double faktorPass;
     
 	Random random = new Random();
 	
@@ -82,7 +83,7 @@ public abstract class Roboter {
     public void passen(Roboter roboter) {
     	if(this.hatBallBesitz == true) {
         
-    		if(this.praezisionPass >= random.nextDouble()) {
+    		if(this.praezisionPass + this.faktorPass >= random.nextDouble()) {
         		this.hatBallBesitz = false;
         		roboter.hatBallBesitz = true;
         		System.out.println("Erfolgreicher Pass");
