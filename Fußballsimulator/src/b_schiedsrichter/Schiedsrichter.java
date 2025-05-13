@@ -14,16 +14,16 @@ public final class Schiedsrichter {
 	public Mannschaft gastmannschaft;
 	public Ball ball;
 	
-	private Schiedsrichter(Ball ball) {
+	private Schiedsrichter(Ball ball, Mannschaft heimgastmannschaft, Mannschaft gastmannschaft) {
 		this.ball = ball;
 		
 	}
 	
 	public Schiedsrichter() {}
 
-	public static Schiedsrichter getInstance(Ball ball) {
+	public static Schiedsrichter getInstance(Ball ball, Mannschaft heimgastmannschaft, Mannschaft gastmannschaft) {
 		if(INSTANCE == null) {
-			INSTANCE = new Schiedsrichter(ball);
+			INSTANCE = new Schiedsrichter(ball, heimgastmannschaft, gastmannschaft);
 		}
 		return INSTANCE;
 	}

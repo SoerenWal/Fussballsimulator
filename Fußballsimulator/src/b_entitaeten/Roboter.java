@@ -2,12 +2,16 @@ package b_entitaeten;
 
 import java.util.Random;
 
+
 public abstract class Roboter {
+	
+	public static int anzahlRoboter = 0;
+	
 	private String name;
 	private int id;
 	private double geschwindigkeit;
-	private int energie;
-	private boolean hatBallBesitz;
+	private int energie = 100;
+	private boolean hatBallBesitz = false;
 	private double praezisionPass;
 	private double praezisionSchuss;
 	private int x;
