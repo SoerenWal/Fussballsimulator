@@ -7,30 +7,25 @@ public class Mittelfeldspieler extends Roboter {
 		this.faktorPass = 0.95;
 		this.faktorSchuss = 0.85;
 		RoboterHelper.erhoeheAnzahlRoboter();
-        this.setId(Roboter.anzahlRoboter); 
-        this.setGeschwindigkeit(0);
-        this.setPraezisionPass(RoboterHelper.praeziRechner(this.faktorPass));
-        this.setPraezisionSchuss(RoboterHelper.praeziRechner(this.faktorSchuss));
-    }
-        
-        
-        public void passeSpielen() {
-            if (this.getEnergie() > 0) {
-                System.out.println(this.getName() + " spielt einen Pass mit Präzision " + this.getPraezisionPass());
-                this.setEnergie(this.getEnergie() - 5); // Energieverbrauch simulieren
-            } else {
-                System.out.println(this.getName() + " hat keine Energie mehr und kann keinen Pass spielen.");
-            }
-        }
-        
-        /*public String toString() {
-            return "Mittelfeldspieler: " + this.getName() +
-                   ", ID: " + this.getId() +
-                   ", Geschwindigkeit: " + this.getGeschwindigkeit() +
-                   ", Präzision Pass: " + this.getPraezisionPass() +
-                   ", Präzision Schuss: " + this.getPraezisionSchuss() +
-                   ", Energie: " + this.getEnergie();
-        }*/
-    }
-        
+		this.setId(Roboter.anzahlRoboter);
+		this.setGeschwindigkeit(0);
+		this.setPraezisionPass(RoboterHelper.praeziRechner(this.faktorPass));
+		this.setPraezisionSchuss(RoboterHelper.praeziRechner(this.faktorSchuss));
+	}
 
+	public void passeSpielen() {
+		if (this.getEnergie() > 0) {
+			System.out.println(this.getName() + " spielt einen Pass mit Präzision " + this.getPraezisionPass());
+			this.setEnergie(this.getEnergie() - 5); // Energieverbrauch simulieren
+		} else {
+			System.out.println(this.getName() + " hat keine Energie mehr und kann keinen Pass spielen.");
+		}
+	}
+
+	/*
+	 * public String toString() { return "Mittelfeldspieler: " + this.getName() +
+	 * ", ID: " + this.getId() + ", Geschwindigkeit: " + this.getGeschwindigkeit() +
+	 * ", Präzision Pass: " + this.getPraezisionPass() + ", Präzision Schuss: " +
+	 * this.getPraezisionSchuss() + ", Energie: " + this.getEnergie(); }
+	 */
+}

@@ -1,4 +1,5 @@
 package a_gui2;
+
 import javax.swing.*;
 
 import b_entitaeten.*;
@@ -17,10 +18,12 @@ public class Fußballfeld extends JPanel {
 
 		// Außenlinie malen
 		g2d.setColor(Color.WHITE);
-		g2d.drawRect(Spielfeld.außenlinie_x, Spielfeld.außenlinie_y, Spielfeld.außenlinie_width, Spielfeld.außenlinie_height);
+		g2d.drawRect(Spielfeld.außenlinie_x, Spielfeld.außenlinie_y, Spielfeld.außenlinie_width,
+				Spielfeld.außenlinie_height);
 
 		// Mittelpunkt malen
-		g2d.drawOval(Spielfeld.mittelpunkt_x, Spielfeld.mittelpunkt_y, Spielfeld.mittelpunkt_durchmesser, Spielfeld.mittelpunkt_durchmesser);
+		g2d.drawOval(Spielfeld.mittelpunkt_x, Spielfeld.mittelpunkt_y, Spielfeld.mittelpunkt_durchmesser,
+				Spielfeld.mittelpunkt_durchmesser);
 
 		// Draw the center line
 		g2d.drawLine(400, 50, 400, 450);
@@ -39,10 +42,11 @@ public class Fußballfeld extends JPanel {
 
 		// Draw the center spot
 		g2d.fillOval(395, 245, 10, 10);
-		
+
 		// Ball malen
 		g2d.setColor(Color.BLACK);
-		g2d.fillOval(Nutzer.schiedsrichter.ball.getX(), Nutzer.schiedsrichter.ball.getY(), Nutzer.schiedsrichter.ball.getDurchmesser(), Nutzer.schiedsrichter.ball.getDurchmesser());
+		g2d.fillOval(Nutzer.schiedsrichter.ball.getX(), Nutzer.schiedsrichter.ball.getY(),
+				Nutzer.schiedsrichter.ball.getDurchmesser(), Nutzer.schiedsrichter.ball.getDurchmesser());
 	}
 
 	public static void fußballfeldAnzeigen() {

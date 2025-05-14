@@ -4,17 +4,17 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Mannschaft {
-	
+
 	public String name;
 	public boolean ballBesitz = false;
 	public HashMap<String, Roboter> spieler;
 	Scanner sc = new Scanner(System.in);
-	
+
 	public Mannschaft(String name, HashMap<String, Roboter> spieler) {
 		this.name = name;
 		this.spieler = spieler;
 	}
-	
+
 	public void mannschaftAnlegen() {
 		String name;
 		System.out.println("Name des Stürmers: ");
@@ -25,7 +25,7 @@ public class Mannschaft {
 		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
 		System.out.println("Name des rechten Mittelfeldspielers: ");
 		name = sc.nextLine();
-		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
+		this.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
 		System.out.println("Name des Verteidigers: ");
 		name = sc.nextLine();
 		this.spieler.put("Verteidiger", new Verteidiger(name));
