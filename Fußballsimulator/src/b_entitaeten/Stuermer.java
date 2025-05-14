@@ -7,9 +7,9 @@ public class Stuermer extends Roboter {
 		this.faktorPass = 0.85;
 		this.faktorSchuss = 1;
 		RoboterHelper.erhoeheAnzahlRoboter();
-        this.setId(Roboter.anzahlRoboter); 
-        this.setGeschwindigkeit(0);
-        this.setPraezisionPass(RoboterHelper.praeziRechner(this.faktorPass));
-        this.setPraezisionSchuss(RoboterHelper.praeziRechner(this.faktorSchuss));
-    }
+		this.setId(Roboter.anzahlRoboter);
+		this.setGeschwindigkeit(0);
+		this.setPraezisionPass(RoboterHelper.praeziRechner(this.faktorPass));
+		this.setPraezisionSchuss(RoboterHelper.praeziRechner(this.faktorSchuss));
+	}
 }

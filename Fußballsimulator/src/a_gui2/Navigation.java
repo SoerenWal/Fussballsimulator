@@ -19,11 +19,11 @@ public class Navigation {
 			break;
 		case 3:
 			System.out.println("Spielrunde anzeigen: ");
-			// spielStarten();
+			// spielrundeAnzeigen();
 			break;
 		case 4:
 			System.out.println("Spielstand anzeigen: ");
-			// spielStarten();
+			// spielstandAnzeigen();
 			break;
 		case 5:
 			System.out.println("Spiel beendet.");
@@ -32,6 +32,16 @@ public class Navigation {
 		default:
 			break;
 		}
+	}
+	
+	private static void titelAnzeigen() {
+		System.out.println(
+				" _____       ___ _           _ _     _                 _       _             \r\n"
+				+ "|  ___|   _ / _ \\ |__   __ _| | |___(_)_ __ ___  _   _| | __ _| |_ ___  _ __ \r\n"
+				+ "| |_ | | | | |/ / '_ \\ / _` | | / __| | '_ ` _ \\| | | | |/ _` | __/ _ \\| '__|\r\n"
+				+ "|  _|| |_| | |\\ \\ |_) | (_| | | \\__ \\ | | | | | | |_| | | (_| | || (_) | |   \r\n"
+				+ "|_|   \\__,_| ||_/_.__/ \\__,_|_|_|___/_|_| |_| |_|\\__,_|_|\\__,_|\\__\\___/|_|   \r\n"
+				+ "           |_|                                                               ");
 	}
 
 	private static void menuAnzeigen() {
@@ -46,8 +56,9 @@ public class Navigation {
 	}
 
 	public static void menuInteraktion() {
+		titelAnzeigen();
+		menuAnzeigen();
 		do {
-			menuAnzeigen();
 			menu(menuEingabe());
 		} while (true);
 	}
