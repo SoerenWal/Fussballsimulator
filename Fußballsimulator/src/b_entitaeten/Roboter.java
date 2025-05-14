@@ -96,7 +96,7 @@ public abstract class Roboter {
 	public void verbraucheEnergie(int energiekosten) {
 		if(this.energie >= energiekosten) {
 			this.energie -= energiekosten;
-		} else if(energie < energiekosten) {
+		} else if(energie < energiekosten && energie != 0) {
 			this.energie = 0;
 		}
 	}
