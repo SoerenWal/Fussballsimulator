@@ -23,14 +23,14 @@ public class Mittelfeldspieler extends Roboter {
             }
         }
         
-        public String toString() {
+        /*public String toString() {
             return "Mittelfeldspieler: " + this.getName() +
                    ", ID: " + this.getId() +
                    ", Geschwindigkeit: " + this.getGeschwindigkeit() +
                    ", Präzision Pass: " + this.getPraezisionPass() +
                    ", Präzision Schuss: " + this.getPraezisionSchuss() +
                    ", Energie: " + this.getEnergie();
-        }
+        }*/
     }
         
 

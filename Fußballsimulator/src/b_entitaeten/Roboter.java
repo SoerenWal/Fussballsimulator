@@ -108,7 +108,9 @@ public abstract class Roboter {
     }
     public boolean blocken() {return true;}
     public void energieAufladen() {}
-    public void ausfallen() {
+    public void ausfallen() {}
     
+    public String toString() {
+    	return this.name;
     }
 }

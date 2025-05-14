@@ -14,8 +14,10 @@ public final class Schiedsrichter {
 	public Mannschaft gastmannschaft;
 	public Ball ball;
 	
-	private Schiedsrichter(Ball ball, Mannschaft heimgastmannschaft, Mannschaft gastmannschaft) {
+	private Schiedsrichter(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		this.ball = ball;
+		this.heimmannschaft = heimmannschaft;
+		this.gastmannschaft = gastmannschaft;
 		
 	}
 	
