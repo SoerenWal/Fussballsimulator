@@ -92,30 +92,33 @@ public abstract class Roboter {
 		this.x = this.x + xSchritte;
 		this.y = this.y + ySchritte;
 	}
+	
+	public void verbraucheEnergie(int energiekosten) {
+		if(this.energie >= energiekosten) {
+			this.energie -= energiekosten;
+		} else if(energie < energiekosten) {
+			this.energie = 0;
+		}
+	}
 
 	public void passen(Roboter roboter) {
-
-		if (this.hatBallBesitz == true) {
-			if (this.energie >= 5) {
-
-				if (this.praezisionPass >= RoboterHelper.randomZahl()) {
-					this.hatBallBesitz = false;
-					roboter.hatBallBesitz = true;
-					System.out.println("Erfolgreicher Pass");
-				} else {
-					this.hatBallBesitz = false;
-					System.out.println("Fehlpass"); // Eine möglichkeit
-				}
+		if (this.hatBallBesitz) {
+			verbraucheEnergie(5);
+			if (this.praezisionPass >= RoboterHelper.randomZahl()) {
+				this.hatBallBesitz = false;
+				roboter.hatBallBesitz = true;
+				System.out.println("Erfolgreicher Pass");
 			} else {
-				this.energie = this.energie - 5; // Simuliert den
-			}
+				this.hatBallBesitz = false;
+				System.out.println("Fehlpass");
+				}
 		} else {
-			System.out.println("Der Spieler hat den ball nicht");
+			System.out.println("Der Spieler hat den Ball nicht");
 		}
 	}
 
 	public void schiessen() {
-
+		
 	}
 
 	public boolean blocken() {

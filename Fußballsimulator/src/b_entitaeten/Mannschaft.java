@@ -1,5 +1,6 @@
 package b_entitaeten;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -32,5 +33,13 @@ public class Mannschaft {
 		System.out.println("Name des Torwarts: ");
 		name = sc.nextLine();
 		this.spieler.put("Torwart", new Torwart(name));
+	}
+
+	public void zeigeEnergieBericht() {
+		Collection<Roboter> values = spieler.values();
+		System.out.println("Energiebericht von " + this.name);
+		for (Roboter r : values) {
+			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
+		}
 	}
 }
