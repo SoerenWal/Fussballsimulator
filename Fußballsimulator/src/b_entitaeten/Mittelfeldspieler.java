@@ -14,14 +14,7 @@ public class Mittelfeldspieler extends Roboter {
     }
         
         
-        public void passeSpielen() {
-            if (this.getEnergie() > 0) {
-                System.out.println(this.getName() + " spielt einen Pass mit Präzision " + this.getPraezisionPass());
-                this.setEnergie(this.getEnergie() - 5); // Energieverbrauch simulieren
-            } else {
-                System.out.println(this.getName() + " hat keine Energie mehr und kann keinen Pass spielen.");
-            }
-        }
+ 
         
         public String toString() {
             return "Mittelfeldspieler: " + this.getName() +
