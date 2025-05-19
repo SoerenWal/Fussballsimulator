@@ -21,13 +21,16 @@ public final class Schiedsrichter {
 
 	}
 
-	public Schiedsrichter() {
-	}
+	private Schiedsrichter() {}
 
 	public static Schiedsrichter getInstance(Ball ball, Mannschaft heimgastmannschaft, Mannschaft gastmannschaft) {
 		if (INSTANCE == null) {
 			INSTANCE = new Schiedsrichter(ball, heimgastmannschaft, gastmannschaft);
 		}
 		return INSTANCE;
+	}
+	
+	public String zeigeBallBesitz() {
+		return "Ballbesitz: " + this.heimmannschaft.name + ": " + this.heimmannschaft.getBallBesitz() + "\n" + this.gastmannschaft.name + ": " + this.gastmannschaft.getBallBesitz();
 	}
 }
