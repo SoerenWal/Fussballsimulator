@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Mannschaft {
 
 	public String name;
+	public int tore = 0;
 	public boolean ballBesitz = false;
 	public HashMap<String, Roboter> spieler;
 	Scanner sc = new Scanner(System.in);
@@ -17,22 +18,24 @@ public class Mannschaft {
 	}
 
 	public void mannschaftAnlegen() {
+		
 		String name;
 		System.out.print("Name des Stürmers: ");
 		name = sc.nextLine();
 		this.spieler.put("Stürmer", new Stuermer(name));
-		System.out.println("\nName des linken Mittelfeldspielers: ");
+		System.out.print("Name des linken Mittelfeldspielers: ");
 		name = sc.nextLine();
 		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
-		System.out.print("\nName des rechten Mittelfeldspielers: ");
+		System.out.print("Name des rechten Mittelfeldspielers: ");
 		name = sc.nextLine();
 		this.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
-		System.out.print("\nName des Verteidigers: ");
+		System.out.print("Name des Verteidigers: ");
 		name = sc.nextLine();
 		this.spieler.put("Verteidiger", new Verteidiger(name));
-		System.out.print("\nName des Torwarts: ");
+		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
 		this.spieler.put("Torwart", new Torwart(name));
+		System.out.println();
 	}
 
 	public void zeigeEnergieBericht() {
