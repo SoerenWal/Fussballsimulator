@@ -126,6 +126,7 @@ public abstract class Roboter {
 	}
 
 	public void energieAufladen() {
+		
 	}
 
 	public void ausfallen() {

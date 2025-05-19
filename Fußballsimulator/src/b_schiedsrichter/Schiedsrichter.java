@@ -27,7 +27,10 @@ public final class Schiedsrichter {
 		return INSTANCE;
 	}
 	
-	public String zeigeBallBesitz() {
-		return "Ballbesitz: " + this.heimmannschaft.name + ": " + this.heimmannschaft.getBallBesitz() + "\n" + this.gastmannschaft.name + ": " + this.gastmannschaft.getBallBesitz();
+	public void zeigeSpielstand() {
+		System.out.println("\nMannschaft | Tore | Ballbesitz");
+		System.out.println(this.heimmannschaft.name + " | " + this.heimmannschaft.tore + " | " + this.heimmannschaft.ballBesitz);
+		System.out.println(this.gastmannschaft.name + " | " + this.gastmannschaft.tore + " | " + this.gastmannschaft.ballBesitz);
+		System.out.println();
 	}
 }
