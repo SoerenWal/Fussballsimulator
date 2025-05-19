@@ -18,19 +18,19 @@ public class Mannschaft {
 
 	public void mannschaftAnlegen() {
 		String name;
-		System.out.println("Name des Stürmers: ");
+		System.out.print("Name des Stürmers: ");
 		name = sc.nextLine();
 		this.spieler.put("Stürmer", new Stuermer(name));
-		System.out.println("Name des linken Mittelfeldspielers: ");
+		System.out.println("\nName des linken Mittelfeldspielers: ");
 		name = sc.nextLine();
 		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
-		System.out.println("Name des rechten Mittelfeldspielers: ");
+		System.out.print("\nName des rechten Mittelfeldspielers: ");
 		name = sc.nextLine();
 		this.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
-		System.out.println("Name des Verteidigers: ");
+		System.out.print("\nName des Verteidigers: ");
 		name = sc.nextLine();
 		this.spieler.put("Verteidiger", new Verteidiger(name));
-		System.out.println("Name des Torwarts: ");
+		System.out.print("\nName des Torwarts: ");
 		name = sc.nextLine();
 		this.spieler.put("Torwart", new Torwart(name));
 	}
@@ -41,5 +41,9 @@ public class Mannschaft {
 		for (Roboter r : values) {
 			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
 		}
+	}
+	
+	public boolean getBallBesitz() {
+		return this.ballBesitz;
 	}
 }
