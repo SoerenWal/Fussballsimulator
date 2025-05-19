@@ -2,9 +2,6 @@ package b_schiedsrichter;
 
 import b_entitaeten.Ball;
 import b_entitaeten.Mannschaft;
-import b_entitaeten.Mittelfeldspieler;
-import b_entitaeten.Roboter;
-import b_entitaeten.Spielfeld;
 
 public final class Schiedsrichter {
 
