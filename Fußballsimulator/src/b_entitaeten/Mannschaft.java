@@ -18,7 +18,7 @@ public class Mannschaft {
 	}
 
 	public void mannschaftAnlegen() {
-		
+
 		String name;
 		System.out.print("Name des Stürmers: ");
 		name = sc.nextLine();
@@ -44,9 +44,5 @@ public class Mannschaft {
 		for (Roboter r : values) {
 			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
 		}
-	}
-	
-	public boolean getBallBesitz() {
-		return this.ballBesitz;
 	}
 }
