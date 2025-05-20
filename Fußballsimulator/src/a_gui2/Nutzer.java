@@ -17,11 +17,11 @@ public class Nutzer {
 		Torwart h_t = new Torwart("Felix");
 
 		Mannschaft gastmannschaft = new Mannschaft("heimmannschaft");
-		Stuermer g_s = new Stuermer();
-		Mittelfeldspieler g_m1 = new Mittelfeldspieler();
-		Mittelfeldspieler g_m2 = new Mittelfeldspieler();
-		Verteidiger g_v = new Verteidiger();
-		Torwart g_t = new Torwart();
+		Stuermer g_s = new Stuermer("name");
+		Mittelfeldspieler g_m1 = new Mittelfeldspieler("Felix");
+		Mittelfeldspieler g_m2 = new Mittelfeldspieler("Noah");
+		Verteidiger g_v = new Verteidiger("Noah1");
+		Torwart g_t = new Torwart("TEster");
 
 		Ball ball = Ball.getInstance(396, 246);
 		schiedsrichter = Schiedsrichter.getInstance(ball);
