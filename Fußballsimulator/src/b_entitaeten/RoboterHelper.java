@@ -1,5 +1,4 @@
 package b_entitaeten;
-
 import java.util.Random;
 
 public class RoboterHelper {
