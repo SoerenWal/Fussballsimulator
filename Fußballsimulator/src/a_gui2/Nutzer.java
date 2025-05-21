@@ -23,6 +23,7 @@ public class Nutzer {
 		Verteidiger g_v = new Verteidiger("Noah1");
 		Torwart g_t = new Torwart("TEster");
 
+		
 		Ball ball = Ball.getInstance(396, 246);
 		schiedsrichter = Schiedsrichter.getInstance(ball);
 		// Fußballfeld.fußballfeldAnzeigen();
