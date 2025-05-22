@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Mannschaft {
 
+	int i;
 	public String name;
 	public int tore = 0;
 	public boolean ballBesitz = false;
