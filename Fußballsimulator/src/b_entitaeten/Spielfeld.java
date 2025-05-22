@@ -2,7 +2,7 @@ package b_entitaeten;
 
 public class Spielfeld {
 
-	static String[][] feld = new String[86][105];
+	static String[][] feld = new String[35][81];
 
 	public static void feldVorbereiten() {
 		for(int i = 0; i < feld.length; i++) {
