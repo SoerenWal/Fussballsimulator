@@ -1,6 +1,8 @@
 package b_entitaeten;
 
-public abstract class Roboter {
+import java.io.Serializable;
+
+public abstract class Roboter implements Serializable {
 
 	public static int anzahlRoboter = 0;
 
@@ -93,18 +95,22 @@ public abstract class Roboter {
 		this.y = this.y + ySchritte;
 	}
 	
-	public void verbraucheEnergie(int energiekosten) {
+	public int verbraucheEnergie(int energiekosten) {
 		if(this.energie >= energiekosten) {
 			this.energie -= energiekosten;
+			return 1;
 		} else if(energie < energiekosten && energie != 0) {
+			int t = this.energie;
+			int f = energiekosten - t;
 			this.energie = 0;
+			return f;
 		}
+		return 1;
 	}
 
 	public void passen(Roboter roboter) {
-		if (this.hatBallBesitz) {
-			verbraucheEnergie(5);
-			if (this.praezisionPass >= RoboterHelper.randomZahl()) {
+		if (this.hatBallBesitz && this.energie != 0) {
+			if ((this.praezisionPass / verbraucheEnergie(5)) >= RoboterHelper.randomZahl()) {
 				this.hatBallBesitz = false;
 				roboter.hatBallBesitz = true;
 				System.out.println("Erfolgreicher Pass");
