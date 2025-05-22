@@ -1,5 +1,7 @@
 package a_gui2;
  
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,14 +17,14 @@ public class Navigation {
 		Mannschaft heimmannschaft = new Mannschaft("Frankfurt", new HashMap<String, Roboter>());
 		Mannschaft gastmannschaft = new Mannschaft("Darmstadt", new HashMap<String, Roboter>());
 		Ball ball = Ball.getInstance(18, 41);
-		menuInteraktion(heimmannschaft, gastmannschaft, ball);
-		int Hallo = 10;
-		int Welt = 0;
+		Collection<Roboter> spielerArrayList = heimmannschaft.spieler.values();
+		menuInteraktion(heimmannschaft, gastmannschaft, ball, spielerArrayList);
+		
 	}
  
 	private static String menuText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Spielrunde anzeigen\n4. Spielstand anzeigen\n5. Spiel beenden";
  
-	private static void menu(Mannschaft heimmannschaft, Mannschaft gastmannschaft, Ball ball, int menuOption) {
+	private static void menu(Mannschaft heimmannschaft, Mannschaft gastmannschaft, Ball ball, Collection<Roboter> spielerArrayList, int menuOption) {
 		switch (menuOption) {
 		case 1:
 			System.out.println("Heimmannschaft anlegen: ");
@@ -38,7 +40,7 @@ public class Navigation {
 			break;
 		case 3:
 			System.out.println("Spielrunde anzeigen: ");
-			Spielfeld.feldVorbereiten(ball);
+			Spielfeld.feldVorbereiten(ball, spielerArrayList);
 			Spielfeld.feldAnzeigen();
 			break;
 		case 4:
@@ -91,11 +93,11 @@ public class Navigation {
 		return eingabe;
 	}
  
-	public static void menuInteraktion(Mannschaft heimmannschaft, Mannschaft gastmannschaft, Ball ball) {
+	public static void menuInteraktion(Mannschaft heimmannschaft, Mannschaft gastmannschaft, Ball ball, Collection<Roboter> spielerArrayList) {
 		titelAnzeigen();
 		menuAnzeigen();
 		while (true) {
-			menu(heimmannschaft, gastmannschaft, ball, menuEingabe());
+			menu(heimmannschaft, gastmannschaft, ball, spielerArrayList, menuEingabe());
 		}
 	}
  

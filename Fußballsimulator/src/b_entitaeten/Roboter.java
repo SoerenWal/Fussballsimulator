@@ -124,7 +124,7 @@ public abstract class Roboter implements Serializable {
 	}
 
 	public void schiessen() {
-		
+		// prüfeDistanz() if this.getX mit Linie
 	}
 
 	public boolean blocken() {

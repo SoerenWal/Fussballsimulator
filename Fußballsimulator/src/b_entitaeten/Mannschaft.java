@@ -45,4 +45,6 @@ public class Mannschaft {
 			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
 		}
 	}
+	
+	// mannschaftAufstellen()
 }
