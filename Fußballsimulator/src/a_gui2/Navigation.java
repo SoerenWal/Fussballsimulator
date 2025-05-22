@@ -9,21 +9,23 @@ import b_entitaeten.Ball;
 import b_entitaeten.Mannschaft;
 import b_entitaeten.Roboter;
 import b_entitaeten.Spielfeld;
+import b_entitaeten.Tor;
  
 public class Navigation {
 	
 	public static void main(String[] args) {
 		Mannschaft heimmannschaft = new Mannschaft("Frankfurt", new HashMap<String, Roboter>());
 		Mannschaft gastmannschaft = new Mannschaft("Darmstadt", new HashMap<String, Roboter>());
-		Ball ball = Ball.getInstance(18, 41);
-		Collection<Roboter> spielerArrayList = heimmannschaft.spieler.values();
-		menuInteraktion(heimmannschaft, gastmannschaft, ball, spielerArrayList);
+		Ball ball = Ball.getInstance(Spielfeld.spielfeldBreite/2+1, Spielfeld.spielfeldLaenge/2+1);
+		Tor[] tore = {new Tor( Spielfeld.spielfeldBreite/2, 0), new Tor(Spielfeld.spielfeldBreite/2, Spielfeld.spielfeldLaenge-1)};
+		Collection<Roboter> spieler = heimmannschaft.spieler.values();
+		menuInteraktion(tore, ball, spieler, heimmannschaft, gastmannschaft);
 		
 	}
  
 	private static String menuText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Spielrunde anzeigen\n4. Spielstand anzeigen\n5. Spiel beenden";
  
-	private static void menu(Mannschaft heimmannschaft, Mannschaft gastmannschaft, Ball ball, Collection<Roboter> spielerArrayList, int menuOption) {
+	private static void menu(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft, Mannschaft gastmannschaft, int menuOption) {
 		switch (menuOption) {
 		case 1:
 			System.out.println("Heimmannschaft anlegen: ");
@@ -39,8 +41,8 @@ public class Navigation {
 			break;
 		case 3:
 			System.out.println("Spielrunde anzeigen: ");
-			Spielfeld.feldVorbereiten(ball, spielerArrayList);
-			Spielfeld.feldAnzeigen();
+			Spielfeld.spielfeldMalen(tore, ball, spieler);
+			Spielfeld.spielfeldAnzeigen();
 			break;
 		case 4:
 			System.out.println("Spielstand:");
@@ -92,11 +94,11 @@ public class Navigation {
 		return eingabe;
 	}
  
-	public static void menuInteraktion(Mannschaft heimmannschaft, Mannschaft gastmannschaft, Ball ball, Collection<Roboter> spielerArrayList) {
+	public static void menuInteraktion(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		titelAnzeigen();
 		menuAnzeigen();
 		while (true) {
-			menu(heimmannschaft, gastmannschaft, ball, spielerArrayList, menuEingabe());
+			menu(tore, ball, spieler, heimmannschaft, gastmannschaft, menuEingabe());
 		}
 	}
  
