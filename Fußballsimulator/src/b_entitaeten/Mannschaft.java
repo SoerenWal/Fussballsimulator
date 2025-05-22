@@ -12,9 +12,8 @@ public class Mannschaft {
 	public HashMap<String, Roboter> spieler;
 	Scanner sc = new Scanner(System.in);
 
-	public Mannschaft(String name, HashMap<String, Roboter> spieler) {
+	public Mannschaft(String name) {
 		this.name = name;
-		this.spieler = spieler;
 	}
 
 	public void mannschaftAnlegen() {
