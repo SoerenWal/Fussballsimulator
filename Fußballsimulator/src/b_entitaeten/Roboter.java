@@ -100,9 +100,9 @@ public abstract class Roboter implements Serializable {
 			this.energie -= energiekosten;
 			return 1;
 		} else if(energie < energiekosten && energie != 0) {
-			int e = energiekosten - this.energie;
+			int energieDif = energiekosten - this.energie;
 			this.energie = 0;
-			return e;
+			return energieDif;
 			
 		}
 		return 1;
