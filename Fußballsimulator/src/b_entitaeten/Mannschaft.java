@@ -18,7 +18,6 @@ public class Mannschaft {
 	}
 
 	public void mannschaftAnlegen() {
-
 		String name;
 		System.out.print("Name des Stürmers: ");
 		name = sc.nextLine();

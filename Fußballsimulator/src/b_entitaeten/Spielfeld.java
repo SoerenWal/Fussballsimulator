@@ -4,8 +4,8 @@ import java.util.Collection;
 
 public class Spielfeld {
 
-	public static int spielfeldLaenge = 31; // 81 // 61
-	public static int spielfeldBreite = 13; // 35 // 25
+	public static int spielfeldLaenge = 61; // 81 // 61
+	public static int spielfeldBreite = 25; // 35 // 25
 
 	private static String[][] feld = new String[spielfeldBreite][spielfeldLaenge];
 
@@ -17,27 +17,31 @@ public class Spielfeld {
 	}
 
 	public static void rasenMalen() {
+		for (int i = 0; i < spielfeldLaenge; i++) {
+			System.out.printf("%02d%s", i, "|");
+		}
+		System.out.println();
 		for (int i = 0; i < feld.length; i++) {
 			for (int j = 0; j < feld[i].length; j++) {
-				feld[i][j] = "..";
+				feld[i][j] = "...";
 			}
 		}
 	}
 
 	public static void toreMalen(Tor[] tore) {
 		for (int i = -1; i < 2; i++) {
-			feld[tore[0].yTor + i][tore[0].xTor] = "🥅";
-			feld[tore[1].yTor + i][tore[1].xTor] = "🥅";
+			feld[tore[0].yTor + i][tore[0].xTor] = "🥅.";
+			feld[tore[1].yTor + i][tore[1].xTor] = ".🥅";
 		}
 	}
 
 	public static void ballMalen(Ball ball) {
-		feld[ball.getX()-1][ball.getY()] = "⚽";
+		feld[ball.getX()-1][ball.getY()] = ".⚽.";
 	}
 
 	public static void spielerMalen(Collection<Roboter> spieler) {
 		for (Roboter s : spieler) {
-			feld[s.getX()][s.getY()] = "🏃‍♂️";
+			feld[s.getX()][s.getY()] = ".🏃‍♂️.";
 		}
 	}
 
