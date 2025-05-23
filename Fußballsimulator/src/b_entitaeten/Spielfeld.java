@@ -4,8 +4,8 @@ import java.util.Collection;
 
 public class Spielfeld {
 
-	public static int spielfeldLaenge = 61; // 81 // 61
-	public static int spielfeldBreite = 25; // 35 // 25
+	public static int spielfeldLaenge = 15; // 81 // 61
+	public static int spielfeldBreite = 5; // 35 // 25
 
 	private static String[][] feld = new String[spielfeldBreite][spielfeldLaenge];
 
@@ -23,15 +23,15 @@ public class Spielfeld {
 		System.out.println();
 		for (int i = 0; i < feld.length; i++) {
 			for (int j = 0; j < feld[i].length; j++) {
-				feld[i][j] = "...";
+				feld[i][j] = "....";
 			}
 		}
 	}
 
 	public static void toreMalen(Tor[] tore) {
 		for (int i = -1; i < 2; i++) {
-			feld[tore[0].yTor + i][tore[0].xTor] = "🥅.";
-			feld[tore[1].yTor + i][tore[1].xTor] = ".🥅";
+			feld[tore[0].yTor + i][tore[0].xTor] = "🥅..";
+			feld[tore[1].yTor + i][tore[1].xTor] = "..🥅";
 		}
 	}
 
