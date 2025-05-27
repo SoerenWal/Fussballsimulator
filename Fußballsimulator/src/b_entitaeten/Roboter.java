@@ -9,7 +9,7 @@ public abstract class Roboter implements Serializable {
 	private String name;
 	private int id;
 	private double geschwindigkeit;
-	private int energie = 100;
+	private int energie = 20;
 	private boolean hatBallBesitz = false;
 	private double praezisionPass;
 	private double praezisionSchuss;
@@ -132,8 +132,7 @@ public abstract class Roboter implements Serializable {
 	}
 
 	public void energieAufladen() {
-		this.energie = Math.min(this.energie + 10, 100);
-		
+		this.energie = Math.min(this.energie + 2, 20);
 	}
 
 	public void ausfallen() {
