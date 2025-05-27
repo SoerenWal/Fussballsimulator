@@ -133,6 +133,7 @@ public abstract class Roboter implements Serializable {
 
 	public void energieAufladen() {
 		this.energie = Math.min(10, 100);
+		
 	}
 
 	public void ausfallen() {
