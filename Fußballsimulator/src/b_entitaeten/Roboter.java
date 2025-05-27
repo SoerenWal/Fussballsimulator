@@ -91,6 +91,7 @@ public abstract class Roboter implements Serializable {
 	}
 
 	public void laufen(int xSchritte, int ySchritte) {
+		verbraucheEnergie(1);
 		this.x = this.x + xSchritte;
 		this.y = this.y + ySchritte;
 	}
