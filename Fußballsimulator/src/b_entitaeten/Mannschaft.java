@@ -10,40 +10,77 @@ public class Mannschaft {
 	public int tore = 0;
 	public boolean ballBesitz = false;
 	public HashMap<String, Roboter> spieler;
-	Scanner sc = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
 
-	public Mannschaft(String name, HashMap<String, Roboter> spieler) {
-		this.name = name;
+	public Mannschaft(HashMap<String, Roboter> spieler) {
 		this.spieler = spieler;
 	}
 
-	public void mannschaftAnlegen() {
+	public static void mannschaftAnlegen(Tor[] tore, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		System.out.println("0.Heimmannschaft\n1.Gastmannschaft\n2.Zurück");
+		switch (LogikHelper.menuEingabe(2)) {
+		case 0:
+			heimmannschaftAnlegen(heimmannschaft, tore[0]);
+			break;
+		case 1:
+			gastmannschaftAnlegen(gastmannschaft, tore[1]);
+			break;
+		case 2:
+			break;
+		}
+	}
+
+	private static void heimmannschaftAnlegen(Mannschaft heimmannschaft, Tor tor) {
+		System.out.print("Name der Heimmannschaft: ");
+		heimmannschaft.name = sc.nextLine();
 		String name;
 		System.out.print("Name des Stürmers: ");
 		name = sc.nextLine();
-		this.spieler.put("Stürmer", new Stuermer(name));
+		heimmannschaft.spieler.put("Stürmer", new Stuermer(name));
 		System.out.print("Name des linken Mittelfeldspielers: ");
 		name = sc.nextLine();
-		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
+		heimmannschaft.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
 		System.out.print("Name des rechten Mittelfeldspielers: ");
 		name = sc.nextLine();
-		this.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
+		heimmannschaft.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
 		System.out.print("Name des Verteidigers: ");
 		name = sc.nextLine();
-		this.spieler.put("Verteidiger", new Verteidiger(name));
+		heimmannschaft.spieler.put("Verteidiger", new Verteidiger(name));
 		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
-		this.spieler.put("Torwart", new Torwart(name));
+		heimmannschaft.spieler.put("Torwart", new Torwart(name, tor.yTor, tor.xTor + 1));
+		System.out.println();
+	}
+
+	private static void gastmannschaftAnlegen(Mannschaft gastmannschaft, Tor tor) {
+		System.out.print("Name der Heimmannschaft: ");
+		gastmannschaft.name = sc.nextLine();
+		String name;
+		System.out.print("Name des Stürmers: ");
+		name = sc.nextLine();
+		gastmannschaft.spieler.put("Stürmer", new Stuermer(name));
+		System.out.print("Name des linken Mittelfeldspielers: ");
+		name = sc.nextLine();
+		gastmannschaft.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
+		System.out.print("Name des rechten Mittelfeldspielers: ");
+		name = sc.nextLine();
+		gastmannschaft.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
+		System.out.print("Name des Verteidigers: ");
+		name = sc.nextLine();
+		gastmannschaft.spieler.put("Verteidiger", new Verteidiger(name));
+		System.out.print("Name des Torwarts: ");
+		name = sc.nextLine();
+		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.yTor, tor.xTor - 1));
 		System.out.println();
 	}
 
 	public void zeigeEnergieBericht() {
-		Collection<Roboter> values = spieler.values();
-		System.out.println("Energiebericht von " + this.name);
-		for (Roboter r : values) {
-			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
+		if (this.name != null) {
+			Collection<Roboter> values = spieler.values();
+			System.out.println("Energiebericht von " + this.name);
+			for (Roboter r : values) {
+				System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
+			}
 		}
 	}
-	
-	// mannschaftAufstellen()
 }

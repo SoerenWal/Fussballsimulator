@@ -9,11 +9,12 @@ public class Spielfeld {
 
 	private static String[][] feld = new String[spielfeldBreite][spielfeldLaenge];
 
-	public static void spielfeldMalen(Tor[] tore, Ball ball, Collection<Roboter> spieler) {
+	public static void spielfeldMalen(Tor[] tore, Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		rasenMalen();
 		toreMalen(tore);
 		ballMalen(ball);
-		spielerMalen(spieler);
+		spielerMalen(heimmannschaft);
+		spielerMalen(gastmannschaft);
 	}
 
 	public static void rasenMalen() {
@@ -35,9 +36,9 @@ public class Spielfeld {
 		feld[ball.getX()-1][ball.getY()] = "B";
 	}
 
-	public static void spielerMalen(Collection<Roboter> spieler) {
-		for (Roboter s : spieler) {
-			feld[s.getX()][s.getY()] = "S";
+	public static void spielerMalen(Mannschaft mannschaft) {
+		for (Roboter s : mannschaft.spieler.values()) {
+			feld[s.getX()][s.getY()] = String.valueOf(s.getName().charAt(0));
 		}
 	}
 
