@@ -126,6 +126,7 @@ public abstract class Roboter implements Serializable {
 
 	public void schiessen() {
 		// prüfeDistanz() if this.getX mit Linie
+		verbraucheEnergie(8);
 	}
 
 	public boolean blocken() {
