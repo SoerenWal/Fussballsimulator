@@ -36,8 +36,7 @@ public class Navigation {
 			break;
 		case 2:
 			System.out.println("Spiel starten: ");
-			ball.setX(ball.getX());
-			ball.setY(ball.getY()-5);
+			RoboterHelper.SpielzugAusführen(heimmannschaft,gastmannschaft);
 			break;
 		case 3:
 			System.out.println("Spielrunde anzeigen: ");
