@@ -1,4 +1,6 @@
 package b_entitaeten;
+
+import java.util.Collection;
 import java.util.Random;
 
 public class RoboterHelper {
@@ -28,5 +30,9 @@ public class RoboterHelper {
 	 */
 	public static void erhoeheAnzahlRoboter() {
 		Roboter.anzahlRoboter += 1;
+	}
+
+	public static void spielzugAusführen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		Collection<Roboter> spieler = heimmannschaft.spieler.values();
 	}
 }
