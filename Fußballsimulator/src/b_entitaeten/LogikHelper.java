@@ -28,7 +28,7 @@ public class LogikHelper {
 
 	public static void ballbesitzSetzen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		if (heimmannschaft.spieler != null && gastmannschaft.spieler != null) {
-			System.out.println("Bitte legen Sie zunächst beide Mannschaften an.");
+			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		} else {
 			System.out.println("\nMannschaft mit initalem Ballbesitz:");
 			System.out.println("0.Heimmannschaft\n1.Gastmannschaft\n2.Zurück");

@@ -75,13 +75,31 @@ public class Mannschaft {
 		gastmannschaft.spieler.get("Stürmer");
 	}
 
-	public void zeigeEnergieBericht() {
-		if (this.name != null) {
-			Collection<Roboter> values = spieler.values();
-			System.out.println("Energiebericht von " + this.name);
-			for (Roboter r : values) {
-				System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
+	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
+		if (this.ballBesitz) {
+			System.out.println(this.name + " hat derzeit Ballbesitz.");
+		} else {
+			System.out.println(mannschaft.name + " hat derzeit Ballbesitz.");
+		}
+	}
+
+	private void energieAnzeigen() {
+
+	}
+
+	public void gegenueberstellen(Mannschaft mannschaft) {
+		if (this.spieler != null && mannschaft.spieler != null) {
+			System.out.println(this.name + " " + this.tore + " - " + mannschaft.tore + " " + mannschaft.name);
+			ballbesitzAnzeigen(mannschaft);
+			if (this.name != null) {
+				Collection<Roboter> values = spieler.values();
+				System.out.println("Energiebericht von " + this.name);
+				for (Roboter r : values) {
+					System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
+				}
 			}
+		} else {
+			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		}
 	}
 	public void standardAufstellung() {
