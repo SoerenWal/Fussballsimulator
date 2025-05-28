@@ -30,8 +30,7 @@ public class Navigation {
 			Mannschaft.mannschaftAnlegen(tore, heimmannschaft, gastmannschaft);
 			break;
 		case 2:
-			System.out.println("Spiel starten: ");
-			// BallbesitzSetzen()
+			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
 			RoboterHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
 			break;
 		case 3:
