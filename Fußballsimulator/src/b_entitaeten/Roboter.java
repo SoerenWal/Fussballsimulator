@@ -13,12 +13,12 @@ public abstract class Roboter implements Serializable {
 	private boolean hatBallBesitz = false;
 	private double praezisionPass;
 	private double praezisionSchuss;
+	private int initialX;
+	private int initialY;
 	private int x;
 	private int y;
 	protected double faktorPass;
 	protected double faktorSchuss;
-	protected int initialX;
-	protected int initialY;
 
 	public String getName() {
 		return this.name;
@@ -55,7 +55,15 @@ public abstract class Roboter implements Serializable {
 	public double getPraezisionSchuss() {
 		return this.praezisionSchuss;
 	}
+	
+	public int getInitialX() {
+		return this.initialX;
+	}
 
+	public int getInitialY() {
+		return this.initialY;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -82,6 +90,14 @@ public abstract class Roboter implements Serializable {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public void setInitialX(int initialX) {
+		this.initialX = initialX;
+	}
+	
+	public void setInitialY(int initialY) {
+		this.initialY = initialY;
 	}
 
 	public void setPraezisionPass(double praezisionPass) {
