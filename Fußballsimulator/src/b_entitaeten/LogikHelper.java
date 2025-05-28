@@ -47,13 +47,13 @@ public class LogikHelper {
 	}
 
 	public static void siegerAnzeigen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		System.out.print(heimmannschaft.name + " hat die Fußball-Partie gegen" + gastmannschaft.name + " mit ");
+		// prüfen ob spiel gestartet
 		if (heimmannschaft.tore > gastmannschaft.tore) {
-			System.out.print(heimmannschaft.name + " hat die Fußball-Partie gegen" + gastmannschaft.name + " mit einem Sieg (" + heimmannschaft.tore + ":" + gastmannschaft.tore + ") beendet.");
+			System.out.print(heimmannschaft.name + " hat die Fußball-Partie gegen " + gastmannschaft.name + " mit einem Sieg (" + heimmannschaft.tore + ":" + gastmannschaft.tore + ") beendet.");
 		} else if (heimmannschaft.tore < gastmannschaft.tore) {
-			System.out.print(gastmannschaft.name + " hat die Fußball-Partie gegen" + heimmannschaft.name + " mit einer Niederlage (" + gastmannschaft.tore + ":" + heimmannschaft.tore + ") beendet.");
+			System.out.print(gastmannschaft.name + " hat die Fußball-Partie gegen " + heimmannschaft.name + " mit einer Niederlage (" + gastmannschaft.tore + ":" + heimmannschaft.tore + ") beendet.");
 		} else {
-			System.out.println(heimmannschaft.name + " hat die Fußball-Partie gegen" + gastmannschaft.name + " mit einem Unentschieden (" + heimmannschaft.tore + ":" + gastmannschaft.tore + " beendet");
+			System.out.println(heimmannschaft.name + " hat die Fußball-Partie gegen " + gastmannschaft.name + " mit einem Unentschieden (" + heimmannschaft.tore + ":" + gastmannschaft.tore + ") beendet.");
 		}
 	}
 }
