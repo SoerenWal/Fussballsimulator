@@ -42,7 +42,6 @@ public class Navigation {
 			heimmannschaft.gegenueberstellen(gastmannschaft);
 			break;
 		case 5:
-			System.out.println("Spiel beendet.");
 			LogikHelper.siegerAnzeigen(heimmannschaft, gastmannschaft);
 			System.exit(0);
 			break;
