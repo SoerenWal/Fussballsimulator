@@ -98,13 +98,11 @@ public class Mannschaft {
 		} else {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		}
-<<<<<<< HEAD
-	}}
-=======
 	}
+	
 	public void standardAufstellung() {
 		this.spieler.get("Mittelfeldspieler").setX(6);
+		System.out.println("Hallo");
 		
 	}
 }
->>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
