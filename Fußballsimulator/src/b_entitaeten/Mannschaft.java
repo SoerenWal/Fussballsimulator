@@ -72,6 +72,7 @@ public class Mannschaft {
 		name = sc.nextLine();
 		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.yTor, tor.xTor - 1));
 		System.out.println();
+		gastmannschaft.spieler.get("Stürmer");
 	}
 
 	public void zeigeEnergieBericht() {
@@ -82,5 +83,9 @@ public class Mannschaft {
 				System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
 			}
 		}
+	}
+	public void standardAufstellung() {
+		this.spieler.get("Mittelfeldspieler").setX(6);
+		
 	}
 }

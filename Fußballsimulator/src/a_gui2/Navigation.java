@@ -32,6 +32,7 @@ public class Navigation {
 		case 2:
 			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
 			RoboterHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
+			
 			break;
 		case 3:
 			System.out.println("Spielrunde anzeigen: ");

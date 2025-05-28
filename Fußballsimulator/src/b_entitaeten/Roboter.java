@@ -17,6 +17,8 @@ public abstract class Roboter implements Serializable {
 	private int y;
 	protected double faktorPass;
 	protected double faktorSchuss;
+	protected int initialX;
+	protected int initialY;
 
 	public String getName() {
 		return this.name;
@@ -126,7 +128,12 @@ public abstract class Roboter implements Serializable {
 
 	public void schiessen() {
 		// prüfeDistanz() if this.getX mit Linie
-		verbraucheEnergie(8);
+		if(this.x >= 15 || this.x <= 65) {
+			if((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
+				
+			}
+		}
+		
 	}
 
 	public boolean blocken() {
@@ -138,6 +145,7 @@ public abstract class Roboter implements Serializable {
 	}
 
 	public void ausfallen() {
+		
 	}
 
 	public String toString() {
