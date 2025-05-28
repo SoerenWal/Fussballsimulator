@@ -34,15 +34,11 @@ public class Navigation {
 			RoboterHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
 			break;
 		case 3:
-			System.out.println("Spielrunde anzeigen: ");
 			Spielfeld.spielfeldMalen(tore, ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
 			break;
 		case 4:
-			System.out.println("Spielstand:");
-			zeigeSpielstand(heimmannschaft, gastmannschaft);
-			heimmannschaft.zeigeEnergieBericht();
-			gastmannschaft.zeigeEnergieBericht();  
+			heimmannschaft.gegenueberstellen(gastmannschaft);
 			break;
 		case 5:
 			System.out.println("Spiel beendet.");
@@ -61,11 +57,11 @@ public class Navigation {
 				+ "|  _|| |_| | |\\ \\ |_) | (_| | | \\__ \\ | | | | | | |_| | | (_| | || (_) | |   \r\n"
 				+ "|_|   \\__,_| ||_/_.__/ \\__,_|_|_|___/_|_| |_| |_|\\__,_|_|\\__,_|\\__\\___/|_|   \r\n"
 				+ "           |_|                                                               ");
+		System.out.println("\nBitte geben Sie eine Ganzzahl ein, um im Menu zu navigieren.");
 	}
  
 	private static void menuAnzeigen() {
 		System.out.println("\n" + menuText);
-		System.out.println("Bitte geben Sie eine Ganzzahl ein, um im Menu zu navigieren.");
 	}
  
 	public static void menuInteraktion(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
@@ -75,12 +71,5 @@ public class Navigation {
 			menuAnzeigen();
 			menu(tore, ball, spieler, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(5));
 		}
-	}
- 
-	public static void zeigeSpielstand(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		System.out.println("\nMannschaft | Tore | Ballbesitz");
-		System.out.println(heimmannschaft.name + " | " + heimmannschaft.tore + " | " + heimmannschaft.ballBesitz);
-		System.out.println(gastmannschaft.name + " | " + gastmannschaft.tore + " | " + gastmannschaft.ballBesitz);
-		System.out.println();
 	}
 }
