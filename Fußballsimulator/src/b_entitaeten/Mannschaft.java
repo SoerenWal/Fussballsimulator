@@ -78,7 +78,7 @@ public class Mannschaft {
 	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
 		if (this.ballBesitz) {
 			System.out.println(this.name + " hat derzeit Ballbesitz.");
-		} else {
+		} else if (mannschaft.ballBesitz) {
 			System.out.println(mannschaft.name + " hat derzeit Ballbesitz.");
 		}
 	}
@@ -92,7 +92,7 @@ public class Mannschaft {
 	}
 
 	public void gegenueberstellen(Mannschaft mannschaft) {
-		if (this.spieler != null && mannschaft.spieler != null) {
+		if (!this.spieler.isEmpty() && !mannschaft.spieler.isEmpty()) {
 			System.out.println(this.name + " " + this.tore + " - " + mannschaft.tore + " " + mannschaft.name);
 			ballbesitzAnzeigen(mannschaft);
 			energieAnzeigen();
