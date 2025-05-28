@@ -32,6 +32,7 @@ public class Navigation {
 		case 2:
 			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
 			RoboterHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
+			
 			break;
 		case 3:
 			Spielfeld.spielfeldMalen(tore, ball, heimmannschaft, gastmannschaft);

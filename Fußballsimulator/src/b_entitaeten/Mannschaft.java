@@ -72,6 +72,7 @@ public class Mannschaft {
 		name = sc.nextLine();
 		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.yTor, tor.xTor - 1));
 		System.out.println();
+		gastmannschaft.spieler.get("Stürmer");
 	}
 
 	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
@@ -97,4 +98,13 @@ public class Mannschaft {
 		} else {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		}
+<<<<<<< HEAD
 	}}
+=======
+	}
+	public void standardAufstellung() {
+		this.spieler.get("Mittelfeldspieler").setX(6);
+		
+	}
+}
+>>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
