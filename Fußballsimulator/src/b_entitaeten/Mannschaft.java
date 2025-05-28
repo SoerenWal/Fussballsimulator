@@ -101,6 +101,10 @@ public class Mannschaft {
 		}
 	}
 	
+	/**
+	 * Beim Aufrufen dieser Methode werden alle Spieler auf ihre Inizialisierte Position gestellt.
+	 */
+	
 	public void standardAufstellung() {
 		Collection<Roboter> values = spieler.values();
 			for(Roboter r : values) {
