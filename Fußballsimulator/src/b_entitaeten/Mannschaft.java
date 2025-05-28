@@ -101,9 +101,15 @@ public class Mannschaft {
 		}
 	}
 	
+	/**
+	 * Beim Aufrufen dieser Methode werden alle Spieler auf ihre Inizialisierte Position gestellt.
+	 */
+	
 	public void standardAufstellung() {
-		this.spieler.get("Mittelfeldspieler").setX(6);
-		System.out.println("Hallo");
-		
+		Collection<Roboter> values = spieler.values();
+			for(Roboter r : values) {
+				r.setX(r.getInitialX());
+				r.setY(r.getInitialY());
+			}
 	}
 }
