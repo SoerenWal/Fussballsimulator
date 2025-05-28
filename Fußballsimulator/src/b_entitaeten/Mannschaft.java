@@ -95,6 +95,7 @@ public class Mannschaft {
 		if (this.spieler != null && mannschaft.spieler != null) {
 			System.out.println(this.name + " " + this.tore + " - " + mannschaft.tore + " " + mannschaft.name);
 			ballbesitzAnzeigen(mannschaft);
+			energieAnzeigen();
 		} else {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		}
