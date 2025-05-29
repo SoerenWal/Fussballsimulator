@@ -1,7 +1,5 @@
 package b_entitaeten;
 
-import java.util.Collection;
-
 public class Spielfeld {
 
 	public static int spielfeldLaenge = 80;
@@ -47,7 +45,7 @@ public class Spielfeld {
 			for (int j = 0; j < feld[i].length; j++) {
 				System.out.print(feld[i][j]);
 			}
-			System.out.println(ConsoleColors.GREEN_BACKGROUND);
+			System.out.println(ConsoleColors.GREEN_BACKGROUND_BRIGHT);
 		}
 		System.out.println(ConsoleColors.RESET);
 	}

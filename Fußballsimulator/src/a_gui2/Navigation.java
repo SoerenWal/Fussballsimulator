@@ -1,5 +1,5 @@
 package a_gui2;
- 
+
 import java.util.Collection;
 import java.util.HashMap;
 import b_entitaeten.Ball;
@@ -9,47 +9,73 @@ import b_entitaeten.Roboter;
 import b_entitaeten.RoboterHelper;
 import b_entitaeten.Spielfeld;
 import b_entitaeten.Tor;
- 
+
 public class Navigation {
-	
+
 	public static void main(String[] args) {
 		Mannschaft heimmannschaft = new Mannschaft(new HashMap<String, Roboter>());
 		Mannschaft gastmannschaft = new Mannschaft(new HashMap<String, Roboter>());
-		Ball ball = Ball.getInstance(Spielfeld.spielfeldBreite/2+1, Spielfeld.spielfeldLaenge/2+1);
-		Tor[] tore = {new Tor( Spielfeld.spielfeldBreite/2, 0), new Tor(Spielfeld.spielfeldBreite/2, Spielfeld.spielfeldLaenge-1)};
+		Ball ball = Ball.getInstance(Spielfeld.spielfeldBreite / 2 + 1, Spielfeld.spielfeldLaenge / 2 + 1);
+		Tor[] tore = { new Tor(Spielfeld.spielfeldBreite / 2, 0),
+				new Tor(Spielfeld.spielfeldBreite / 2, Spielfeld.spielfeldLaenge - 1) };
 		Collection<Roboter> spieler = heimmannschaft.spieler.values();
 		menuInteraktion(tore, ball, spieler, heimmannschaft, gastmannschaft);
-		
+
 	}
- 
-	private static String menuText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Spielrunde anzeigen\n4. Spielstand anzeigen\n5. Spiel beenden";
- 
-	private static void menu(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft, Mannschaft gastmannschaft, int menuOption) {
+
+	private static String menuStartText = "0.Spiel laden\n1.Mannschaften anlegen\n2.Spiel starten\n3.Programm beenden";
+	private static String menuSpielText = "0.Spielrunde ausführen\n1.Spielstand anzeigen\n2.Spiel speichern\n3.Spiel beenden";
+
+	private static void menuStart(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+			Mannschaft gastmannschaft, int menuOption) {
 		switch (menuOption) {
+		case 0:
+			// Spiel laden
+			// methodenaufruf
+			break;
 		case 1:
+			// Mannschaft anlegen
 			Mannschaft.mannschaftAnlegen(tore, heimmannschaft, gastmannschaft);
 			break;
 		case 2:
-			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
-			RoboterHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
-			
+			// Spiel starten
+			if(LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft)) {
+				menuSpielSchleife(tore, ball, spieler, heimmannschaft, gastmannschaft);
+			}
 			break;
-		case 3:
-			Spielfeld.spielfeldMalen(tore, ball, heimmannschaft, gastmannschaft);
-			Spielfeld.spielfeldAnzeigen();
-			break;
-		case 4:
-			heimmannschaft.gegenueberstellen(gastmannschaft);
-			break;
-		case 5:
-			LogikHelper.siegerAnzeigen(heimmannschaft, gastmannschaft);
+		case 3:		
+			// Programm beenden
+			System.out.println("\nDas Programm wurde erfolgreich beendet.\nBis zum nächsten Mal!");
 			System.exit(0);
-			break;
-		default:
 			break;
 		}
 	}
- 
+
+	private static void menuSpiel(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+			Mannschaft gastmannschaft, int menuOption) {
+		switch (menuOption) {
+		case 0:
+			// Spielrunde ausführen
+			Spielfeld.spielfeldMalen(tore, ball, heimmannschaft, gastmannschaft);
+			Spielfeld.spielfeldAnzeigen();
+			RoboterHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
+			break;
+		case 1:
+			// Spielstand anzeigen
+			heimmannschaft.gegenueberstellen(gastmannschaft);
+			break;
+		case 2:
+			// Spiel speichern
+			// methode ausführen
+			break;
+		case 3:
+			// Spiel beenden
+			LogikHelper.siegerAnzeigen(heimmannschaft, gastmannschaft);
+			menuStartSchleife(tore, ball, spieler, heimmannschaft, gastmannschaft);
+			break;
+		}
+	}
+
 	private static void titelAnzeigen() {
 		// Quelle: https://www.asciiart.eu/text-to-ascii-art
 		System.out.println(" _____       ___ _           _ _     _                 _       _             \r\n"
@@ -60,17 +86,34 @@ public class Navigation {
 				+ "           |_|                                                               ");
 		System.out.println("\nBitte geben Sie eine Ganzzahl ein, um im Menu zu navigieren.");
 	}
- 
-	private static void menuAnzeigen() {
-		System.out.println("\n" + menuText);
+
+	private static void menuStartAnzeigen() {
+		System.out.println("\n" + menuStartText);
 	}
- 
-	public static void menuInteraktion(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		titelAnzeigen();
-		
+	
+	private static void menuSpielAnzeigen() {
+		System.out.println("\n" + menuSpielText);
+	}
+	
+	private static void menuStartSchleife(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+			Mannschaft gastmannschaft) {
 		while (true) {
-			menuAnzeigen();
-			menu(tore, ball, spieler, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(5));
+			menuStartAnzeigen();
+			menuStart(tore, ball, spieler, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
 		}
+	}
+	
+	private static void menuSpielSchleife(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+			Mannschaft gastmannschaft) {
+		while (true) {
+			menuSpielAnzeigen();
+			menuSpiel(tore, ball, spieler, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
+		}
+	}
+
+	public static void menuInteraktion(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+			Mannschaft gastmannschaft) {
+		titelAnzeigen();
+		menuStartSchleife(tore, ball, spieler, heimmannschaft, gastmannschaft);
 	}
 }

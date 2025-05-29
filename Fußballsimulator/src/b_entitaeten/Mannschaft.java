@@ -17,7 +17,8 @@ public class Mannschaft {
 	}
 
 	public static void mannschaftAnlegen(Tor[] tore, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		System.out.println("0.Heimmannschaft\n1.Gastmannschaft\n2.Zurück");
+		System.out.println("\nWelche Mannschaft möchten Sie anlegen?");
+		System.out.println("\n0.Heimmannschaft\n1.Gastmannschaft\n2.Zurück");
 		switch (LogikHelper.menuEingabe(2)) {
 		case 0:
 			heimmannschaftAnlegen(heimmannschaft, tore[0]);
@@ -31,7 +32,7 @@ public class Mannschaft {
 	}
 
 	private static void heimmannschaftAnlegen(Mannschaft heimmannschaft, Tor tor) {
-		System.out.print("Name der Heimmannschaft: ");
+		System.out.print("\nName der Heimmannschaft: ");
 		heimmannschaft.name = sc.nextLine();
 		String name;
 		System.out.print("Name des Stürmers: ");
@@ -49,11 +50,10 @@ public class Mannschaft {
 		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
 		heimmannschaft.spieler.put("Torwart", new Torwart(name, tor.yTor, tor.xTor + 1));
-		System.out.println();
 	}
 
 	private static void gastmannschaftAnlegen(Mannschaft gastmannschaft, Tor tor) {
-		System.out.print("Name der Heimmannschaft: ");
+		System.out.print("\nName der Gastmannschaft: ");
 		gastmannschaft.name = sc.nextLine();
 		String name;
 		System.out.print("Name des Stürmers: ");
@@ -71,8 +71,6 @@ public class Mannschaft {
 		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
 		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.yTor, tor.xTor - 1));
-		System.out.println();
-		gastmannschaft.spieler.get("Stürmer");
 	}
 
 	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
@@ -85,7 +83,7 @@ public class Mannschaft {
 
 	private void energieAnzeigen() {
 		Collection<Roboter> values = spieler.values();
-		System.out.println("Energiebericht von " + this.name);
+		System.out.println("\nEnergiebericht von " + this.name);
 		for (Roboter r : values) {
 			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
 			}
@@ -95,7 +93,8 @@ public class Mannschaft {
 		if (!this.spieler.isEmpty() && !mannschaft.spieler.isEmpty()) {
 			System.out.println(this.name + " " + this.tore + " - " + mannschaft.tore + " " + mannschaft.name);
 			ballbesitzAnzeigen(mannschaft);
-			energieAnzeigen();
+			this.energieAnzeigen();
+			mannschaft.energieAnzeigen();
 		} else {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		}
