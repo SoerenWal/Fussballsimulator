@@ -4,19 +4,19 @@ public final class Ball {
  
 	private static Ball INSTANCE;
  
-	private int x;
-	private int y;
+	int zeile;
+	int spalte;
 	private boolean amSpielFeldRand;
 	private boolean imTor;
  
-	private Ball(int x, int y) {
-		this.x = x;
-		this.y = y;
+	private Ball(int zeile, int spalte) {
+		this.zeile = zeile;
+		this.spalte = spalte;
 	};
  
 	public void setKoordinatenAnstoß(Stuermer s) {
-		this.x = s.getX();
-		this.y = s.getY();
+		this.zeile = s.getZeile();
+		this.spalte = s.getSpalte();
 	}
  
 	/**
@@ -25,9 +25,9 @@ public final class Ball {
 	 * @param y
 	 * @return
 	 */
-	public static Ball getInstance(int x, int y) {
+	public static Ball getInstance(int zeile, int spalte) {
 		if (INSTANCE == null) {
-			INSTANCE = new Ball(x, y);
+			INSTANCE = new Ball(zeile, spalte);
 		}
 		return INSTANCE;
 	}
@@ -41,19 +41,19 @@ public final class Ball {
 	}
  
 	public int getX() {
-		return x;
+		return zeile;
 	}
  
 	public void setX(int x) {
-		this.x = x;
+		this.zeile = x;
 	}
  
 	public int getY() {
-		return y;
+		return spalte;
 	}
  
 	public void setY(int y) {
-		this.y = y;
+		this.spalte = y;
 	}
  
 	public boolean isAmSpielFeldRand() {

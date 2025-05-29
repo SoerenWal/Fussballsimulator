@@ -13,10 +13,10 @@ public abstract class Roboter implements Serializable {
 	private boolean hatBallBesitz = false;
 	private double praezisionPass;
 	private double praezisionSchuss;
-	private int initialX;
-	private int initialY;
-	private int x;
-	private int y;
+	private int initialZeile;
+	private int initialSpalte;
+	private int zeile;
+	private int spalte;
 	protected double faktorPass;
 	protected double faktorSchuss;
 
@@ -40,12 +40,12 @@ public abstract class Roboter implements Serializable {
 		return this.hatBallBesitz;
 	}
 
-	public int getX() {
-		return this.x;
+	public int getZeile() {
+		return this.zeile;
 	}
 
-	public int getY() {
-		return this.y;
+	public int getSpalte() {
+		return this.spalte;
 	}
 
 	public double getPraezisionPass() {
@@ -56,12 +56,12 @@ public abstract class Roboter implements Serializable {
 		return this.praezisionSchuss;
 	}
 	
-	public int getInitialX() {
-		return this.initialX;
+	public int getInitialZeile() {
+		return this.initialZeile;
 	}
 
-	public int getInitialY() {
-		return this.initialY;
+	public int getInitialSpalte() {
+		return this.initialSpalte;
 	}
 	
 	public void setName(String name) {
@@ -84,20 +84,20 @@ public abstract class Roboter implements Serializable {
 		this.hatBallBesitz = ballBesitz;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public void setZeile(int zeile) {
+		this.zeile = zeile;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	public void setSpalte(int spalte) {
+		this.spalte = spalte;
 	}
 	
-	public void setInitialX(int initialX) {
-		this.initialX = initialX;
+	public void setInitialZeile(int initialZeile) {
+		this.initialZeile = initialZeile;
 	}
 	
-	public void setInitialY(int initialY) {
-		this.initialY = initialY;
+	public void setInitialSpalte(int initialSpalte) {
+		this.initialSpalte = initialSpalte;
 	}
 
 	public void setPraezisionPass(double praezisionPass) {
@@ -110,8 +110,8 @@ public abstract class Roboter implements Serializable {
 
 	public void laufen(int xSchritte, int ySchritte) {
 		verbraucheEnergie(1);
-		this.x = this.x + xSchritte;
-		this.y = this.y + ySchritte;
+		this.zeile = this.zeile + xSchritte;
+		this.spalte = this.spalte + ySchritte;
 	}
 	
 	public int verbraucheEnergie(int energiekosten) {
@@ -144,7 +144,7 @@ public abstract class Roboter implements Serializable {
 
 	public void schiessen() {
 		// prüfeDistanz() if this.getX mit Linie
-		if(this.x >= 15 || this.x <= 65) {
+		if(this.zeile >= 15 || this.zeile <= 65) {
 			if((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
 				
 			}

@@ -33,7 +33,7 @@ public class LogikHelper {
 			return false;
 		} else if (!heimmannschaft.spieler.isEmpty() && !gastmannschaft.spieler.isEmpty()) {
 			System.out.println("\nWelche Mannschaft darf die Partie mit Ballbesitz beginnen?");
-			System.out.println("0." + heimmannschaft.name + "\n1." + gastmannschaft.name + "\n2.Zurück");
+			System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name + "\n2. Zurück");
 			switch (LogikHelper.menuEingabe(2)) {
 			case 0:
 				heimmannschaft.spieler.get("Stürmer").setBallBesitz(true);
@@ -64,7 +64,7 @@ public class LogikHelper {
 
 	public static boolean initialePositionenSetzen(Tor[] tore, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\nFür welche Mannschaft möchten Sie die intiale Aufstellung setzen?");
-		System.out.println("0." + heimmannschaft.name + "\n1." + gastmannschaft.name + "\n2.Zurück");
+		System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name + "\n2. Zurück");
 		switch (LogikHelper.menuEingabe(2)) {
 		case 0:
 			heimmannschaft.aufstellungWaehlen(tore);

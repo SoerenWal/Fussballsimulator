@@ -15,16 +15,16 @@ public class Navigation {
 	public static void main(String[] args) {
 		Mannschaft heimmannschaft = new Mannschaft(new HashMap<String, Roboter>());
 		Mannschaft gastmannschaft = new Mannschaft(new HashMap<String, Roboter>());
-		Ball ball = Ball.getInstance(Spielfeld.spielfeldSpalten / 2 + 1, Spielfeld.spielfeldZeilen / 2 + 1);
-		Tor[] tore = { new Tor(Spielfeld.spielfeldSpalten / 2, 0),
-				new Tor(Spielfeld.spielfeldSpalten / 2, Spielfeld.spielfeldZeilen - 1) };
+		Ball ball = Ball.getInstance(Spielfeld.spielfeldZeilen / 2, Spielfeld.spielfeldSpalten / 2);
+		Tor[] tore = { new Tor(Spielfeld.spielfeldZeilen / 2, 0),
+				new Tor(Spielfeld.spielfeldZeilen / 2, Spielfeld.spielfeldSpalten - 1) };
 		Collection<Roboter> spieler = heimmannschaft.spieler.values();
 		menuInteraktion(tore, ball, spieler, heimmannschaft, gastmannschaft);
 
 	}
 
-	private static String menuStartText = "0.Spiel laden\n1.Mannschaften anlegen\n2.Spiel starten\n3.Programm beenden";
-	private static String menuSpielText = "0.Spielrunde ausführen\n1.Spielstand anzeigen\n2.Spiel speichern\n3.Spiel beenden";
+	private static String menuStartText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3.Programm beenden";
+	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel beenden";
 
 	private static void menuStart(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
 			Mannschaft gastmannschaft, int menuOption) {

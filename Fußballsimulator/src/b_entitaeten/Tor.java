@@ -1,12 +1,12 @@
 package b_entitaeten;
 
 public class Tor {
-		int xTor; 
-		int yTor;
+		int zeile; 
+		int spalte;
 
-	public Tor(int yTor, int xTor) {
-		this.xTor = xTor;
-		this.yTor = yTor;
+	public Tor(int zeile, int spalte) {
+		this.zeile = zeile;
+		this.spalte = spalte;
 	}
 
 }

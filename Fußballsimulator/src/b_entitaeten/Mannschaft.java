@@ -49,7 +49,7 @@ public class Mannschaft {
 		heimmannschaft.spieler.put("Verteidiger", new Verteidiger(name));
 		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
-		heimmannschaft.spieler.put("Torwart", new Torwart(name, tor.yTor, tor.xTor + 1));
+		heimmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte + 2));
 	}
 
 	private static void gastmannschaftAnlegen(Mannschaft gastmannschaft, Tor tor) {
@@ -70,7 +70,7 @@ public class Mannschaft {
 		gastmannschaft.spieler.put("Verteidiger", new Verteidiger(name));
 		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
-		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.yTor, tor.xTor - 1));
+		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte - 2));
 	}
 
 	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
@@ -107,17 +107,17 @@ public class Mannschaft {
 	public void standardAufstellung() {
 		Collection<Roboter> values = spieler.values();
 		for (Roboter r : values) {
-			r.setX(r.getInitialX());
-			r.setY(r.getInitialY());
+			r.setZeile(r.getInitialZeile());
+			r.setSpalte(r.getInitialSpalte());
 		}
 	}
 
 	public void aufstellungWaehlen(Tor[] tore) {
-		System.out.println("\nWählen Sie bitte eine initale Aufstellung für " + this.name + ".");
+		System.out.println("\nWählen Sie bitte eine initiale Aufstellung für " + this.name + ".");
 		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4" + "\n5. Zurück");
 		switch (LogikHelper.menuEingabe(3)) {
 		case 0:
-			this.spieler.get("Stürmer").setY(tore[0].xTor);
+			this.spieler.get("Stürmer").setZeile(tore[0].zeile);
 			break;
 		case 1:
 			break;
