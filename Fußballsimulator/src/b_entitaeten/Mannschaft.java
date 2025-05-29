@@ -16,22 +16,7 @@ public class Mannschaft {
 		this.spieler = spieler;
 	}
 
-	public static void mannschaftAnlegen(Tor[] tore, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		System.out.println("\nWelche Mannschaft möchten Sie anlegen?");
-		System.out.println("0.Heimmannschaft\n1.Gastmannschaft\n2.Zurück");
-		switch (LogikHelper.menuEingabe(2)) {
-		case 0:
-			heimmannschaftAnlegen(heimmannschaft, tore[0]);
-			break;
-		case 1:
-			gastmannschaftAnlegen(gastmannschaft, tore[1]);
-			break;
-		case 2:
-			break;
-		}
-	}
-
-	private static void heimmannschaftAnlegen(Mannschaft heimmannschaft, Tor tor) {
+	protected static void heimmannschaftAnlegen(Mannschaft heimmannschaft, Tor tor) {
 		System.out.print("\nName der Heimmannschaft: ");
 		heimmannschaft.name = sc.nextLine();
 		String name;
@@ -52,7 +37,8 @@ public class Mannschaft {
 		heimmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte + 2));
 	}
 
-	private static void gastmannschaftAnlegen(Mannschaft gastmannschaft, Tor tor) {
+	protected static void gastmannschaftAnlegen(Mannschaft gastmannschaft, Tor tor) {
+		// modularisieren und whitespaces erkennen
 		System.out.print("\nName der Gastmannschaft: ");
 		gastmannschaft.name = sc.nextLine();
 		String name;
@@ -104,7 +90,7 @@ public class Mannschaft {
 	 * Beim Aufrufen dieser Methode werden alle Spieler auf ihre Inizialisierte
 	 * Position gestellt.
 	 */
-	public void standardAufstellung() {
+	public void aufstellen() {
 		Collection<Roboter> values = spieler.values();
 		for (Roboter r : values) {
 			r.setZeile(r.getInitialZeile());
@@ -112,18 +98,37 @@ public class Mannschaft {
 		}
 	}
 
-	public void aufstellungWaehlen(Tor[] tore) {
+	public void aufstellungWaehlen(Ball ball, Tor[] tore) {
 		System.out.println("\nWählen Sie bitte eine initiale Aufstellung für " + this.name + ".");
-		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4" + "\n5. Zurück");
-		switch (LogikHelper.menuEingabe(3)) {
+		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4");
+		int distanzTorwartZentrum = ball.getSpalte() - this.spieler.get("Torwart").getSpalte();
+		int abstandSpieler = distanzTorwartZentrum / 5;
+		int abstandBallAußenlinie = ball.getZeile();
+		Collection<Roboter> spielerOhneTorwart = this.spieler.values();
+		spielerOhneTorwart.remove(spieler.get("Torwart"));
+		switch (LogikHelper.menuEingabe(5)) {
 		case 0:
-			this.spieler.get("Stürmer").setZeile(tore[0].zeile);
+			int faktor = 1;
+			for(Roboter s : spielerOhneTorwart) {
+				/* java.lang.NullPointerException: Cannot invoke "b_entitaeten.Roboter.getSpalte()" because the return value of "java.util.HashMap.get(Object)" is null
+				at b_entitaeten.Mannschaft.s.aufstellungWaehlen(Mannschaft.java:113) */
+				s.setInitialZeile(tore[0].zeile);
+				if (this.spieler.get("Torwart").getSpalte() < ball.getSpalte()) {
+					s.setInitialSpalte(this.spieler.get("Torwart").getSpalte() + abstandSpieler * faktor);
+				} else if (this.spieler.get("Torwart").getSpalte() > ball.getSpalte()) {
+					s.setInitialSpalte(this.spieler.get("Torwart").getSpalte() - abstandSpieler * faktor);
+				}
+				faktor++;
+			}
+			faktor = 0;
 			break;
 		case 1:
 			break;
 		case 2:
 			break;
 		case 3:
+			break;
+		case 4:
 			break;
 		}
 

@@ -23,7 +23,7 @@ public class Navigation {
 
 	}
 
-	private static String menuStartText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3.Programm beenden";
+	private static String menuStartText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Programm beenden";
 	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel beenden";
 
 	private static void menuStart(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
@@ -35,11 +35,12 @@ public class Navigation {
 			break;
 		case 1:
 			// Mannschaft anlegen
-			Mannschaft.mannschaftAnlegen(tore, heimmannschaft, gastmannschaft);
+			LogikHelper.mannschaftAnlegen(tore, heimmannschaft, gastmannschaft);
 			break;
 		case 2:
 			// Spiel starten
-			if(LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft) && LogikHelper.initialePositionenSetzen(tore, heimmannschaft, gastmannschaft)) {
+			if(LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft)) {
+				LogikHelper.initialePositionenSetzen(ball, tore, heimmannschaft, gastmannschaft);
 				menuSpielSchleife(tore, ball, spieler, heimmannschaft, gastmannschaft);
 			}
 			break;

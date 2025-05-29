@@ -27,13 +27,28 @@ public class LogikHelper {
 		return eingabe;
 	}
 
+	public static void mannschaftAnlegen(Tor[] tore, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		System.out.println("\nWelche Mannschaft möchten Sie anlegen?");
+		System.out.println("0. Heimmannschaft\n1. Gastmannschaft\n2. Zurück");
+		switch (LogikHelper.menuEingabe(2)) {
+		case 0:
+			Mannschaft.heimmannschaftAnlegen(heimmannschaft, tore[0]);
+			break;
+		case 1:
+			Mannschaft.gastmannschaftAnlegen(gastmannschaft, tore[1]);
+			break;
+		case 2:
+			break;
+		}
+	}
+
 	public static boolean ballbesitzSetzen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		if (heimmannschaft.spieler.isEmpty() && gastmannschaft.spieler.isEmpty()) {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 			return false;
 		} else if (!heimmannschaft.spieler.isEmpty() && !gastmannschaft.spieler.isEmpty()) {
 			System.out.println("\nWelche Mannschaft darf die Partie mit Ballbesitz beginnen?");
-			System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name + "\n2. Zurück");
+			System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
 			switch (LogikHelper.menuEingabe(2)) {
 			case 0:
 				heimmannschaft.spieler.get("Stürmer").setBallBesitz(true);
@@ -41,11 +56,10 @@ public class LogikHelper {
 			case 1:
 				gastmannschaft.spieler.get("Stürmer").setBallBesitz(true);
 				return true;
-			case 2:
-				return false;
 			}
+			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
+			return false;
 		}
-		System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		return false;
 	}
 
@@ -62,18 +76,23 @@ public class LogikHelper {
 		}
 	}
 
-	public static boolean initialePositionenSetzen(Tor[] tore, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		System.out.println("\nFür welche Mannschaft möchten Sie die intiale Aufstellung setzen?");
-		System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name + "\n2. Zurück");
+	public static boolean initialePositionenSetzen(Ball ball, Tor[] tore, Mannschaft heimmannschaft,
+			Mannschaft gastmannschaft) {
+		System.out.println("\nFür welche Mannschaft möchten Sie zuerst die intiale Aufstellung setzen?");
+		System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
 		switch (LogikHelper.menuEingabe(2)) {
 		case 0:
-			heimmannschaft.aufstellungWaehlen(tore);
+			heimmannschaft.aufstellungWaehlen(ball, tore);
+			heimmannschaft.aufstellen();
+			gastmannschaft.aufstellungWaehlen(ball, tore);
+			gastmannschaft.aufstellen();
 			return true;
 		case 1:
-			gastmannschaft.aufstellungWaehlen(tore);
+			gastmannschaft.aufstellungWaehlen(ball, tore);
+			gastmannschaft.aufstellen();
+			heimmannschaft.aufstellungWaehlen(ball, tore);
+			heimmannschaft.aufstellen();
 			return true;
-		case 2:
-			return false;
 		}
 		return false;
 	}

@@ -15,6 +15,10 @@ public class Spielfeld {
 		toreMalen(tore);
 	}
 
+	/**
+	 * Diese Methode wurde von ChatGPT implementiert und stellt keine Eigenleistung dar. 
+	 * Diese Methode befüllt das zwei-dimensionale Array feld mit Spielfeldmarkierungen und einem quarierten zweifarbigen Rasen
+	 */
 	public static void rasenMalen() {
 		String G1 = ConsoleColors.GREEN_BACKGROUND;
 		String G2 = ConsoleColors.GREEN_BACKGROUND_BRIGHT;
@@ -77,10 +81,18 @@ public class Spielfeld {
 		for (int i = -1; i < 2; i++) { // 3 Zeilen hoch
 			for (int j = 0; j < 2; j++) { // 2 Spalten breit
 				// Linkes Tor
-				field[tore[0].zeile + i][tore[0].spalte + j] = field[tore[0].zeile + i][tore[0].spalte + j] + ConsoleColors.BLACK_BACKGROUND + " " + ConsoleColors.RESET;
-
+				if(field[tore[0].zeile + i][tore[0].spalte + j] != null) {
+				field[tore[0].zeile + i][tore[0].spalte + j] = ConsoleColors.BLACK + field[tore[0].zeile + i][tore[0].spalte + j] + ConsoleColors.RESET;
+				} else if (field[tore[0].zeile + i][tore[0].spalte + j] == null) {
+					field[tore[0].zeile + i][tore[0].spalte + j] = ConsoleColors.BLACK + " " + ConsoleColors.RESET;
+				}
 				// Rechtes Tor
-				field[tore[1].zeile + i][tore[1].spalte - j] = field[tore[0].zeile + i][tore[0].spalte + j] + ConsoleColors.BLACK_BACKGROUND + " " + ConsoleColors.RESET;
+				if(field[tore[1].zeile + i][tore[1].spalte - j] != null) {
+					field[tore[1].zeile + i][tore[1].spalte - j] = ConsoleColors.BLACK + field[tore[0].zeile + i][tore[0].spalte + j] + ConsoleColors.RESET;
+				} else if (field[tore[1].zeile + i][tore[1].spalte - j] == null) {
+					field[tore[1].zeile + i][tore[1].spalte - j] = ConsoleColors.BLACK + " " + ConsoleColors.RESET;
+				}
+				
 			}
 		}
 	}

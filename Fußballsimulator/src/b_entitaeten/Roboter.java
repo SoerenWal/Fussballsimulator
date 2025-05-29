@@ -108,10 +108,10 @@ public abstract class Roboter implements Serializable {
 		this.praezisionSchuss = praezisionSchuss;
 	}
 
-	public void laufen(int xSchritte, int ySchritte) {
+	public void laufen(int zeile, int spalte) {
 		verbraucheEnergie(1);
-		this.zeile = this.zeile + xSchritte;
-		this.spalte = this.spalte + ySchritte;
+		this.zeile = this.zeile + zeile;
+		this.spalte = this.spalte + spalte;
 	}
 	
 	public int verbraucheEnergie(int energiekosten) {

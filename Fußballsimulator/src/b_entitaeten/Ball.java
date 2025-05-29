@@ -40,20 +40,20 @@ public final class Ball {
 		this.imTor = imTor;
 	}
  
-	public int getX() {
+	public int getZeile() {
 		return zeile;
 	}
  
-	public void setX(int x) {
-		this.zeile = x;
+	public void setZeile(int zeile) {
+		this.zeile = zeile;
 	}
  
-	public int getY() {
+	public int getSpalte() {
 		return spalte;
 	}
  
-	public void setY(int y) {
-		this.spalte = y;
+	public void setSpalte(int spalte) {
+		this.spalte = spalte;
 	}
  
 	public boolean isAmSpielFeldRand() {

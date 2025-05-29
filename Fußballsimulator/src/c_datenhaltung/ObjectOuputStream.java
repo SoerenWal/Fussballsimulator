@@ -10,15 +10,16 @@ import java.nio.file.StandardOpenOption;
 
 public class ObjectOuputStream {
 
-	private static final Path DATEI_PFAD = Paths.get(System.getProperty("user.home"), ".MeinProgramm", "Fußballsimulator.txt");
-	
+	private static final Path DATEI_PFAD = Paths.get(System.getProperty("user.home"), ".MeinProgramm",
+			"Fußballsimulator.txt");
+
 	public static void schreibeInDatei(Object o) {
-	try (OutputStream fos = Files.newOutputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
-	ObjectOutputStream oos = new ObjectOutputStream(fos);
-	oos.writeObject(o);
-	System.out.println("Fertig.");
-	} catch (IOException e) {
-	e.printStackTrace();
-	}
+		try (OutputStream fos = Files.newOutputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(o);
+			System.out.println("Das Spiel wurde erfolgreich gespeichert.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
