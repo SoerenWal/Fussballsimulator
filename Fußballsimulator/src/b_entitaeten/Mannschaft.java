@@ -18,7 +18,7 @@ public class Mannschaft {
 
 	public static void mannschaftAnlegen(Tor[] tore, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\nWelche Mannschaft möchten Sie anlegen?");
-		System.out.println("\n0.Heimmannschaft\n1.Gastmannschaft\n2.Zurück");
+		System.out.println("0.Heimmannschaft\n1.Gastmannschaft\n2.Zurück");
 		switch (LogikHelper.menuEingabe(2)) {
 		case 0:
 			heimmannschaftAnlegen(heimmannschaft, tore[0]);
@@ -86,7 +86,7 @@ public class Mannschaft {
 		System.out.println("\nEnergiebericht von " + this.name);
 		for (Roboter r : values) {
 			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
-			}
+		}
 	}
 
 	public void gegenueberstellen(Mannschaft mannschaft) {
@@ -99,16 +99,33 @@ public class Mannschaft {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		}
 	}
-	
+
 	/**
-	 * Beim Aufrufen dieser Methode werden alle Spieler auf ihre Inizialisierte Position gestellt.
+	 * Beim Aufrufen dieser Methode werden alle Spieler auf ihre Inizialisierte
+	 * Position gestellt.
 	 */
-	
 	public void standardAufstellung() {
 		Collection<Roboter> values = spieler.values();
-			for(Roboter r : values) {
-				r.setX(r.getInitialX());
-				r.setY(r.getInitialY());
-			}
+		for (Roboter r : values) {
+			r.setX(r.getInitialX());
+			r.setY(r.getInitialY());
+		}
+	}
+
+	public void aufstellungWaehlen(Tor[] tore) {
+		System.out.println("\nWählen Sie bitte eine initale Aufstellung für " + this.name + ".");
+		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4" + "\n5. Zurück");
+		switch (LogikHelper.menuEingabe(3)) {
+		case 0:
+			this.spieler.get("Stürmer").setY(tore[0].xTor);
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+
 	}
 }

@@ -61,4 +61,20 @@ public class LogikHelper {
 					+ " mit einem Unentschieden (" + heimmannschaft.tore + ":" + gastmannschaft.tore + ") beendet.");
 		}
 	}
+
+	public static boolean initialePositionenSetzen(Tor[] tore, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		System.out.println("\nFür welche Mannschaft möchten Sie die intiale Aufstellung setzen?");
+		System.out.println("0." + heimmannschaft.name + "\n1." + gastmannschaft.name + "\n2.Zurück");
+		switch (LogikHelper.menuEingabe(2)) {
+		case 0:
+			heimmannschaft.aufstellungWaehlen(tore);
+			return true;
+		case 1:
+			gastmannschaft.aufstellungWaehlen(tore);
+			return true;
+		case 2:
+			return false;
+		}
+		return false;
+	}
 }

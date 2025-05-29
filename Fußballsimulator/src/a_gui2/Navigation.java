@@ -15,9 +15,9 @@ public class Navigation {
 	public static void main(String[] args) {
 		Mannschaft heimmannschaft = new Mannschaft(new HashMap<String, Roboter>());
 		Mannschaft gastmannschaft = new Mannschaft(new HashMap<String, Roboter>());
-		Ball ball = Ball.getInstance(Spielfeld.spielfeldBreite / 2 + 1, Spielfeld.spielfeldLaenge / 2 + 1);
-		Tor[] tore = { new Tor(Spielfeld.spielfeldBreite / 2, 0),
-				new Tor(Spielfeld.spielfeldBreite / 2, Spielfeld.spielfeldLaenge - 1) };
+		Ball ball = Ball.getInstance(Spielfeld.spielfeldSpalten / 2 + 1, Spielfeld.spielfeldZeilen / 2 + 1);
+		Tor[] tore = { new Tor(Spielfeld.spielfeldSpalten / 2, 0),
+				new Tor(Spielfeld.spielfeldSpalten / 2, Spielfeld.spielfeldZeilen - 1) };
 		Collection<Roboter> spieler = heimmannschaft.spieler.values();
 		menuInteraktion(tore, ball, spieler, heimmannschaft, gastmannschaft);
 
@@ -39,7 +39,7 @@ public class Navigation {
 			break;
 		case 2:
 			// Spiel starten
-			if(LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft)) {
+			if(LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft) && LogikHelper.initialePositionenSetzen(tore, heimmannschaft, gastmannschaft)) {
 				menuSpielSchleife(tore, ball, spieler, heimmannschaft, gastmannschaft);
 			}
 			break;
@@ -86,19 +86,11 @@ public class Navigation {
 				+ "           |_|                                                               ");
 		System.out.println("\nBitte geben Sie eine Ganzzahl ein, um im Menu zu navigieren.");
 	}
-
-	private static void menuStartAnzeigen() {
-		System.out.println("\n" + menuStartText);
-	}
-	
-	private static void menuSpielAnzeigen() {
-		System.out.println("\n" + menuSpielText);
-	}
 	
 	private static void menuStartSchleife(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
 			Mannschaft gastmannschaft) {
 		while (true) {
-			menuStartAnzeigen();
+			System.out.println("\n" + menuStartText);
 			menuStart(tore, ball, spieler, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
 		}
 	}
@@ -106,7 +98,7 @@ public class Navigation {
 	private static void menuSpielSchleife(Tor[] tore, Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
 			Mannschaft gastmannschaft) {
 		while (true) {
-			menuSpielAnzeigen();
+			System.out.println("\n" + menuSpielText);
 			menuSpiel(tore, ball, spieler, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
 		}
 	}
