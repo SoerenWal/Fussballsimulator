@@ -5,12 +5,11 @@ import java.util.Random;
 
 public class RoboterHelper {
 	/**
-	 * Die Mathode generiert die Präzision für den Pass und Schuss
-	 * 
+	 *  Die Methode generiert die Präzision für den Pass und Schuss.
+	 *  
 	 * @param faktor
-	 * @return
+	 * @return 
 	 */
-
 	public static double praeziRechner(double faktor) {
 		return 0.7 + Math.random() * (faktor - 0.7);
 	}
@@ -18,7 +17,7 @@ public class RoboterHelper {
 	/**
 	 * Diese Funktion gibt einen zufälligen Wert zwischen 0.0-1.0 zurück
 	 * 
-	 * @return
+	 * @return Zufällige Zahl zwischen 0 und 1
 	 */
 	public static double randomZahl() {
 		Random random = new Random();

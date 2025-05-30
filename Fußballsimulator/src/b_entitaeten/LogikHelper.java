@@ -30,6 +30,13 @@ public class LogikHelper {
 		return eingabe;
 	}
 
+	/**
+	 * Durch diese Methode wird eine gastmanschaft und eine Heimmanschaft angelegt
+	 * 
+	 * @param heimmannschaft
+	 * @param gastmannschaft
+	 */
+
 	public static void mannschaftAnlegen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\nWelche Mannschaft möchten Sie zuerst anlegen?");
 		System.out.println("0. Heimmannschaft\n1. Gastmannschaft\n2. Zurück");
@@ -81,8 +88,7 @@ public class LogikHelper {
 		}
 	}
 
-	public static boolean initialePositionenSetzen(Ball ball, Mannschaft heimmannschaft,
-			Mannschaft gastmannschaft) {
+	public static boolean initialePositionenSetzen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\nFür welche Mannschaft möchten Sie zuerst die intiale Aufstellung festlegen?");
 		System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
 		switch (LogikHelper.menuEingabe(2)) {
@@ -101,14 +107,14 @@ public class LogikHelper {
 		}
 		return false;
 	}
-	
+
 	public static void speichern(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		ArrayList<Mannschaft> mannschaften = new ArrayList<>();
 		mannschaften.add(heimmannschaft);
 		mannschaften.add(gastmannschaft);
 		Datenhaltung.schreibeInDatei(mannschaften);
 	}
-	
+
 	public static void laden() {
 		try {
 			ArrayList<Mannschaft> mannschaften = Datenhaltung.leseAusDatei();
