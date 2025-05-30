@@ -1,7 +1,10 @@
 package b_entitaeten;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import c_datenhaltung.Datenhaltung;
 
 public class LogikHelper {
 
@@ -95,5 +98,21 @@ public class LogikHelper {
 			return true;
 		}
 		return false;
+	}
+	
+	public static void speichern(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		ArrayList<Mannschaft> mannschaften = new ArrayList<>();
+		mannschaften.add(heimmannschaft);
+		mannschaften.add(gastmannschaft);
+		Datenhaltung.schreibeInDatei(mannschaften);
+	}
+	
+	public static void laden() {
+		try {
+			ArrayList<Mannschaft> mannschaften = Datenhaltung.leseAusDatei();
+			// enitaetenLaden(mannschaften);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

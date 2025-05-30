@@ -1,8 +1,6 @@
 package b_entitaeten;
 
-import java.io.Serializable;
-
-public abstract class Roboter implements Serializable {
+public abstract class Roboter {
 
 	public static int anzahlRoboter = 0;
 

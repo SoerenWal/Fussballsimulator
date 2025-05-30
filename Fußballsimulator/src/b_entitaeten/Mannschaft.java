@@ -1,10 +1,11 @@
 package b_entitaeten;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Mannschaft {
+public class Mannschaft implements Serializable {
 
 	public String name;
 	public int tore = 0;

@@ -29,7 +29,7 @@ public class Navigation {
 		switch (menuOption) {
 		case 0:
 			// Spiel laden
-			// methodenaufruf
+			// 
 			break;
 		case 1:
 			// Mannschaft anlegen
