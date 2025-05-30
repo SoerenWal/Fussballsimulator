@@ -14,6 +14,11 @@ public class Mannschaft implements Serializable {
 	public HashMap<String, Roboter> spieler;
 	static Scanner sc = new Scanner(System.in);
 
+	/**
+	 * Erzeugt eine Instanz der Klasse Mannschaft.
+	 * @param spieler
+	 * @param tor
+	 */
 	public Mannschaft(HashMap<String, Roboter> spieler, Tor tor) {
 		this.spieler = spieler;
 		this.tor = tor;

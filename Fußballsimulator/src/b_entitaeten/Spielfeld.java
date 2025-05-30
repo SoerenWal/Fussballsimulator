@@ -14,6 +14,11 @@ public class Spielfeld {
 		rasenMalen();
 	}
 
+	/**
+	 * Diese Methode wurde von ChatGPT implementiert und stellt keine Eigenleistung
+	 * dar. Diese Methode befüllt das zwei-dimensionale Array feld mit
+	 * Spielfeldmarkierungen und einem quarierten zweifarbigen Rasen
+	 */
 	private static void markiereMitHintergrundfarbe(int i, int j, String hintergrundfarbe) {
 		String zeichen = " ";
 		String textfarbe = ConsoleColors.BLACK;

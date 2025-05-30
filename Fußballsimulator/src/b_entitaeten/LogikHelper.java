@@ -81,8 +81,7 @@ public class LogikHelper {
 		}
 	}
 
-	public static boolean initialePositionenSetzen(Ball ball, Mannschaft heimmannschaft,
-			Mannschaft gastmannschaft) {
+	public static boolean initialePositionenSetzen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\nFür welche Mannschaft möchten Sie zuerst die intiale Aufstellung festlegen?");
 		System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
 		switch (LogikHelper.menuEingabe(2)) {
@@ -101,14 +100,14 @@ public class LogikHelper {
 		}
 		return false;
 	}
-	
+
 	public static void speichern(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		ArrayList<Mannschaft> mannschaften = new ArrayList<>();
 		mannschaften.add(heimmannschaft);
 		mannschaften.add(gastmannschaft);
 		Datenhaltung.schreibeInDatei(mannschaften);
 	}
-	
+
 	public static void laden() {
 		try {
 			ArrayList<Mannschaft> mannschaften = Datenhaltung.leseAusDatei();

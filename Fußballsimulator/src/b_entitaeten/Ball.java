@@ -9,6 +9,11 @@ public final class Ball {
 	private boolean amSpielFeldRand;
 	private boolean imTor;
  
+	/**
+	 * Erzeugt eine neue Instanz der Singleton-Klasse Ball.
+	 * @param zeile
+	 * @param spalte
+	 */
 	private Ball(int zeile, int spalte) {
 		this.zeile = zeile;
 		this.spalte = spalte;
@@ -20,10 +25,10 @@ public final class Ball {
 	}
  
 	/**
-	 *
+	 * Ruft den Konstruktor der Singleton-Klasse Ball auf.
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return Eine 
 	 */
 	public static Ball getInstance(int zeile, int spalte) {
 		if (INSTANCE == null) {
