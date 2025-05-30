@@ -34,7 +34,7 @@ public class Mannschaft {
 		heimmannschaft.spieler.put("Verteidiger", new Verteidiger(name));
 		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
-		heimmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte + 2));
+		heimmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte + 3));
 	}
 
 	protected static void gastmannschaftAnlegen(Mannschaft gastmannschaft, Tor tor) {
@@ -56,7 +56,7 @@ public class Mannschaft {
 		gastmannschaft.spieler.put("Verteidiger", new Verteidiger(name));
 		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
-		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte - 2));
+		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte - 3));
 	}
 
 	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
@@ -101,24 +101,23 @@ public class Mannschaft {
 	public void aufstellungWaehlen(Ball ball, Tor[] tore) {
 		System.out.println("\nWählen Sie bitte eine initiale Aufstellung für " + this.name + ".");
 		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4");
-		int distanzTorwartZentrum = ball.getSpalte() - this.spieler.get("Torwart").getSpalte();
-		int abstandSpieler = distanzTorwartZentrum / 5;
+		int distanzTorwartZentrum = ball.getSpalte() - this.spieler.get("Torwart").getInitialSpalte();
+		int abstandSpieler = 5;
 		int abstandBallAußenlinie = ball.getZeile();
-		Collection<Roboter> spielerOhneTorwart = this.spieler.values();
-		spielerOhneTorwart.remove(spieler.get("Torwart"));
 		switch (LogikHelper.menuEingabe(5)) {
 		case 0:
 			int faktor = 1;
-			for(Roboter s : spielerOhneTorwart) {
-				/* java.lang.NullPointerException: Cannot invoke "b_entitaeten.Roboter.getSpalte()" because the return value of "java.util.HashMap.get(Object)" is null
-				at b_entitaeten.Mannschaft.s.aufstellungWaehlen(Mannschaft.java:113) */
-				s.setInitialZeile(tore[0].zeile);
-				if (this.spieler.get("Torwart").getSpalte() < ball.getSpalte()) {
-					s.setInitialSpalte(this.spieler.get("Torwart").getSpalte() + abstandSpieler * faktor);
-				} else if (this.spieler.get("Torwart").getSpalte() > ball.getSpalte()) {
-					s.setInitialSpalte(this.spieler.get("Torwart").getSpalte() - abstandSpieler * faktor);
+			for (Roboter s : this.spieler.values()) {
+				if (s != this.spieler.get("Torwart")) {
+					s.setInitialZeile(tore[0].zeile);
+					if (this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
+						s.setInitialSpalte(this.spieler.get("Torwart").getInitialSpalte() + abstandSpieler * faktor);
+						faktor++;
+					} else if (this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
+						s.setInitialSpalte(this.spieler.get("Torwart").getInitialSpalte() - abstandSpieler * faktor);
+						faktor++;
+					}
 				}
-				faktor++;
 			}
 			faktor = 0;
 			break;

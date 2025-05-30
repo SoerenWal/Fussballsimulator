@@ -2,9 +2,9 @@ package b_entitaeten;
 
 public class Torwart extends Roboter {
 
-	public Torwart(String name, int zeile, int spalte) {
-		this.setZeile(zeile);
-		this.setSpalte(spalte);
+	public Torwart(String name, int initialZeile, int initialSpalte) {
+		this.setInitialZeile(initialZeile);
+		this.setInitialSpalte(initialSpalte);
 		this.setName(name);
 		this.faktorPass = 1;
 		this.faktorSchuss = 0.75;

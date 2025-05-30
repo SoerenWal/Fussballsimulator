@@ -15,9 +15,9 @@ public class Navigation {
 	public static void main(String[] args) {
 		Mannschaft heimmannschaft = new Mannschaft(new HashMap<String, Roboter>());
 		Mannschaft gastmannschaft = new Mannschaft(new HashMap<String, Roboter>());
-		Ball ball = Ball.getInstance(Spielfeld.spielfeldZeilen / 2, Spielfeld.spielfeldSpalten / 2);
-		Tor[] tore = { new Tor(Spielfeld.spielfeldZeilen / 2, 0),
-				new Tor(Spielfeld.spielfeldZeilen / 2, Spielfeld.spielfeldSpalten - 1) };
+		Ball ball = Ball.getInstance(Spielfeld.zeilen / 2, Spielfeld.spalten / 2);
+		Tor[] tore = { new Tor(Spielfeld.zeilen / 2, 0),
+				new Tor(Spielfeld.zeilen / 2, Spielfeld.spalten - 1) };
 		Collection<Roboter> spieler = heimmannschaft.spieler.values();
 		menuInteraktion(tore, ball, spieler, heimmannschaft, gastmannschaft);
 
