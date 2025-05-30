@@ -8,23 +8,27 @@ public class Spielfeld {
 	private static String[][] spielfeld = new String[zeilen][spalten];
 
 	public static void spielfeldMalen(Tor[] tore, Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		ballMalen(ball);
 		spielerMalen(heimmannschaft);
 		spielerMalen(gastmannschaft);
-		ballMalen(ball);
 		rasenMalen();
 	}
 
-	private static void markiereMitHintergrundfarbe(int i, int j, String farbe) {
+	private static void markiereMitHintergrundfarbe(int i, int j, String hintergrundfarbe) {
 		String zeichen = " ";
+		String textfarbe = ConsoleColors.BLACK;
 
 		if (spielfeld[i][j] != null) {
-			// Extrahiere das sichtbare Zeichen ohne Farben
+			// Extrahiere das sichtbare Zeichen mit Farben
+			// Farben funktionieren noch nicht
 			zeichen = spielfeld[i][j].replaceAll("\u001B\\[[;\\d]*m", "").trim();
+			textfarbe = spielfeld[i][j].matches(".*\\u001B\\[3\\d{1}m.*") ? spielfeld[i][j].replaceAll(".*?(\\u001B\\[3\\d{1}m).*", "$1") : "";
+			System.out.print(textfarbe);
 			if (zeichen.isEmpty()) {
 				zeichen = " ";
 			}
 		}
-		spielfeld[i][j] = farbe + zeichen + ConsoleColors.RESET;
+		spielfeld[i][j] = hintergrundfarbe + zeichen + textfarbe + ConsoleColors.RESET;
 	}
 
 	/**
@@ -83,8 +87,14 @@ public class Spielfeld {
 	}
 
 	public static void spielerMalen(Mannschaft mannschaft) {
+		int zaehler = 0;
+		String[] farben = {ConsoleColors.CYAN_BRIGHT, ConsoleColors.PURPLE_BRIGHT};
 		for (Roboter s : mannschaft.spieler.values()) {
-			spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = String.valueOf(s.getName().charAt(0));
+			spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = farben[0] + String.valueOf(s.getName().charAt(0) + ConsoleColors.RESET);
+		}
+		zaehler++;
+		if(zaehler == 1) {
+			zaehler = 0;
 		}
 	}
 

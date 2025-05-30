@@ -102,14 +102,14 @@ public class Mannschaft {
 		System.out.println("\nWählen Sie bitte eine initiale Aufstellung für " + this.name + ".");
 		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4");
 		int distanzTorwartZentrum = ball.getSpalte() - this.spieler.get("Torwart").getInitialSpalte();
-		int abstandSpieler = 5;
+		int abstandSpieler = 7;
 		int abstandBallAußenlinie = ball.getZeile();
 		switch (LogikHelper.menuEingabe(5)) {
 		case 0:
 			int faktor = 1;
 			for (Roboter s : this.spieler.values()) {
 				if (s != this.spieler.get("Torwart")) {
-					s.setInitialZeile(tore[0].zeile);
+					s.setInitialZeile(ball.zeile);
 					if (this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
 						s.setInitialSpalte(this.spieler.get("Torwart").getInitialSpalte() + abstandSpieler * faktor);
 						faktor++;
