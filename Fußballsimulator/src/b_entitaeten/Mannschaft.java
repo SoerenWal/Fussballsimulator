@@ -26,7 +26,7 @@ public class Mannschaft implements Serializable {
 
 	protected void anlegen() {
 		// modularisieren und whitespaces erkennen
-		System.out.print("\nName der Gastmannschaft: ");
+		System.out.print("\nName der Mannschaft: ");
 		this.name = sc.nextLine();
 		String name;
 		System.out.print("Name des Stürmers: ");
@@ -105,10 +105,10 @@ public class Mannschaft implements Serializable {
 				if (s != this.spieler.get("Torwart")) {
 					s.setInitialZeile(ball.zeile);
 					if (this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
-						s.setInitialSpalte(this.spieler.get("Torwart").getInitialSpalte() + abstandSpieler * faktor);
+						s.setInitialSpalte(ball.getSpalte() + abstandSpieler * faktor);
 						faktor++;
 					} else if (this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
-						s.setInitialSpalte(this.spieler.get("Torwart").getInitialSpalte() - abstandSpieler * faktor);
+						s.setInitialSpalte(ball.getSpalte() - abstandSpieler * faktor);
 						faktor++;
 					}
 				}

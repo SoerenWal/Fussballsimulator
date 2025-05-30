@@ -55,6 +55,9 @@ public class LogikHelper {
 	}
 
 	public static boolean ballbesitzSetzen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		if (heimmannschaft.ballBesitz || gastmannschaft.ballBesitz) {
+			return true;
+		}
 		if (heimmannschaft.spieler.isEmpty() && gastmannschaft.spieler.isEmpty()) {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 			return false;
@@ -109,18 +112,21 @@ public class LogikHelper {
 	}
 
 	public static void speichern(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		ArrayList<Mannschaft> mannschaften = new ArrayList<>();
+		ArrayList<Object> mannschaften = new ArrayList<>();
 		mannschaften.add(heimmannschaft);
 		mannschaften.add(gastmannschaft);
 		Datenhaltung.schreibeInDatei(mannschaften);
 	}
 
-	public static void laden() {
+	public static ArrayList<Object> laden() {
 		try {
-			ArrayList<Mannschaft> mannschaften = Datenhaltung.leseAusDatei();
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			ArrayList<Object> mannschaften = Datenhaltung.leseAusDatei();
+			return mannschaften;
+		} catch(ClassNotFoundException e) {
+			System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
 		}
+		return null;
+		
+		
 	}
 }
