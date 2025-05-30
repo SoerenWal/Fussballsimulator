@@ -16,15 +16,13 @@ public class Navigation {
 		Mannschaft heimmannschaft = new Mannschaft(new HashMap<String, Roboter>(), new Tor(Spielfeld.zeilen / 2, 0));
 		Mannschaft gastmannschaft = new Mannschaft(new HashMap<String, Roboter>(), new Tor(Spielfeld.zeilen / 2, Spielfeld.spalten - 1));
 		Ball ball = Ball.getInstance(Spielfeld.zeilen / 2, Spielfeld.spalten / 2);
-		Collection<Roboter> spieler = heimmannschaft.spieler.values();
-		menuInteraktion(ball, spieler, heimmannschaft, gastmannschaft);
-
+		menuInteraktion(ball, heimmannschaft, gastmannschaft);
 	}
 
 	private static String menuStartText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Programm beenden";
 	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel beenden";
 
-	private static void menuStart(Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+	private static void menuStart(Ball ball, Mannschaft heimmannschaft,
 			Mannschaft gastmannschaft, int menuOption) {
 		switch (menuOption) {
 		case 0:
@@ -38,7 +36,7 @@ public class Navigation {
 			// Spiel starten
 			if(LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft)) {
 				LogikHelper.initialePositionenSetzen(ball, heimmannschaft, gastmannschaft);
-				menuSpielSchleife(ball, spieler, heimmannschaft, gastmannschaft);
+				menuSpielSchleife(ball, heimmannschaft, gastmannschaft);
 			}
 			break;
 		case 3:		
@@ -49,7 +47,7 @@ public class Navigation {
 		}
 	}
 
-	private static void menuSpiel(Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+	private static void menuSpiel(Ball ball, Mannschaft heimmannschaft,
 			Mannschaft gastmannschaft, int menuOption) {
 		switch (menuOption) {
 		case 0:
@@ -69,7 +67,7 @@ public class Navigation {
 		case 3:
 			// Spiel beenden
 			LogikHelper.siegerAnzeigen(heimmannschaft, gastmannschaft);
-			menuStartSchleife(ball, spieler, heimmannschaft, gastmannschaft);
+			menuStartSchleife(ball, heimmannschaft, gastmannschaft);
 			break;
 		}
 	}
@@ -85,25 +83,25 @@ public class Navigation {
 		System.out.println("\nBitte geben Sie eine Ganzzahl ein, um im Menu zu navigieren.");
 	}
 	
-	private static void menuStartSchleife(Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+	private static void menuStartSchleife(Ball ball, Mannschaft heimmannschaft,
 			Mannschaft gastmannschaft) {
 		while (true) {
 			System.out.println("\n" + menuStartText);
-			menuStart(ball, spieler, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
+			menuStart(ball, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
 		}
 	}
 	
-	private static void menuSpielSchleife(Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+	private static void menuSpielSchleife(Ball ball, Mannschaft heimmannschaft,
 			Mannschaft gastmannschaft) {
 		while (true) {
 			System.out.println("\n" + menuSpielText);
-			menuSpiel(ball, spieler, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
+			menuSpiel(ball, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
 		}
 	}
 
-	public static void menuInteraktion(Ball ball, Collection<Roboter> spieler, Mannschaft heimmannschaft,
+	public static void menuInteraktion(Ball ball, Mannschaft heimmannschaft,
 			Mannschaft gastmannschaft) {
 		titelAnzeigen();
-		menuStartSchleife(ball, spieler, heimmannschaft, gastmannschaft);
+		menuStartSchleife(ball, heimmannschaft, gastmannschaft);
 	}
 }

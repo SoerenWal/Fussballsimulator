@@ -118,7 +118,7 @@ public class LogikHelper {
 	public static void laden() {
 		try {
 			ArrayList<Mannschaft> mannschaften = Datenhaltung.leseAusDatei();
-			// enitaetenLaden(mannschaften);
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
