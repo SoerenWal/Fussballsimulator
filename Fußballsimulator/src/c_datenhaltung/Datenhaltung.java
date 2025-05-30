@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,10 +14,10 @@ import java.util.ArrayList;
 
 public class Datenhaltung {
 
-	private static final Path DATEI_PFAD = Paths.get(System.getProperty("user.home"), "git", "Fussballsimulator", "Fußballsimulator", "src", "c_datenhaltung");
+	private static final Path DATEI_PFAD = Paths.get(System.getProperty("user.home"));
 
-	public static void schreibeInDatei(ArrayList<Object> mannschaften) {
-		try (OutputStream fos = Files.newOutputStream(DATEI_PFAD, StandardOpenOption.CREATE_NEW);) {
+	public static void schreibeInDatei(ArrayList<Object> mannschaften) throws AccessDeniedException {
+		try (OutputStream fos = Files.newOutputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(mannschaften);
 			System.out.println("Das Spiel wurde erfolgreich gespeichert.");

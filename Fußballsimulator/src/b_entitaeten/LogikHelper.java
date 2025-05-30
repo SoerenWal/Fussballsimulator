@@ -1,5 +1,6 @@
 package b_entitaeten;
 
+import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -115,7 +116,11 @@ public class LogikHelper {
 		ArrayList<Object> mannschaften = new ArrayList<>();
 		mannschaften.add(heimmannschaft);
 		mannschaften.add(gastmannschaft);
-		Datenhaltung.schreibeInDatei(mannschaften);
+		try {
+			Datenhaltung.schreibeInDatei(mannschaften);
+		} catch(AccessDeniedException e) {
+			System.out.println("Der Zugriff auf den Dateipfad wurde verweigert.");
+		}
 	}
 
 	public static ArrayList<Object> laden() {
