@@ -21,7 +21,7 @@ public class Datenhaltung {
 		try (OutputStream fos = Files.newOutputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(speicher);
-			System.out.println("Das Spiel wurde erfolgreich gespeichert.");
+			System.out.println("\nDas Spiel wurde erfolgreich gespeichert.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -105,10 +105,10 @@ public class Mannschaft implements Serializable {
 				if (s != this.spieler.get("Torwart")) {
 					s.setInitialZeile(ball.zeile);
 					if (this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
-						s.setInitialSpalte(ball.getSpalte() + abstandSpieler * faktor);
+						s.setInitialSpalte(ball.getSpalte() - abstandSpieler * faktor);
 						faktor++;
 					} else if (this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
-						s.setInitialSpalte(ball.getSpalte() - abstandSpieler * faktor);
+						s.setInitialSpalte(ball.getSpalte() + abstandSpieler * faktor);
 						faktor++;
 					}
 				}
