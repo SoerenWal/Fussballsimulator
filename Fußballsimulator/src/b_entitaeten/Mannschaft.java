@@ -8,55 +8,36 @@ public class Mannschaft {
 
 	public String name;
 	public int tore = 0;
+	public Tor tor;
 	public boolean ballBesitz = false;
 	public HashMap<String, Roboter> spieler;
 	static Scanner sc = new Scanner(System.in);
 
-	public Mannschaft(HashMap<String, Roboter> spieler) {
+	public Mannschaft(HashMap<String, Roboter> spieler, Tor tor) {
 		this.spieler = spieler;
+		this.tor = tor;
 	}
 
-	protected static void heimmannschaftAnlegen(Mannschaft heimmannschaft, Tor tor) {
-		System.out.print("\nName der Heimmannschaft: ");
-		heimmannschaft.name = sc.nextLine();
-		String name;
-		System.out.print("Name des Stürmers: ");
-		name = sc.nextLine();
-		heimmannschaft.spieler.put("Stürmer", new Stuermer(name));
-		System.out.print("Name des linken Mittelfeldspielers: ");
-		name = sc.nextLine();
-		heimmannschaft.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
-		System.out.print("Name des rechten Mittelfeldspielers: ");
-		name = sc.nextLine();
-		heimmannschaft.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
-		System.out.print("Name des Verteidigers: ");
-		name = sc.nextLine();
-		heimmannschaft.spieler.put("Verteidiger", new Verteidiger(name));
-		System.out.print("Name des Torwarts: ");
-		name = sc.nextLine();
-		heimmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte + 3));
-	}
-
-	protected static void gastmannschaftAnlegen(Mannschaft gastmannschaft, Tor tor) {
+	protected void anlegen() {
 		// modularisieren und whitespaces erkennen
 		System.out.print("\nName der Gastmannschaft: ");
-		gastmannschaft.name = sc.nextLine();
+		this.name = sc.nextLine();
 		String name;
 		System.out.print("Name des Stürmers: ");
 		name = sc.nextLine();
-		gastmannschaft.spieler.put("Stürmer", new Stuermer(name));
+		this.spieler.put("Stürmer", new Stuermer(name));
 		System.out.print("Name des linken Mittelfeldspielers: ");
 		name = sc.nextLine();
-		gastmannschaft.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
+		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
 		System.out.print("Name des rechten Mittelfeldspielers: ");
 		name = sc.nextLine();
-		gastmannschaft.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
+		this.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
 		System.out.print("Name des Verteidigers: ");
 		name = sc.nextLine();
-		gastmannschaft.spieler.put("Verteidiger", new Verteidiger(name));
+		this.spieler.put("Verteidiger", new Verteidiger(name));
 		System.out.print("Name des Torwarts: ");
 		name = sc.nextLine();
-		gastmannschaft.spieler.put("Torwart", new Torwart(name, tor.zeile, tor.spalte - 3));
+		this.spieler.put("Torwart", new Torwart(name));
 	}
 
 	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
@@ -98,12 +79,19 @@ public class Mannschaft {
 		}
 	}
 
-	public void aufstellungWaehlen(Ball ball, Tor[] tore) {
+	public void aufstellungWaehlen(Ball ball, boolean istHeimmannschaft) {
+		this.spieler.get("Torwart").setInitialZeile(this.tor.zeile);
+		if (istHeimmannschaft) {
+			this.spieler.get("Torwart").setInitialSpalte(tor.spalte + 3);
+		} else {
+			this.spieler.get("Torwart").setInitialSpalte(tor.spalte - 3);
+		}
 		System.out.println("\nWählen Sie bitte eine initiale Aufstellung für " + this.name + ".");
 		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4");
 		int distanzTorwartZentrum = ball.getSpalte() - this.spieler.get("Torwart").getInitialSpalte();
 		int abstandSpieler = 7;
 		int abstandBallAußenlinie = ball.getZeile();
+
 		switch (LogikHelper.menuEingabe(5)) {
 		case 0:
 			int faktor = 1;

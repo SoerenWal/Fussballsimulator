@@ -7,7 +7,7 @@ public class Spielfeld {
 
 	private static String[][] spielfeld = new String[zeilen][spalten];
 
-	public static void spielfeldMalen(Tor[] tore, Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+	public static void spielfeldMalen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		ballMalen(ball);
 		spielerMalen(heimmannschaft);
 		spielerMalen(gastmannschaft);
