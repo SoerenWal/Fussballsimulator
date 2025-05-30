@@ -1,6 +1,8 @@
 package b_entitaeten;
- 
-public final class Ball {
+
+import java.io.Serializable;
+
+public final class Ball implements Serializable {
  
 	private static Ball INSTANCE;
  

@@ -1,11 +1,10 @@
 package b_entitaeten;
 
-import java.nio.file.AccessDeniedException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import c_datenhaltung.Datenhaltung;
+import c_datenhaltung.Speicher;
 
 public class LogikHelper {
 
@@ -55,28 +54,21 @@ public class LogikHelper {
 		}
 	}
 
-	public static boolean ballbesitzSetzen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		if (heimmannschaft.ballBesitz || gastmannschaft.ballBesitz) {
-			return true;
-		}
+	public static void ballbesitzSetzen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		if (heimmannschaft.spieler.isEmpty() && gastmannschaft.spieler.isEmpty()) {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
-			return false;
-		} else if (!heimmannschaft.spieler.isEmpty() && !gastmannschaft.spieler.isEmpty()) {
+		} else {
 			System.out.println("\nWelche Mannschaft darf die Partie mit Ballbesitz beginnen?");
 			System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
 			switch (LogikHelper.menuEingabe(2)) {
 			case 0:
 				heimmannschaft.spieler.get("Stürmer").setBallBesitz(true);
-				return true;
+				heimmannschaft.ballBesitz = true;
 			case 1:
 				gastmannschaft.spieler.get("Stürmer").setBallBesitz(true);
-				return true;
+				gastmannschaft.ballBesitz = true;
 			}
-			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
-			return false;
 		}
-		return false;
 	}
 
 	public static void siegerAnzeigen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
@@ -112,26 +104,17 @@ public class LogikHelper {
 		return false;
 	}
 
-	public static void speichern(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		ArrayList<Object> mannschaften = new ArrayList<>();
-		mannschaften.add(heimmannschaft);
-		mannschaften.add(gastmannschaft);
-		try {
-			Datenhaltung.schreibeInDatei(mannschaften);
-		} catch(AccessDeniedException e) {
-			System.out.println("Der Zugriff auf den Dateipfad wurde verweigert.");
-		}
+	public static void speichern(Speicher speicher) {
+		Datenhaltung.schreibeInDatei(speicher);
 	}
 
-	public static ArrayList<Object> laden() {
+	public static Speicher laden() {
 		try {
-			ArrayList<Object> mannschaften = Datenhaltung.leseAusDatei();
-			return mannschaften;
-		} catch(ClassNotFoundException e) {
+			return Datenhaltung.leseAusDatei();
+		} catch (ClassNotFoundException e) {
 			System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
 		}
 		return null;
-		
-		
+
 	}
 }

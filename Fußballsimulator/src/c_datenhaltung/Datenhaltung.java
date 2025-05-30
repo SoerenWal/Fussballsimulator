@@ -14,27 +14,26 @@ import java.util.ArrayList;
 
 public class Datenhaltung {
 
-	private static final Path DATEI_PFAD = Paths.get(System.getProperty("user.home"));
+	private static final Path DATEI_PFAD = Paths.get(System.getProperty("user.home"), "git", "Fussballsimulator",
+			"Fußballsimulator", "src", "c_datenhaltung", "Fußballsimulator.txt");
 
-	public static void schreibeInDatei(ArrayList<Object> mannschaften) throws AccessDeniedException {
+	public static void schreibeInDatei(Speicher speicher) {
 		try (OutputStream fos = Files.newOutputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(mannschaften);
+			oos.writeObject(speicher);
 			System.out.println("Das Spiel wurde erfolgreich gespeichert.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static ArrayList<Object> leseAusDatei() throws ClassNotFoundException {
-		ArrayList<Object> mannschaften;
+	public static Speicher leseAusDatei() throws ClassNotFoundException {
 		try (InputStream fis = Files.newInputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			mannschaften = (ArrayList<Object>) ois.readObject(); // throws ClassNotFoundException
+			return (Speicher) ois.readObject(); // throws ClassNotFoundException
 		} catch (IOException e) { // Files.newInputStream
 			// e.printStackTrace();
 			return null;
 		}
-		return mannschaften;
 	}
 }

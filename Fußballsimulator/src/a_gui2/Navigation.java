@@ -9,6 +9,7 @@ import b_entitaeten.Roboter;
 import b_entitaeten.RoboterHelper;
 import b_entitaeten.Spielfeld;
 import b_entitaeten.Tor;
+import c_datenhaltung.Speicher;
 
 public class Navigation {
 
@@ -16,26 +17,34 @@ public class Navigation {
 	static Mannschaft gastmannschaft;
 	static Ball ball;
 	static ArrayList<Object> mannschaften;
+	static Speicher speicher;
 
 	public static void main(String[] args) {
+
 		heimmannschaft = new Mannschaft(new HashMap<String, Roboter>(), new Tor(Spielfeld.zeilen / 2, 0));
 		gastmannschaft = new Mannschaft(new HashMap<String, Roboter>(),
 				new Tor(Spielfeld.zeilen / 2, Spielfeld.spalten - 1));
 		ball = Ball.getInstance(Spielfeld.zeilen / 2, Spielfeld.spalten / 2);
-		menuInteraktion(ball, heimmannschaft, gastmannschaft);
+		speicher = new Speicher(heimmannschaft, gastmannschaft, ball);
+		menuInteraktion();
 	}
 
 	private static String menuStartText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Programm beenden";
 	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel beenden";
 
-	private static void menuStart(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft, int menuOption) {
+	private static void menuStart(int menuOption) {
 		switch (menuOption) {
 		case 0:
-			mannschaften = LogikHelper.laden();
+			// Spiel laden
+			speicher = LogikHelper.laden();
+			heimmannschaft = speicher.heimmannschaft;
+			gastmannschaft = speicher.gastmannschaft;
+			ball = speicher.ball;
+			menuSpielSchleife();
 			try {
 				heimmannschaft = (Mannschaft) mannschaften.get(0);
 				gastmannschaft = (Mannschaft) mannschaften.get(1);
-				menuSpielSchleife(ball, heimmannschaft, gastmannschaft);
+				menuSpielSchleife();
 			} catch (NullPointerException e) {
 				System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
 			}
@@ -46,20 +55,20 @@ public class Navigation {
 			break;
 		case 2:
 			// Spiel starten
-			if (LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft)) {
-				LogikHelper.initialePositionenSetzen(ball, heimmannschaft, gastmannschaft);
-				menuSpielSchleife(ball, heimmannschaft, gastmannschaft);
-			}
+			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
+			LogikHelper.initialePositionenSetzen(ball, heimmannschaft, gastmannschaft);
+			menuSpielSchleife();
 			break;
 		case 3:
 			// Programm beenden
 			System.out.println("\nDas Programm wurde erfolgreich beendet.\nBis zum nächsten Mal!");
-			System.exit(0);
+			System.exit(1);
 			break;
 		}
+
 	}
 
-	private static void menuSpiel(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft, int menuOption) {
+	private static void menuSpiel(int menuOption) {
 		switch (menuOption) {
 		case 0:
 			// Spielrunde ausführen
@@ -73,12 +82,12 @@ public class Navigation {
 			break;
 		case 2:
 			// Spiel speichern
-			LogikHelper.speichern(heimmannschaft, gastmannschaft);
+			LogikHelper.speichern(speicher);
 			break;
 		case 3:
 			// Spiel beenden
 			LogikHelper.siegerAnzeigen(heimmannschaft, gastmannschaft);
-			menuStartSchleife(ball, heimmannschaft, gastmannschaft);
+			menuStartSchleife();
 			break;
 		}
 	}
@@ -94,22 +103,22 @@ public class Navigation {
 		System.out.println("\nBitte geben Sie eine Ganzzahl ein, um im Menu zu navigieren.");
 	}
 
-	private static void menuStartSchleife(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+	private static void menuStartSchleife() {
 		while (true) {
 			System.out.println("\n" + menuStartText);
-			menuStart(ball, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
+			menuStart(LogikHelper.menuEingabe(3));
 		}
 	}
 
-	private static void menuSpielSchleife(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+	private static void menuSpielSchleife() {
 		while (true) {
 			System.out.println("\n" + menuSpielText);
-			menuSpiel(ball, heimmannschaft, gastmannschaft, LogikHelper.menuEingabe(3));
+			menuSpiel(LogikHelper.menuEingabe(3));
 		}
 	}
 
-	public static void menuInteraktion(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+	public static void menuInteraktion() {
 		titelAnzeigen();
-		menuStartSchleife(ball, heimmannschaft, gastmannschaft);
+		menuStartSchleife();
 	}
 }

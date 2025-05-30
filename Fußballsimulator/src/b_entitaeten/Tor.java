@@ -1,6 +1,8 @@
 package b_entitaeten;
 
-public class Tor {
+import java.io.Serializable;
+
+public class Tor implements Serializable {
 		int zeile; 
 		int spalte;
 
