@@ -30,6 +30,13 @@ public class LogikHelper {
 		return eingabe;
 	}
 
+	/**
+	 * Durch diese Methode wird eine gastmanschaft und eine Heimmanschaft angelegt
+	 * 
+	 * @param heimmannschaft
+	 * @param gastmannschaft
+	 */
+
 	public static void mannschaftAnlegen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\nWelche Mannschaft möchten Sie zuerst anlegen?");
 		System.out.println("0. Heimmannschaft\n1. Gastmannschaft\n2. Zurück");
