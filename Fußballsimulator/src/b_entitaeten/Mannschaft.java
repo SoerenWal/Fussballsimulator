@@ -116,6 +116,19 @@ public class Mannschaft implements Serializable {
 			faktor = 0;
 			break;
 		case 1:
+			for(Roboter s : this.spieler.values()) {
+				if(s == this.spieler.get("Verteidiger")) {
+					s.setInitialZeile(ball.zeile);
+					s.setInitialZeile(ball.getSpalte() - 14);
+				}else if(s != this.spieler.get("Torwart") && s != this.spieler.get("Verteidiger")) {
+					s.setInitialSpalte(ball.getSpalte() - 3);
+						if(s == this.spieler.get("Mittelfeldspieler")) {
+							s.setInitialZeile(ball.getZeile() - 3);
+						}else if(s == this.spieler.get("Stuermer")) {
+							s.setInitialZeile(ball.getZeile());
+						}
+				}
+			}
 			break;
 		case 2:
 			break;
