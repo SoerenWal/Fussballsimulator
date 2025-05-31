@@ -15,8 +15,6 @@ public class Navigation {
 	static Mannschaft heimmannschaft;
 	static Mannschaft gastmannschaft;
 	static Ball ball;
-	static ArrayList<Object> mannschaften;
-	String hallo;
 
 	public static void main(String[] args) {
 
@@ -27,7 +25,7 @@ public class Navigation {
 		menuInteraktion();
 	}
 
-	private static String menuStartText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Programm beenden";
+	private static String menuStartText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Mannschaften speichern\n4. Programm beenden";
 	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel beenden";
 
 	private static void menuStart(int menuOption) {
@@ -35,13 +33,13 @@ public class Navigation {
 		case 0:
 			// Spiel laden
 			try {
-				ArrayList<Object>entitaeten = LogikHelper.laden();
+				ArrayList<Object> entitaeten = LogikHelper.laden();
 				heimmannschaft = (Mannschaft) entitaeten.get(0);
 				gastmannschaft = (Mannschaft) entitaeten.get(1);
-				ball = (Ball) entitaeten.get(2);
-				System.out.println("\nDas Spiel wurde erfolgreich geladen.");
+				System.out.println("\nIhr Fortschritt wurde erfolgreich geladen.");
+				ball = (Ball) entitaeten.get(2); // IndexOutOfBoundsException
 				menuSpielSchleife();
-			} catch (NullPointerException e) {
+			} catch (NullPointerException | IndexOutOfBoundsException e) {
 				System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
 			}
 			break;
@@ -52,7 +50,7 @@ public class Navigation {
 		case 2:
 			// Spiel starten
 			if (heimmannschaft.spieler.isEmpty() && gastmannschaft.spieler.isEmpty()) {
-				System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
+				System.out.println("\nLaden Sie bitte ein Spiel oder legen Sie zunächst beide Mannschaften an.");
 				menuStartSchleife();
 			}
 			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
@@ -60,6 +58,21 @@ public class Navigation {
 			menuSpielSchleife();
 			break;
 		case 3:
+			// Mannschaften speichern
+			ArrayList<Object> mannschaften = new ArrayList<>();
+			if (heimmannschaft != null || gastmannschaft != null) {
+				if (heimmannschaft != null) {
+					mannschaften.add(heimmannschaft);
+				}
+				if (gastmannschaft != null) {
+					mannschaften.add(gastmannschaft);
+					LogikHelper.speichern(mannschaften);
+				}
+			} else {
+				System.out.println("Bitte legen Sie zunächst eine Mannschaften an.");
+			}
+			break;
+		case 4:
 			// Programm beenden
 			System.out.println("\nDas Programm wurde erfolgreich beendet.\nBis zum nächsten Mal!");
 			System.exit(1);
@@ -72,7 +85,7 @@ public class Navigation {
 		switch (menuOption) {
 		case 0:
 			// Spielrunde ausführen
-			Spielfeld.spielfeldMalen(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
 			RoboterHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
 			break;
@@ -85,7 +98,7 @@ public class Navigation {
 			ArrayList<Object> entitaeten = new ArrayList<>();
 			entitaeten.add(heimmannschaft);
 			entitaeten.add(gastmannschaft);
-			entitaeten.add(ball); 
+			entitaeten.add(ball);
 			LogikHelper.speichern(entitaeten);
 			break;
 		case 3:
@@ -110,7 +123,7 @@ public class Navigation {
 	private static void menuStartSchleife() {
 		while (true) {
 			System.out.println("\n" + menuStartText);
-			menuStart(LogikHelper.menuEingabe(3));
+			menuStart(LogikHelper.menuEingabe(4));
 		}
 	}
 

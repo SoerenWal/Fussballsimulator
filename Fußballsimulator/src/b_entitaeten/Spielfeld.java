@@ -1,5 +1,7 @@
 package b_entitaeten;
 
+import java.io.Console;
+
 public class Spielfeld {
 
 	public static int zeilen = 17;
@@ -7,11 +9,13 @@ public class Spielfeld {
 
 	private static String[][] spielfeld = new String[zeilen][spalten];
 
-	public static void spielfeldMalen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		ballMalen(ball);
-		spielerMalen(heimmannschaft);
-		spielerMalen(gastmannschaft);
-		rasenMalen();
+	public static void maleSpielfeld(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		maleRasen();
+		maleMarkierungen(ball, heimmannschaft, gastmannschaft);
+		maleTore();
+		maleBall(ball);
+		maleSpieler(heimmannschaft);
+		maleSpieler(gastmannschaft);
 	}
 
 	/**
@@ -21,79 +25,130 @@ public class Spielfeld {
 	 */
 	private static void markiereMitHintergrundfarbe(int i, int j, String hintergrundfarbe) {
 		String zeichen = " ";
-		String textfarbe = ConsoleColors.CYAN_BOLD_BRIGHT;
 
 		if (spielfeld[i][j] != null) {
 			// Extrahiere das sichtbare Zeichen mit Farben
 			// Farben funktionieren noch nicht
 			zeichen = spielfeld[i][j].replaceAll("\u001B\\[[;\\d]*m", "").trim();
-			textfarbe = spielfeld[i][j].matches(".*\\u001B\\[3\\d{1}m.*") ? spielfeld[i][j].replaceAll(".*?(\\u001B\\[3\\d{1}m).*", "$1") : "";
-			System.out.print(textfarbe);
 			if (zeichen.isEmpty()) {
 				zeichen = " ";
 			}
 		}
-		spielfeld[i][j] = hintergrundfarbe + zeichen + textfarbe + ConsoleColors.RESET;
+		spielfeld[i][j] = hintergrundfarbe + zeichen + ConsoleColors.RESET;
 	}
 
 	/**
-	 * Diese Methode wurde von ChatGPT implementiert und stellt keine Eigenleistung
-	 * dar. Diese Methode befüllt das zwei-dimensionale Array feld mit
-	 * Spielfeldmarkierungen und einem quarierten zweifarbigen Rasen
+	 * Eine Methode, die den Rasen des Spielfelds in einem Schachbrett-Muster malt.
 	 */
-	public static void rasenMalen() {
-
-		// Aufbau des Rasenmusters (Schachbrett)
+	public static void maleRasen() {
 		for (int i = 0; i < zeilen; i++) {
 			for (int j = 0; j < spalten; j++) {
-				boolean isBright = (i + j) % 2 == 0;
-				markiereMitHintergrundfarbe(i, j,
-						isBright ? ConsoleColors.GREEN_BACKGROUND_BRIGHT : ConsoleColors.GREEN_BACKGROUND);
+				if ((i + j) % 2 == 0) {
+					markiereMitHintergrundfarbe(i, j, ConsoleColors.GREEN_BACKGROUND_BRIGHT);
+				} else {
+					markiereMitHintergrundfarbe(i, j, ConsoleColors.GREEN_BACKGROUND);
+				}
 			}
 		}
+	}
 
-		// Seitenlinien (oben und unten)
-		for (int j = 0; j < spalten; j++) {
-			spielfeld[0][j] = ConsoleColors.WHITE_BACKGROUND + " ";
-			spielfeld[zeilen - 1][j] = ConsoleColors.WHITE_BACKGROUND + " ";
-		}
+	/**
+	 * Eine Methode, die Fußballfeld-Markierungen auf dem Spielfeld malt.
+	 */
+	public static void maleMarkierungen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		maleSeitenlinienObenUnten();
+		maleSeitenlinienLinksRechts();
+		maleMittelkreis();
+		maleStrafraum();
+	}
 
-		// Seitenlinien (links und rechts)
+	private static void maleSeitenlinienObenUnten() {
 		for (int i = 0; i < zeilen; i++) {
-			spielfeld[i][0] = ConsoleColors.WHITE_BACKGROUND + " ";
-			spielfeld[i][spalten - 1] = ConsoleColors.WHITE_BACKGROUND + " ";
+			for (int j = 0; j < spalten; j++) {
+				markiereMitHintergrundfarbe(0, j, ConsoleColors.WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(zeilen - 1, j, ConsoleColors.WHITE_BACKGROUND);
+			}
 		}
+	}
 
-		// Mittellinie
+	private static void maleSeitenlinienLinksRechts() {
+		for (int i = 0; i < zeilen; i++) {
+			markiereMitHintergrundfarbe(i, 0, ConsoleColors.WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, spalten - 1, ConsoleColors.WHITE_BACKGROUND);
+		}
+	}
+
+	/*
+	 * // Mittellinie
+	 * 
+	 * for (int j = 0; j < spalten; j++) { markiereMitHintergrundfarbe(middle, j,
+	 * ConsoleColors.WHITE_BACKGROUND); }
+	 */
+
+	// Mittelkreis
+	/**
+	 * Eine Methode die einen Mittelkreis auf das Spielfeld malt.
+	 */
+	private static void maleMittelkreis() {
 		int middle = zeilen / 2;
-		for (int j = 0; j < spalten; j++) {
-			markiereMitHintergrundfarbe(middle, j, ConsoleColors.WHITE_BACKGROUND);
-		}
-
-		// Mittelkreis (nur ein einfacher + oben/unten/links/rechts)
 		int centerCol = spalten / 2;
 		markiereMitHintergrundfarbe(middle - 1, centerCol, ConsoleColors.WHITE_BACKGROUND);
 		markiereMitHintergrundfarbe(middle + 1, centerCol, ConsoleColors.WHITE_BACKGROUND);
 		markiereMitHintergrundfarbe(middle, centerCol - 1, ConsoleColors.WHITE_BACKGROUND);
 		markiereMitHintergrundfarbe(middle, centerCol + 1, ConsoleColors.WHITE_BACKGROUND);
+	}
 
-		// Tore (links und rechts, je 3 Zeilen hoch und 2 Zeichen breit)
-		int goalStart = middle - 1;
-		for (int i = goalStart; i <= goalStart + 2; i++) {
-			spielfeld[i][1] = ConsoleColors.BLACK_BACKGROUND + " ";
-			spielfeld[i][2] = ConsoleColors.BLACK_BACKGROUND + " ";
-			spielfeld[i][spalten - 3] = ConsoleColors.BLACK_BACKGROUND + " ";
-			spielfeld[i][spalten - 2] = ConsoleColors.BLACK_BACKGROUND + " ";
+	private static void maleStrafraum() {
+		for (int i = zeilen / 2 - 5; i < zeilen / 2 + 6; i++) {
+			for (int j = 0; j < 16 + 1; j++) {
+				// seitliche Strafraum-Linie
+				markiereMitHintergrundfarbe(i, 16, ConsoleColors.WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(i, spalten - 17, ConsoleColors.WHITE_BACKGROUND);
+				
+				// obere Strafraum-Linie
+				markiereMitHintergrundfarbe(zeilen / 2 - 5, j, ConsoleColors.WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(zeilen / 2 - 5, spalten - 17 + j, ConsoleColors.WHITE_BACKGROUND);
+				
+				markiereMitHintergrundfarbe(zeilen / 2 + 5, j, ConsoleColors.WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(zeilen / 2 + 5, spalten - 17 + j, ConsoleColors.WHITE_BACKGROUND);
+			}
 		}
 	}
 
-	public static void ballMalen(Ball ball) {
-		spielfeld[ball.zeile][ball.spalte] = "B";
+	/**
+	 * Eine Methode, die Tore auf das Spielfeld malt.
+	 */
+	private static void maleTore() {
+		// links und rechts, je 3 Zeilen hoch und 2 Zeichen breit
+		for (int i = zeilen / 2 - 1; i < zeilen / 2 + 2; i++) {
+			spielfeld[i][1] = ConsoleColors.WHITE_BACKGROUND + " " + ConsoleColors.RESET;
+			spielfeld[i][2] = ConsoleColors.WHITE_BACKGROUND + " " + ConsoleColors.RESET;
+			spielfeld[i][spalten - 3] = ConsoleColors.WHITE_BACKGROUND + " " + ConsoleColors.RESET;
+			spielfeld[i][spalten - 2] = ConsoleColors.WHITE_BACKGROUND + " " + ConsoleColors.RESET;
+		}
 	}
 
-	public static void spielerMalen(Mannschaft mannschaft) {
-		for (Roboter s : mannschaft.spieler.values()) {
-			spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = String.valueOf(s.getName().charAt(0) + ConsoleColors.RESET);
+	/**
+	 * Eine Methode die den Ball auf das Spielfeld malt.
+	 * 
+	 * @param ball
+	 */
+	private static void maleBall(Ball ball) {
+		spielfeld[ball.zeile][ball.spalte] = "●";
+	}
+
+	private static void maleSpieler(Mannschaft mannschaft) {
+		if (mannschaft.spieler.get("Torwart").getSpalte() > spalten / 2) {
+			for (Roboter s : mannschaft.spieler.values()) {
+				spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = String
+						.valueOf(s.getName().charAt(0) + ConsoleColors.RESET);
+			}
+		} else {
+			for (Roboter s : mannschaft.spieler.values()) {
+				spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = String
+						.valueOf(s.getName().charAt(0) + ConsoleColors.RESET);
+			}
+
 		}
 	}
 
