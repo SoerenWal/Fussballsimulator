@@ -25,7 +25,7 @@ public class Navigation {
 		gastmannschaft = new Mannschaft(new HashMap<String, Roboter>(),
 				new Tor(Spielfeld.zeilen / 2, Spielfeld.spalten - 1));
 		ball = Ball.getInstance(Spielfeld.zeilen / 2, Spielfeld.spalten / 2);
-		speicher = Speicher.getInstance(heimmannschaft, gastmannschaft, ball);
+		speicher = new Speicher(heimmannschaft, gastmannschaft, ball);
 		menuInteraktion();
 	}
 
@@ -41,7 +41,6 @@ public class Navigation {
 				heimmannschaft = speicher.heimmannschaft;
 				gastmannschaft = speicher.gastmannschaft;
 				ball = speicher.ball;
-				menuSpielSchleife();
 				menuSpielSchleife();
 			} catch (NullPointerException e) {
 				System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");

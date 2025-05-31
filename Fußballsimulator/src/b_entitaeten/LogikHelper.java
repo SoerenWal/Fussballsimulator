@@ -110,6 +110,7 @@ public class LogikHelper {
 
 	public static Speicher laden() {
 		try {
+			System.out.println("Das Spiel wurde erfolgreich geladen.");
 			return Datenhaltung.leseAusDatei();
 		} catch (ClassNotFoundException e) {
 			System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
