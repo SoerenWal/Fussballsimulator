@@ -104,24 +104,66 @@ public class Mannschaft implements Serializable {
 			break;
 		case 1:
 			for(Roboter s : this.spieler.values()) {
-				if(s == this.spieler.get("Verteidiger")) {
-					s.setInitialZeile(ball.zeile);
-					s.setInitialZeile(ball.getSpalte() - 14);
-				}else if(s != this.spieler.get("Torwart") && s != this.spieler.get("Verteidiger")) {
-					s.setInitialSpalte(ball.getSpalte() - 3);
-						if(s == this.spieler.get("Mittelfeldspieler")) {
-							s.setInitialZeile(ball.getZeile() - 3);
-						}else if(s == this.spieler.get("Stuermer")) {
-							s.setInitialZeile(ball.getZeile());
+				if(s != this.spieler.get("Torwart")) {
+					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
+						this.spieler.get("Verteidiger").setInitialSpalte(ball.getSpalte() - 30);
+						this.spieler.get("Verteidiger").setInitialZeile(ball.getZeile());
+						if(s != this.spieler.get("Verteidiger")) {
+							s.setInitialSpalte(ball.getSpalte() - 10);
 						}
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(ball.getZeile() - 3);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(ball.getZeile() + 3);
+						this.spieler.get("Stürmer").setInitialZeile(ball.getZeile());
+
+					}
+					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
+						this.spieler.get("Verteidiger").setInitialSpalte(ball.getSpalte() + 30);
+						this.spieler.get("Verteidiger").setInitialZeile(ball.getZeile());
+						if(s != this.spieler.get("Verteidiger")) {
+							s.setInitialSpalte(ball.getSpalte() + 10);
+						}
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(ball.getZeile() - 3);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(ball.getZeile() + 3);
+						this.spieler.get("Stürmer").setInitialZeile(ball.getZeile());
+					}
 				}
 			}
 			break;
 		case 2:
+			for(Roboter s : this.spieler.values()) {
+				if(s != this.spieler.get("Torwart")) {
+					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
+
+					}
+					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
+						
+						}
+					}
+				}
 			break;
 		case 3:
+			for(Roboter s : this.spieler.values()) {
+				if(s != this.spieler.get("Torwart")) {
+					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
+
+					}
+					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
+						
+						}
+					}
+				}
 			break;
 		case 4:
+			for(Roboter s : this.spieler.values()) {
+				if(s != this.spieler.get("Torwart")) {
+					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
+
+					}
+					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
+						
+						}
+					}
+				}
 			break;
 		}
 
