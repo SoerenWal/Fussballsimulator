@@ -16,6 +16,7 @@ public class Navigation {
 	static Mannschaft gastmannschaft;
 	static Ball ball;
 	static ArrayList<Object> mannschaften;
+	String hallo;
 
 	public static void main(String[] args) {
 
