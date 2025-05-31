@@ -9,7 +9,6 @@ import b_entitaeten.Roboter;
 import b_entitaeten.RoboterHelper;
 import b_entitaeten.Spielfeld;
 import b_entitaeten.Tor;
-import c_datenhaltung.Speicher;
 
 public class Navigation {
 
@@ -17,7 +16,6 @@ public class Navigation {
 	static Mannschaft gastmannschaft;
 	static Ball ball;
 	static ArrayList<Object> mannschaften;
-	static Speicher speicher;
 
 	public static void main(String[] args) {
 
@@ -25,7 +23,6 @@ public class Navigation {
 		gastmannschaft = new Mannschaft(new HashMap<String, Roboter>(),
 				new Tor(Spielfeld.zeilen / 2, Spielfeld.spalten - 1));
 		ball = Ball.getInstance(Spielfeld.zeilen / 2, Spielfeld.spalten / 2);
-		speicher = new Speicher(heimmannschaft, gastmannschaft, ball);
 		menuInteraktion();
 	}
 
@@ -37,10 +34,11 @@ public class Navigation {
 		case 0:
 			// Spiel laden
 			try {
-				speicher = LogikHelper.laden();
-				heimmannschaft = speicher.heimmannschaft;
-				gastmannschaft = speicher.gastmannschaft;
-				ball = speicher.ball;
+				ArrayList<Object>entitaeten = LogikHelper.laden();
+				heimmannschaft = (Mannschaft) entitaeten.get(0);
+				gastmannschaft = (Mannschaft) entitaeten.get(1);
+				ball = (Ball) entitaeten.get(2);
+				System.out.println("\nDas Spiel wurde erfolgreich geladen.");
 				menuSpielSchleife();
 			} catch (NullPointerException e) {
 				System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
@@ -79,7 +77,11 @@ public class Navigation {
 			break;
 		case 2:
 			// Spiel speichern
-			LogikHelper.speichern(speicher);
+			ArrayList<Object> entitaeten = new ArrayList<>();
+			entitaeten.add(heimmannschaft);
+			entitaeten.add(gastmannschaft);
+			entitaeten.add(ball); 
+			LogikHelper.speichern(entitaeten);
 			break;
 		case 3:
 			// Spiel beenden

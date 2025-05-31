@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,20 +16,20 @@ public class Datenhaltung {
 	private static final Path DATEI_PFAD = Paths.get(System.getProperty("user.home"), "git", "Fussballsimulator",
 			"Fußballsimulator", "src", "c_datenhaltung", "Fußballsimulator.txt");
 
-	public static void schreibeInDatei(Speicher speicher) {
+	public static void schreibeInDatei(ArrayList<Object> entitaeten) {
 		try (OutputStream fos = Files.newOutputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(speicher);
+			oos.writeObject(entitaeten);
 			System.out.println("\nDas Spiel wurde erfolgreich gespeichert.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static Speicher leseAusDatei() throws ClassNotFoundException {
+	public static ArrayList<Object> leseAusDatei() throws ClassNotFoundException {
 		try (InputStream fis = Files.newInputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			return (Speicher) ois.readObject(); // throws ClassNotFoundException
+			return (ArrayList<Object>) ois.readObject(); // throws ClassNotFoundException
 		} catch (IOException e) { // Files.newInputStream
 			// e.printStackTrace();
 			return null;

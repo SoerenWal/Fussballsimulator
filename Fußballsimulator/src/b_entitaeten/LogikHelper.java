@@ -1,10 +1,10 @@
 package b_entitaeten;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import c_datenhaltung.Datenhaltung;
-import c_datenhaltung.Speicher;
 
 public class LogikHelper {
 
@@ -104,13 +104,12 @@ public class LogikHelper {
 		return false;
 	}
 
-	public static void speichern(Speicher speicher) {
-		Datenhaltung.schreibeInDatei(speicher);
+	public static void speichern(ArrayList<Object> entitaeten) {
+		Datenhaltung.schreibeInDatei(entitaeten);
 	}
 
-	public static Speicher laden() {
+	public static ArrayList<Object> laden() {
 		try {
-			System.out.println("Das Spiel wurde erfolgreich geladen.");
 			return Datenhaltung.leseAusDatei();
 		} catch (ClassNotFoundException e) {
 			System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
