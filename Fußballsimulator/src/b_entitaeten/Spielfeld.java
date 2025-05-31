@@ -21,7 +21,7 @@ public class Spielfeld {
 	 */
 	private static void markiereMitHintergrundfarbe(int i, int j, String hintergrundfarbe) {
 		String zeichen = " ";
-		String textfarbe = ConsoleColors.BLACK;
+		String textfarbe = ConsoleColors.CYAN_BOLD_BRIGHT;
 
 		if (spielfeld[i][j] != null) {
 			// Extrahiere das sichtbare Zeichen mit Farben
@@ -92,14 +92,8 @@ public class Spielfeld {
 	}
 
 	public static void spielerMalen(Mannschaft mannschaft) {
-		int zaehler = 0;
-		String[] farben = {ConsoleColors.CYAN_BRIGHT, ConsoleColors.PURPLE_BRIGHT};
 		for (Roboter s : mannschaft.spieler.values()) {
-			spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = farben[0] + String.valueOf(s.getName().charAt(0) + ConsoleColors.RESET);
-		}
-		zaehler++;
-		if(zaehler == 1) {
-			zaehler = 0;
+			spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = String.valueOf(s.getName().charAt(0) + ConsoleColors.RESET);
 		}
 	}
 

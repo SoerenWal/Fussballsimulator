@@ -81,10 +81,7 @@ public class Mannschaft implements Serializable {
 		}
 		System.out.println("\nWählen Sie bitte eine initiale Aufstellung für " + this.name + ".");
 		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4");
-		int distanzTorwartZentrum = ball.getSpalte() - this.spieler.get("Torwart").getInitialSpalte();
 		int abstandSpieler = 7;
-		int abstandBallAußenlinie = ball.getZeile();
-
 		switch (LogikHelper.menuEingabe(5)) {
 		case 0:
 			int faktor = 1;
@@ -106,10 +103,10 @@ public class Mannschaft implements Serializable {
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
 					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
-						this.spieler.get("Verteidiger").setInitialSpalte(ball.getSpalte() - 30);
+						this.spieler.get("Verteidiger").setInitialSpalte(ball.getSpalte() + 30);
 						this.spieler.get("Verteidiger").setInitialZeile(ball.getZeile());
 						if(s != this.spieler.get("Verteidiger")) {
-							s.setInitialSpalte(ball.getSpalte() - 10);
+							s.setInitialSpalte(ball.getSpalte() + 10);
 						}
 						this.spieler.get("Mittelfeldspieler").setInitialZeile(ball.getZeile() - 3);
 						this.spieler.get("Mittelfeldspieler2").setInitialZeile(ball.getZeile() + 3);
@@ -117,10 +114,10 @@ public class Mannschaft implements Serializable {
 
 					}
 					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
-						this.spieler.get("Verteidiger").setInitialSpalte(ball.getSpalte() + 30);
+						this.spieler.get("Verteidiger").setInitialSpalte(ball.getSpalte() - 30);
 						this.spieler.get("Verteidiger").setInitialZeile(ball.getZeile());
 						if(s != this.spieler.get("Verteidiger")) {
-							s.setInitialSpalte(ball.getSpalte() + 10);
+							s.setInitialSpalte(ball.getSpalte() - 10);
 						}
 						this.spieler.get("Mittelfeldspieler").setInitialZeile(ball.getZeile() - 3);
 						this.spieler.get("Mittelfeldspieler2").setInitialZeile(ball.getZeile() + 3);

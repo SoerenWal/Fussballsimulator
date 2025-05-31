@@ -50,6 +50,10 @@ public class Navigation {
 			break;
 		case 2:
 			// Spiel starten
+			if (heimmannschaft.spieler.isEmpty() && gastmannschaft.spieler.isEmpty()) {
+				System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
+				menuStartSchleife();
+			}
 			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
 			LogikHelper.initialePositionenSetzen(ball, heimmannschaft, gastmannschaft);
 			menuSpielSchleife();

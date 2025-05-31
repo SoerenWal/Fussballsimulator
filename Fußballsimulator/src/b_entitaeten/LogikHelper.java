@@ -55,19 +55,15 @@ public class LogikHelper {
 	}
 
 	public static void ballbesitzSetzen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		if (heimmannschaft.spieler.isEmpty() && gastmannschaft.spieler.isEmpty()) {
-			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
-		} else {
-			System.out.println("\nWelche Mannschaft darf die Partie mit Ballbesitz beginnen?");
-			System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
-			switch (LogikHelper.menuEingabe(2)) {
-			case 0:
-				heimmannschaft.spieler.get("Stürmer").setBallBesitz(true);
-				heimmannschaft.ballBesitz = true;
-			case 1:
-				gastmannschaft.spieler.get("Stürmer").setBallBesitz(true);
-				gastmannschaft.ballBesitz = true;
-			}
+		System.out.println("\nWelche Mannschaft darf die Partie mit Ballbesitz beginnen?");
+		System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
+		switch (LogikHelper.menuEingabe(2)) {
+		case 0:
+			heimmannschaft.spieler.get("Stürmer").setBallBesitz(true);
+			heimmannschaft.ballBesitz = true;
+		case 1:
+			gastmannschaft.spieler.get("Stürmer").setBallBesitz(true);
+			gastmannschaft.ballBesitz = true;
 		}
 	}
 

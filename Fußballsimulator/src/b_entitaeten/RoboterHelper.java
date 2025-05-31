@@ -44,7 +44,7 @@ public class RoboterHelper {
 	public static String erfrageNamen(String abfrage) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(abfrage);
-		String name = sc.nextLine().trim();
+		String name = sc.nextLine().trim().toLowerCase().substring(0).toUpperCase();
 		if (validiereNamen(name) == true) {
 			return name;
 		} else {
