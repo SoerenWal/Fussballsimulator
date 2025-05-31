@@ -55,6 +55,7 @@ public class Navigation {
 			}
 			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
 			LogikHelper.initialePositionenSetzen(ball, heimmannschaft, gastmannschaft);
+			LogikHelper.abfragenSpieldauer();
 			menuSpielSchleife();
 			break;
 		case 3:

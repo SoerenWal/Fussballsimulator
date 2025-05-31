@@ -8,6 +8,8 @@ import c_datenhaltung.Datenhaltung;
 
 public class LogikHelper {
 
+	public static int spieldauer;
+
 	public static int menuEingabe(int maxMenuOption) {
 		Scanner sc = new Scanner(System.in);
 		int eingabe = 0;
@@ -114,4 +116,21 @@ public class LogikHelper {
 
 	}
 
+	public static int abfragenSpieldauer() {
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.print("\nWie viele Spielzüge möchten Sie insgesamt spielen?\nAnzahl: ");
+			try {
+				spieldauer = sc.nextInt();
+				if (spieldauer > 0 && spieldauer < 51) {
+					return spieldauer;
+				} else {
+					System.out.println("Bitte geben Sie eine Ganzzahl zwischen 1 und 50 ein.");
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Bitte geben Sie eine Ganzzahl zwischen 1 und 50 ein.");
+				sc.next();
+			}
+		}
+	}
 }
