@@ -28,7 +28,7 @@ public class Mannschaft implements Serializable {
 		this.name = RoboterHelper.erfrageNamen("\nName der Mannschaft: ");
 		this.spieler.put("Stürmer", new Stuermer(RoboterHelper.erfrageNamen("Name des Stürmers: ")));
 		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
-		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
+		this.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
 		this.spieler.put("Verteidiger", new Verteidiger(RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
 		this.spieler.put("Torwart", new Torwart(RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
