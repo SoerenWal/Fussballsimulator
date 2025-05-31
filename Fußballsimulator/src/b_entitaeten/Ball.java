@@ -28,9 +28,9 @@ public final class Ball implements Serializable {
  
 	/**
 	 * Ruft den Konstruktor der Singleton-Klasse Ball auf.
-	 * @param x
-	 * @param y
-	 * @return Eine 
+	 * @param zeile
+	 * @param spalte
+	 * @return Eine Ball 
 	 */
 	public static Ball getInstance(int zeile, int spalte) {
 		if (INSTANCE == null) {
