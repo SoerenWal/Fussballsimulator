@@ -25,25 +25,12 @@ public class Mannschaft implements Serializable {
 	}
 
 	protected void anlegen() {
-		// modularisieren und whitespaces erkennen
-		System.out.print("\nName der Mannschaft: ");
-		this.name = sc.nextLine();
-		String name;
-		System.out.print("Name des Stürmers: ");
-		name = sc.nextLine();
-		this.spieler.put("Stürmer", new Stuermer(name));
-		System.out.print("Name des linken Mittelfeldspielers: ");
-		name = sc.nextLine();
-		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(name));
-		System.out.print("Name des rechten Mittelfeldspielers: ");
-		name = sc.nextLine();
-		this.spieler.put("Mittelfeldspieler2", new Mittelfeldspieler(name));
-		System.out.print("Name des Verteidigers: ");
-		name = sc.nextLine();
-		this.spieler.put("Verteidiger", new Verteidiger(name));
-		System.out.print("Name des Torwarts: ");
-		name = sc.nextLine();
-		this.spieler.put("Torwart", new Torwart(name));
+		this.name = RoboterHelper.erfrageNamen("\nName der Mannschaft: ");
+		this.spieler.put("Stürmer", new Stuermer(RoboterHelper.erfrageNamen("Name des Stürmers: ")));
+		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
+		this.spieler.put("Mittelfeldspieler", new Mittelfeldspieler(RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
+		this.spieler.put("Verteidiger", new Verteidiger(RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
+		this.spieler.put("Torwart", new Torwart(RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
 
 	private void ballbesitzAnzeigen(Mannschaft mannschaft) {

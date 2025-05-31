@@ -2,6 +2,7 @@ package b_entitaeten;
 
 import java.util.Collection;
 import java.util.Random;
+import java.util.Scanner;
 
 public class RoboterHelper {
 	/**
@@ -25,7 +26,7 @@ public class RoboterHelper {
 	}
 
 	/**
-	 * Eine Methode, die den Zähler für die Anzahl der Roboter-Instanzen erhöht
+	 * Eine Methode, die einen Zähler, für die Anzahl der Roboter-Instanzen, erhöht.
 	 */
 	public static void erhoeheAnzahlRoboter() {
 		Roboter.anzahlRoboter += 1;
@@ -33,5 +34,41 @@ public class RoboterHelper {
 
 	public static void spielzugAusführen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		Collection<Roboter> spieler = heimmannschaft.spieler.values();
+	}
+	
+	/**
+	 * Eine Methode die Namen nach validen Namen fragt.
+	 * @param Eine Abfrage eines Namens
+	 * @return Einen validen Namen
+	 */
+	public static String erfrageNamen(String abfrage) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print(abfrage);
+		String name = sc.nextLine().trim();
+		if (validiereNamen(name) == true) {
+			return name;
+		} else {
+			return erfrageNamen(abfrage);
+		}
+	}
+	
+	/**
+	 * Eine Methode die Namen validiert.
+	 * @param name
+	 * @return True, sofern der Name nicht leer ist und keine Zahlen besitzt. 
+	 */
+	public static boolean validiereNamen(String name) {
+		if(name.isBlank()) {
+			System.out.println("Geben Sie bitte einen Namen ein.");
+			return false;
+		}
+		for(int i = 0; i < name.length(); i++) {
+			char c = name.charAt(i);
+			if(!Character.isAlphabetic(c)) {
+				System.out.println("Bitte nutzen Sie für die Namen ausschließlich Buchstaben.");
+				return false;
+			}
+		}
+		return true;
 	}
 }
