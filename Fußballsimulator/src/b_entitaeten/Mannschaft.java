@@ -194,10 +194,10 @@ public class Mannschaft implements Serializable {
 						this.spieler.get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
 						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
 						this.spieler.get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile);
-						this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 5);
-						this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 5);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
 
-						this.spieler.get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte + 5);
+						this.spieler.get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte + 4);
 						this.spieler.get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile);
 
 						}
@@ -208,10 +208,10 @@ public class Mannschaft implements Serializable {
 							this.spieler.get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
 							this.spieler.get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
 							this.spieler.get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile);
-							this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 5);
-							this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 5);
+							this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+							this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
 
-							this.spieler.get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte - 5);
+							this.spieler.get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte - 4);
 							this.spieler.get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile);
 							
 						
