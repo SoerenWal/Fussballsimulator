@@ -1,6 +1,5 @@
 package b_entitaeten;
 
-import java.util.Collection;
 import java.util.Random;
 import java.util.Scanner;
 

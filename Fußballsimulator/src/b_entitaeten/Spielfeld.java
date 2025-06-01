@@ -6,8 +6,9 @@ public class Spielfeld {
 
 	public static int zeilen = 17;
 	public static int spalten = 81;
-
 	private static String[][] spielfeld = new String[zeilen][spalten];
+	static int mittelpunktZeile = Spielfeld.zeilen / 2;
+	static int mittelpunktSpalte = Spielfeld.spalten / 2;
 
 	public static void maleSpielfeld(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		maleSpieler(heimmannschaft);
@@ -139,9 +140,13 @@ public class Spielfeld {
 	}
 
 	private static void maleSpieler(Mannschaft mannschaft) {
+		String kuerzel;
 		for (Roboter s : mannschaft.spieler.values()) {
-			markiereMitHintergrundfarbe(s.getInitialZeile(), s.getInitialSpalte(),
-					String.valueOf(s.getName().charAt(0)));
+			kuerzel = String.valueOf(s.getName().charAt(0));
+			if(mannschaft.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
+				kuerzel = kuerzel.toLowerCase();
+			}
+			markiereMitHintergrundfarbe(s.getInitialZeile(), s.getInitialSpalte(), kuerzel);
 		}
 	}
 
