@@ -91,6 +91,7 @@ public class Navigation {
 			// Spielrunde ausführen
 			heimmannschaft.pruefeBallbesitz(ball);
 			gastmannschaft.pruefeBallbesitz(ball);
+			System.out.println("\n Noch verbleibende Spielrunden: " + Ball.spieldauer);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
 			if (!LogikHelper.spielzugAusführen(ball, heimmannschaft, gastmannschaft)) {

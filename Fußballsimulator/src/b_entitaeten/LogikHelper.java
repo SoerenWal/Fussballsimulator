@@ -8,8 +8,6 @@ import c_datenhaltung.Datenhaltung;
 
 public class LogikHelper {
 
-	public static int spieldauer;
-
 	public static int menuEingabe(int maxMenuOption) {
 		Scanner sc = new Scanner(System.in);
 		int eingabe = 0;
@@ -120,16 +118,18 @@ public class LogikHelper {
 
 	public static void abfragenSpieldauer() {
 		System.out.println("\nWie viele Runden möchten Sie spielen?");
-		spieldauer = menuEingabe(50);
+		Ball.spieldauer = menuEingabe(50);
 	}
 
 	public static boolean spielzugAusführen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\n" + heimmannschaft.pruefeBallbesitz(ball));
 		System.out.println(gastmannschaft.pruefeBallbesitz(ball));
-		while(LogikHelper.spieldauer > 0) {
-			//spielzug
+		while(Ball.spieldauer > 0) {
+			for(Roboter s : heimmannschaft.spieler.values()) {
+				
+			}
 			System.out.println("\nSpielzug muss impementiert werden.");
-			spieldauer--;
+			Ball.spieldauer--;
 			return true;
 		}
 		return false;
