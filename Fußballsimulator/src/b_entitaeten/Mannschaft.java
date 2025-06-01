@@ -118,14 +118,17 @@ public class Mannschaft implements Serializable {
 		case 1:
 			for (Roboter s : this.spieler.values()) {
 				if (s != this.spieler.get("Torwart")) {
+					
 					if (this.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 						this.spieler.get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 30);
 						this.spieler.get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile);
+						
 						if (s != this.spieler.get("Verteidiger")) {
+							
 							s.setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
 						}
-						this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 3);
-						this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 3);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
 						this.spieler.get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile);
 
 					}
@@ -135,8 +138,8 @@ public class Mannschaft implements Serializable {
 						if (s != this.spieler.get("Verteidiger")) {
 							s.setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
 						}
-						this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 3);
-						this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 3);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
 						this.spieler.get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile);
 					}
 				}
@@ -146,9 +149,10 @@ public class Mannschaft implements Serializable {
 			for (Roboter s : this.spieler.values()) {
 				if (s != this.spieler.get("Torwart")) {
 
-					if (this.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
+					
 
 						if (this.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
+							
 							this.spieler.get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
 							this.spieler.get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
 							this.spieler.get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
@@ -161,9 +165,8 @@ public class Mannschaft implements Serializable {
 
 						}
 
-						if (this.spieler.get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
-
 							if (this.spieler.get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
+								
 								this.spieler.get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
 								this.spieler.get("Mittelfeldspieler")
 										.setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
@@ -176,8 +179,8 @@ public class Mannschaft implements Serializable {
 								this.spieler.get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
 								this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
 							}
-						}
-					}
+						
+					
 				}
 			}
 			break;
