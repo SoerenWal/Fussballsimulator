@@ -32,15 +32,19 @@ public class Navigation {
 		switch (menuOption) {
 		case 0:
 			// Spiel laden
+			ArrayList<Object> entitaeten;
 			try {
-				ArrayList<Object> entitaeten = LogikHelper.laden();
+				entitaeten = LogikHelper.laden(); // wirft eine NullPointerException
 				heimmannschaft = (Mannschaft) entitaeten.get(0);
 				gastmannschaft = (Mannschaft) entitaeten.get(1);
 				System.out.println("\nIhr Fortschritt wurde erfolgreich geladen.");
-				ball = (Ball) entitaeten.get(2); // IndexOutOfBoundsException
+				ball = (Ball) entitaeten.get(2); // wirft eine IndexOutOfBoundsException
 				menuSpielSchleife();
-			} catch (NullPointerException | IndexOutOfBoundsException e) {
-				System.out.println("Sie können ein neues Spiel beginnen.");
+			} catch (NullPointerException e) {
+				System.out.println(
+						"\nEs konnte leider kein Spiel geladen werden. Legen Sie bitte zunächst beide Mannschaften an.");
+			} catch (IndexOutOfBoundsException e) {
+				System.out.println("\nSie können ein neues Spiel beginnen.");
 			}
 			break;
 		case 1:
@@ -118,7 +122,7 @@ public class Navigation {
 				+ "|  _|| |_| | |\\ \\ |_) | (_| | | \\__ \\ | | | | | | |_| | | (_| | || (_) | |   \r\n"
 				+ "|_|   \\__,_| ||_/_.__/ \\__,_|_|_|___/_|_| |_| |_|\\__,_|_|\\__,_|\\__\\___/|_|   \r\n"
 				+ "           |_|                                                               ");
-		System.out.println("\nBitte geben Sie eine Ganzzahl ein, um im Menu zu navigieren.");
+		System.out.println("\nWillkommen im Start-Menu!\nBitte geben Sie eine Ganzzahl ein, um im Menu zu navigieren.");
 	}
 
 	private static void menuStartSchleife() {
@@ -129,6 +133,7 @@ public class Navigation {
 	}
 
 	private static void menuSpielSchleife() {
+		System.out.println("Willkommen im Spielmenu!");
 		while (true) {
 			System.out.println("\n" + menuSpielText);
 			menuSpiel(LogikHelper.menuEingabe(3));

@@ -83,9 +83,9 @@ public class Mannschaft implements Serializable {
 		}
 		System.out.println("\nWählen Sie bitte eine initiale Aufstellung für " + this.name + ".");
 		System.out.println("0. 1-1-1-1" + "\n1. 1-3" + "\n2. 2-2" + "\n3. 3-1" + "\n4. 4");
-		int abstandSpieler = 7;
 		switch (LogikHelper.menuEingabe(5)) {
 		case 0:
+			int abstandSpieler = 7;
 			int faktor = 1;
 			for (Roboter s : this.spieler.values()) {
 				if (s != this.spieler.get("Torwart")) {
@@ -106,7 +106,7 @@ public class Mannschaft implements Serializable {
 				if(s != this.spieler.get("Torwart")) {
 					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
 						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte + 30);
-						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktSpalte);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile);
 						if(s != this.spieler.get("Verteidiger")) {
 							s.setInitialSpalte(mittelpunktSpalte + 10);
 						}
