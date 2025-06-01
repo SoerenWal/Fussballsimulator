@@ -10,12 +10,13 @@ public class Spielfeld {
 	private static String[][] spielfeld = new String[zeilen][spalten];
 
 	public static void maleSpielfeld(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		maleSpieler(heimmannschaft);
+		maleSpieler(gastmannschaft);
 		maleRasen();
 		maleMarkierungen(ball, heimmannschaft, gastmannschaft);
 		maleTore();
 		maleBall(ball);
-		maleSpieler(heimmannschaft);
-		maleSpieler(gastmannschaft);
+
 	}
 
 	/**
@@ -104,11 +105,11 @@ public class Spielfeld {
 				// seitliche Strafraum-Linie
 				markiereMitHintergrundfarbe(i, 16, ConsoleColors.WHITE_BACKGROUND);
 				markiereMitHintergrundfarbe(i, spalten - 17, ConsoleColors.WHITE_BACKGROUND);
-				
+
 				// obere Strafraum-Linie
 				markiereMitHintergrundfarbe(zeilen / 2 - 5, j, ConsoleColors.WHITE_BACKGROUND);
 				markiereMitHintergrundfarbe(zeilen / 2 - 5, spalten - 17 + j, ConsoleColors.WHITE_BACKGROUND);
-				
+
 				markiereMitHintergrundfarbe(zeilen / 2 + 5, j, ConsoleColors.WHITE_BACKGROUND);
 				markiereMitHintergrundfarbe(zeilen / 2 + 5, spalten - 17 + j, ConsoleColors.WHITE_BACKGROUND);
 			}
@@ -134,21 +135,13 @@ public class Spielfeld {
 	 * @param ball
 	 */
 	private static void maleBall(Ball ball) {
-		spielfeld[ball.zeile][ball.spalte] = "●";
+		spielfeld[ball.zeile][ball.spalte] = ConsoleColors.CYAN_BACKGROUND_BRIGHT + " ";
 	}
 
 	private static void maleSpieler(Mannschaft mannschaft) {
-		if (mannschaft.spieler.get("Torwart").getSpalte() > spalten / 2) {
-			for (Roboter s : mannschaft.spieler.values()) {
-				spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = String
-						.valueOf(s.getName().charAt(0) + ConsoleColors.RESET);
-			}
-		} else {
-			for (Roboter s : mannschaft.spieler.values()) {
-				spielfeld[s.getInitialZeile()][s.getInitialSpalte()] = String
-						.valueOf(s.getName().charAt(0) + ConsoleColors.RESET);
-			}
-
+		for (Roboter s : mannschaft.spieler.values()) {
+			markiereMitHintergrundfarbe(s.getInitialZeile(), s.getInitialSpalte(),
+					String.valueOf(s.getName().charAt(0)));
 		}
 	}
 

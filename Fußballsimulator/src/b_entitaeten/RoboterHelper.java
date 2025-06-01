@@ -32,10 +32,6 @@ public class RoboterHelper {
 		Roboter.anzahlRoboter += 1;
 	}
 
-	public static void spielzugAusführen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		Collection<Roboter> spieler = heimmannschaft.spieler.values();
-	}
-	
 	/**
 	 * Eine Methode die Namen nach validen Namen fragt.
 	 * @param Eine Abfrage eines Namens

@@ -1,6 +1,7 @@
 package b_entitaeten;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -56,13 +57,16 @@ public class LogikHelper {
 		}
 	}
 
-	public static void ballbesitzSetzen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+	public static void ballbesitzSetzen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\nWelche Mannschaft darf die Partie mit Ballbesitz beginnen?");
 		System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
 		switch (LogikHelper.menuEingabe(2)) {
 		case 0:
 			heimmannschaft.spieler.get("Stürmer").setBallBesitz(true);
 			heimmannschaft.ballBesitz = true;
+			ball.zeile = heimmannschaft.spieler.get("Stürmer").getInitialZeile();
+			ball.spalte = heimmannschaft.spieler.get("Stürmer").getInitialSpalte();
+			
 		case 1:
 			gastmannschaft.spieler.get("Stürmer").setBallBesitz(true);
 			gastmannschaft.ballBesitz = true;
@@ -133,4 +137,9 @@ public class LogikHelper {
 			}
 		}
 	}
+	
+	public static void spielzugAusführen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		Collection<Roboter> spieler = heimmannschaft.spieler.values();
+	}
+	
 }

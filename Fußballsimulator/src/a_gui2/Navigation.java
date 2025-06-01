@@ -40,7 +40,7 @@ public class Navigation {
 				ball = (Ball) entitaeten.get(2); // IndexOutOfBoundsException
 				menuSpielSchleife();
 			} catch (NullPointerException | IndexOutOfBoundsException e) {
-				System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
+				System.out.println("Sie können ein neues Spiel beginnen.");
 			}
 			break;
 		case 1:
@@ -53,7 +53,7 @@ public class Navigation {
 				System.out.println("\nLaden Sie bitte ein Spiel oder legen Sie zunächst beide Mannschaften an.");
 				menuStartSchleife();
 			}
-			LogikHelper.ballbesitzSetzen(heimmannschaft, gastmannschaft);
+			LogikHelper.ballbesitzSetzen(ball, heimmannschaft, gastmannschaft);
 			LogikHelper.initialePositionenSetzen(ball, heimmannschaft, gastmannschaft);
 			LogikHelper.abfragenSpieldauer();
 			menuSpielSchleife();
@@ -88,7 +88,7 @@ public class Navigation {
 			// Spielrunde ausführen
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
-			RoboterHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
+			LogikHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
 			break;
 		case 1:
 			// Spielstand anzeigen
