@@ -1,7 +1,6 @@
 package b_entitaeten;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -124,15 +123,20 @@ public class LogikHelper {
 		spieldauer = menuEingabe(50);
 	}
 
-	public static void spielzugAusführen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+	public static boolean spielzugAusführen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\n" + heimmannschaft.pruefeBallbesitz(ball));
 		System.out.println(gastmannschaft.pruefeBallbesitz(ball));
-		// Spielzug-Logik
+		while(LogikHelper.spieldauer > 0) {
+			//spielzug
+			System.out.println("\nSpielzug muss impementiert werden.");
+			spieldauer--;
+			return true;
+		}
+		return false;
 	}
 
 	public static void stelleMannschaftenAuf(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		heimmannschaft.aufstellen();
 		gastmannschaft.aufstellen();
 	}
-
 }

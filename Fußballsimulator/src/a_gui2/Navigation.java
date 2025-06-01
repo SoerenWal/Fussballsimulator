@@ -6,7 +6,6 @@ import b_entitaeten.Ball;
 import b_entitaeten.LogikHelper;
 import b_entitaeten.Mannschaft;
 import b_entitaeten.Roboter;
-import b_entitaeten.RoboterHelper;
 import b_entitaeten.Spielfeld;
 import b_entitaeten.Tor;
 
@@ -15,12 +14,8 @@ public class Navigation {
 	static Mannschaft heimmannschaft;
 	static Mannschaft gastmannschaft;
 	static Ball ball;
-	
-	
 
 	public static void main(String[] args) {
-		
-
 		heimmannschaft = new Mannschaft(new HashMap<String, Roboter>(), new Tor(Spielfeld.zeilen / 2, 0));
 		gastmannschaft = new Mannschaft(new HashMap<String, Roboter>(),
 				new Tor(Spielfeld.zeilen / 2, Spielfeld.spalten - 1));
@@ -94,9 +89,13 @@ public class Navigation {
 		switch (menuOption) {
 		case 0:
 			// Spielrunde ausführen
+			heimmannschaft.pruefeBallbesitz(ball);
+			gastmannschaft.pruefeBallbesitz(ball);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
-			LogikHelper.spielzugAusführen(ball, heimmannschaft, gastmannschaft);
+			if (!LogikHelper.spielzugAusführen(ball, heimmannschaft, gastmannschaft)) {
+				menuSpiel(3);
+			}
 			break;
 		case 1:
 			// Spielstand anzeigen
@@ -137,7 +136,7 @@ public class Navigation {
 	}
 
 	private static void menuSpielSchleife() {
-		System.out.println("Willkommen im Spielmenu!");
+		System.out.println("\nWillkommen im Spielmenu!");
 		while (true) {
 			System.out.println("\n" + menuSpielText);
 			menuSpiel(LogikHelper.menuEingabe(3));

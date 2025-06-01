@@ -25,18 +25,16 @@ public class Spielfeld {
 	 * dar. Diese Methode befüllt das zwei-dimensionale Array feld mit
 	 * Spielfeldmarkierungen und einem quarierten zweifarbigen Rasen
 	 */
-	private static void markiereMitHintergrundfarbe(int i, int j, String hintergrundfarbe) {
+	private static void markiereMitHintergrundfarbe(int i, int j, String kuerzel) {
 		String zeichen = " ";
-
 		if (spielfeld[i][j] != null) {
-			// Extrahiere das sichtbare Zeichen mit Farben
-			// Farben funktionieren noch nicht
+			// Extrahiere das sichtbare Zeichen
 			zeichen = spielfeld[i][j].replaceAll("\u001B\\[[;\\d]*m", "").trim();
-			if (zeichen.isEmpty()) {
+			if (zeichen.isEmpty() || zeichen.equals(kuerzel)) {
 				zeichen = " ";
 			}
 		}
-		spielfeld[i][j] = hintergrundfarbe + zeichen + ConsoleColors.RESET;
+		spielfeld[i][j] = kuerzel + zeichen + ConsoleColors.RESET;
 	}
 
 	/**
@@ -136,7 +134,7 @@ public class Spielfeld {
 	 * @param ball
 	 */
 	private static void maleBall(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		spielfeld[ball.zeile][ball.spalte] = ConsoleColors.CYAN_BACKGROUND_BRIGHT + " ";
+		markiereMitHintergrundfarbe(ball.zeile, ball.spalte, ConsoleColors.CYAN_BACKGROUND_BRIGHT);
 	}
 
 	private static void maleSpieler(Mannschaft mannschaft) {
@@ -146,7 +144,7 @@ public class Spielfeld {
 			if(mannschaft.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 				kuerzel = kuerzel.toLowerCase();
 			}
-			markiereMitHintergrundfarbe(s.getInitialZeile(), s.getInitialSpalte(), kuerzel);
+			markiereMitHintergrundfarbe(s.getZeile(), s.getSpalte(), kuerzel);
 		}
 	}
 
