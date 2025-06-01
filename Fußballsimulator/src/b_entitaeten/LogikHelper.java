@@ -64,8 +64,8 @@ public class LogikHelper {
 		case 0:
 			heimmannschaft.spieler.get("Stürmer").setBallBesitz(true);
 			heimmannschaft.ballBesitz = true;
-			ball.zeile = heimmannschaft.spieler.get("Stürmer").getInitialZeile();
-			ball.spalte = heimmannschaft.spieler.get("Stürmer").getInitialSpalte();
+			ball.zeile = heimmannschaft.spieler.get("Stürmer").getZeile();
+			ball.spalte = heimmannschaft.spieler.get("Stürmer").getSpalte();
 			
 		case 1:
 			gastmannschaft.spieler.get("Stürmer").setBallBesitz(true);
@@ -140,6 +140,11 @@ public class LogikHelper {
 	
 	public static void spielzugAusführen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		Collection<Roboter> spieler = heimmannschaft.spieler.values();
+	}
+
+	public static void stelleMannschaftenAuf(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		heimmannschaft.aufstellen();
+		gastmannschaft.aufstellen();		
 	}
 	
 }

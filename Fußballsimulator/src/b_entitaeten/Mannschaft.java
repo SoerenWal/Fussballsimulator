@@ -61,7 +61,7 @@ public class Mannschaft implements Serializable {
 	}
 
 	/**
-	 * Beim Aufrufen dieser Methode werden alle Spieler auf ihre Inizialisierte
+	 * Beim Aufrufen dieser Methode werden alle Spieler auf ihre inizialisierte
 	 * Position gestellt.
 	 */
 	public void aufstellen() {
