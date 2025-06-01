@@ -91,15 +91,15 @@ public class LogikHelper {
 		System.out.println("0. " + heimmannschaft.name + "\n1. " + gastmannschaft.name);
 		switch (LogikHelper.menuEingabe(2)) {
 		case 0:
-			heimmannschaft.aufstellungWaehlen(ball, true);
+			heimmannschaft.aufstellungWaehlen(true);
 			heimmannschaft.aufstellen();
-			gastmannschaft.aufstellungWaehlen(ball, false);
+			gastmannschaft.aufstellungWaehlen(false);
 			gastmannschaft.aufstellen();
 			return true;
 		case 1:
-			gastmannschaft.aufstellungWaehlen(ball, false);
+			gastmannschaft.aufstellungWaehlen(false);
 			gastmannschaft.aufstellen();
-			heimmannschaft.aufstellungWaehlen(ball, true);
+			heimmannschaft.aufstellungWaehlen(true);
 			heimmannschaft.aufstellen();
 			return true;
 		}

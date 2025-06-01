@@ -72,7 +72,9 @@ public class Mannschaft implements Serializable {
 		}
 	}
 
-	public void aufstellungWaehlen(Ball ball, boolean istHeimmannschaft) {
+	public void aufstellungWaehlen(boolean istHeimmannschaft) {
+		int mittelpunktZeile = Spielfeld.zeilen / 2;
+		int mittelpunktSpalte = Spielfeld.spalten / 2;
 		this.spieler.get("Torwart").setInitialZeile(this.tor.zeile);
 		if (istHeimmannschaft) {
 			this.spieler.get("Torwart").setInitialSpalte(tor.spalte + 3);
@@ -87,12 +89,12 @@ public class Mannschaft implements Serializable {
 			int faktor = 1;
 			for (Roboter s : this.spieler.values()) {
 				if (s != this.spieler.get("Torwart")) {
-					s.setInitialZeile(ball.zeile);
-					if (this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
-						s.setInitialSpalte(ball.getSpalte() - abstandSpieler * faktor);
+					s.setInitialZeile(mittelpunktZeile);
+					if (this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
+						s.setInitialSpalte(mittelpunktSpalte - abstandSpieler * faktor);
 						faktor++;
-					} else if (this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
-						s.setInitialSpalte(ball.getSpalte() + abstandSpieler * faktor);
+					} else if (this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
+						s.setInitialSpalte(mittelpunktSpalte + abstandSpieler * faktor);
 						faktor++;
 					}
 				}
@@ -102,26 +104,26 @@ public class Mannschaft implements Serializable {
 		case 1:
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
-					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
-						this.spieler.get("Verteidiger").setInitialSpalte(ball.getSpalte() + 30);
-						this.spieler.get("Verteidiger").setInitialZeile(ball.getZeile());
+					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte + 30);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktSpalte);
 						if(s != this.spieler.get("Verteidiger")) {
-							s.setInitialSpalte(ball.getSpalte() + 10);
+							s.setInitialSpalte(mittelpunktSpalte + 10);
 						}
-						this.spieler.get("Mittelfeldspieler").setInitialZeile(ball.getZeile() - 3);
-						this.spieler.get("Mittelfeldspieler2").setInitialZeile(ball.getZeile() + 3);
-						this.spieler.get("Stürmer").setInitialZeile(ball.getZeile());
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 3);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 3);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile);
 
 					}
-					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
-						this.spieler.get("Verteidiger").setInitialSpalte(ball.getSpalte() - 30);
-						this.spieler.get("Verteidiger").setInitialZeile(ball.getZeile());
+					if(this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte - 30);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile);
 						if(s != this.spieler.get("Verteidiger")) {
-							s.setInitialSpalte(ball.getSpalte() - 10);
+							s.setInitialSpalte(mittelpunktSpalte - 10);
 						}
-						this.spieler.get("Mittelfeldspieler").setInitialZeile(ball.getZeile() - 3);
-						this.spieler.get("Mittelfeldspieler2").setInitialZeile(ball.getZeile() + 3);
-						this.spieler.get("Stürmer").setInitialZeile(ball.getZeile());
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 3);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 3);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile);
 					}
 				}
 			}
@@ -129,10 +131,10 @@ public class Mannschaft implements Serializable {
 		case 2:
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
-					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
+					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
 
 					}
-					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
+					if(this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
 						
 						}
 					}
@@ -141,10 +143,10 @@ public class Mannschaft implements Serializable {
 		case 3:
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
-					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
+					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
 
 					}
-					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
+					if(this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
 						
 						}
 					}
@@ -153,10 +155,10 @@ public class Mannschaft implements Serializable {
 		case 4:
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
-					if(this.spieler.get("Torwart").getInitialSpalte() > ball.getSpalte()) {
+					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
 
 					}
-					if(this.spieler.get("Torwart").getInitialSpalte() < ball.getSpalte()) {
+					if(this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
 						
 						}
 					}
