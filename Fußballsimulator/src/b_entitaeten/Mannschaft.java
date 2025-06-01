@@ -222,8 +222,7 @@ public class Mannschaft implements Serializable {
 		case 4:
 			for (Roboter s : this.spieler.values()) {
 				if (s != this.spieler.get("Torwart")) {
-
-
+					
 						if (this.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 							
 							this.spieler.get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
@@ -248,9 +247,7 @@ public class Mannschaft implements Serializable {
 								this.spieler.get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile -4);
 								this.spieler.get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
 								this.spieler.get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 1);
-								this.spieler.get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 1);
-
-								
+								this.spieler.get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 1);	
 							}
 				
 					break;
