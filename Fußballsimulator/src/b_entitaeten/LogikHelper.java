@@ -113,7 +113,6 @@ public class LogikHelper {
 			System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
 		}
 		return null;
-
 	}
 
 	public static void abfragenSpieldauer() {
@@ -124,15 +123,31 @@ public class LogikHelper {
 	public static boolean spielzugAusführen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\n" + heimmannschaft.pruefeBallbesitz(ball));
 		System.out.println(gastmannschaft.pruefeBallbesitz(ball));
-		while(Ball.spieldauer > 0) {
-			for(Roboter s : heimmannschaft.spieler.values()) {
-				
+
+		while (true) {
+			int zahl = 0;
+			Scanner sc = new Scanner(System.in);
+			System.out.println("\nBitte wählen Sie die Spielzüge Ihrer Spieler:");
+			for (Roboter s : heimmannschaft.spieler.values()) {
+				System.out.println(zahl + ". " + s.getName() + " (" + s.getName().charAt(0) + ")");
+				zahl++;
 			}
-			System.out.println("\nSpielzug muss impementiert werden.");
+			menuSpielzug(LogikHelper.menuEingabe(5));
 			Ball.spieldauer--;
 			return true;
 		}
-		return false;
+	}
+
+	private static void menuSpielzug(int menuOption) {
+		System.out.println("");
+		switch (menuOption) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		}
 	}
 
 	public static void stelleMannschaftenAuf(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {

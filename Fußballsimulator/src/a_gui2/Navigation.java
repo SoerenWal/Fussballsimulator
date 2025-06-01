@@ -100,7 +100,7 @@ public class Navigation {
 			break;
 		case 1:
 			// Spielstand anzeigen
-			heimmannschaft.gegenueberstellen(gastmannschaft);
+			heimmannschaft.gegenueberstellen(ball, gastmannschaft);
 			break;
 		case 2:
 			// Spiel speichern

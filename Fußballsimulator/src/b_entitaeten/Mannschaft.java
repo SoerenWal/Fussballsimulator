@@ -49,26 +49,18 @@ public class Mannschaft implements Serializable {
 		return this.name + " hat aktuell keinen Ballbesitz.";
 	}
 
-	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
-		if (this.ballBesitz) {
-			System.out.println(this.name + " hat derzeit Ballbesitz.");
-		} else if (mannschaft.ballBesitz) {
-			System.out.println(mannschaft.name + " hat derzeit Ballbesitz.");
-		}
-	}
-
 	private void energieAnzeigen() {
-		Collection<Roboter> values = spieler.values();
 		System.out.println("\nEnergiebericht von " + this.name);
-		for (Roboter r : values) {
+		for (Roboter r : this.spieler.values()) {
 			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
 		}
 	}
 
-	public void gegenueberstellen(Mannschaft mannschaft) {
+	public void gegenueberstellen(Ball ball, Mannschaft mannschaft) {
 		if (!this.spieler.isEmpty() && !mannschaft.spieler.isEmpty()) {
-			System.out.println(this.name + " " + this.tore + " - " + mannschaft.tore + " " + mannschaft.name);
-			ballbesitzAnzeigen(mannschaft);
+			System.out.println("\n" + this.name + " " + this.tore + " - " + mannschaft.tore + " " + mannschaft.name);
+			System.out.println(this.pruefeBallbesitz(ball));
+			System.out.println(mannschaft.pruefeBallbesitz(ball));
 			this.energieAnzeigen();
 			mannschaft.energieAnzeigen();
 		} else {
