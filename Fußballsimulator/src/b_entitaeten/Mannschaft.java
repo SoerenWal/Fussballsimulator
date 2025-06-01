@@ -132,10 +132,30 @@ public class Mannschaft implements Serializable {
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
 					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
-
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte + 20);
+						
+						this.spieler.get("Mittelfeldspieler").setInitialSpalte(mittelpunktSpalte + 20);
+						
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile + 4);
+						
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 4);
+						
+						
+						this.spieler.get("Stürmer").setInitialSpalte(mittelpunktSpalte + 10);
+						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(mittelpunktSpalte + 10);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 4);
 					}
 					if(this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte - 20);
+						this.spieler.get("Mittelfeldspieler").setInitialSpalte(mittelpunktSpalte - 20);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile + 4);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 4);
 						
+						this.spieler.get("Stürmer").setInitialSpalte(mittelpunktSpalte - 10);
+						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(mittelpunktSpalte -10);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 4);
 						}
 					}
 				}
