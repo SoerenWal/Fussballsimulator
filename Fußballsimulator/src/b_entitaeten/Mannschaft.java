@@ -129,11 +129,36 @@ public class Mannschaft implements Serializable {
 		case 2:
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
+<<<<<<< HEAD
 					if(this.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 
-					}
-					if(this.spieler.get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
+=======
+					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte + 20);
+						this.spieler.get("Mittelfeldspieler").setInitialSpalte(mittelpunktSpalte + 20);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile + 4);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 4);
 						
+						this.spieler.get("Stürmer").setInitialSpalte(mittelpunktSpalte + 10);
+						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(mittelpunktSpalte + 10);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 4);
+>>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
+					}
+<<<<<<< HEAD
+					if(this.spieler.get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
+=======
+					if(this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte - 20);
+						this.spieler.get("Mittelfeldspieler").setInitialSpalte(mittelpunktSpalte - 20);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile + 4);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 4);
+>>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
+						
+						this.spieler.get("Stürmer").setInitialSpalte(mittelpunktSpalte - 10);
+						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(mittelpunktSpalte -10);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 4);
 						}
 					}
 				}
@@ -141,11 +166,36 @@ public class Mannschaft implements Serializable {
 		case 3:
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
+<<<<<<< HEAD
 					if(this.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 
-					}
-					if(this.spieler.get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
+=======
+					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte + 20);
+						this.spieler.get("Mittelfeldspieler").setInitialSpalte(mittelpunktSpalte + 20);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile + 4);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 4);
 						
+						this.spieler.get("Stürmer").setInitialSpalte(mittelpunktSpalte + 10);
+						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(mittelpunktSpalte + 10);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 4);
+>>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
+					}
+<<<<<<< HEAD
+					if(this.spieler.get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
+=======
+					if(this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte - 20);
+						this.spieler.get("Mittelfeldspieler").setInitialSpalte(mittelpunktSpalte - 20);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile + 4);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 4);
+>>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
+						
+						this.spieler.get("Stürmer").setInitialSpalte(mittelpunktSpalte - 10);
+						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(mittelpunktSpalte -10);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 4);
 						}
 					}
 				}
@@ -153,11 +203,37 @@ public class Mannschaft implements Serializable {
 		case 4:
 			for(Roboter s : this.spieler.values()) {
 				if(s != this.spieler.get("Torwart")) {
+<<<<<<< HEAD
 					if(this.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
+=======
+					if(this.spieler.get("Torwart").getInitialSpalte() > mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte + 20);
+						this.spieler.get("Mittelfeldspieler").setInitialSpalte(mittelpunktSpalte + 20);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile + 4);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 4);
+						
+						this.spieler.get("Stürmer").setInitialSpalte(mittelpunktSpalte + 10);
+						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(mittelpunktSpalte + 10);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 4);
+>>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
 
 					}
+<<<<<<< HEAD
 					if(this.spieler.get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
+=======
+					if(this.spieler.get("Torwart").getInitialSpalte() < mittelpunktSpalte) {
+						this.spieler.get("Verteidiger").setInitialSpalte(mittelpunktSpalte - 20);
+						this.spieler.get("Mittelfeldspieler").setInitialSpalte(mittelpunktSpalte - 20);
+						this.spieler.get("Verteidiger").setInitialZeile(mittelpunktZeile + 4);
+						this.spieler.get("Mittelfeldspieler").setInitialZeile(mittelpunktZeile - 4);
+>>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
 						
+						
+						this.spieler.get("Stürmer").setInitialSpalte(mittelpunktSpalte - 10);
+						this.spieler.get("Mittelfeldspieler2").setInitialSpalte(mittelpunktSpalte -10);
+						this.spieler.get("Stürmer").setInitialZeile(mittelpunktZeile - 4);
+						this.spieler.get("Mittelfeldspieler2").setInitialZeile(mittelpunktZeile + 4);
 						}
 					}
 				}
