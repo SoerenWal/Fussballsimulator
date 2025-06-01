@@ -35,6 +35,19 @@ public class Mannschaft implements Serializable {
 		this.spieler.put("Verteidiger", new Verteidiger(RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
 		this.spieler.put("Torwart", new Torwart(RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
+	
+	public String pruefeBallbesitz(Ball ball) {
+		for(Roboter s : this.spieler.values()) {
+			if(s.pruefeBallbesitz()) {
+				this.ballBesitz = true;
+				ball.zeile = s.getZeile();
+				ball.spalte = s.getSpalte();
+				return s.getName() + " (" + this.name + ") hat aktuell Ballbesitz.";
+			}
+		}
+		this.ballBesitz = false;
+		return this.name + " hat aktuell keinen Ballbesitz.";
+	}
 
 	private void ballbesitzAnzeigen(Mannschaft mannschaft) {
 		if (this.ballBesitz) {

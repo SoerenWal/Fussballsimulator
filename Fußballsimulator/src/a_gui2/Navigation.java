@@ -93,7 +93,7 @@ public class Navigation {
 			// Spielrunde ausführen
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
-			LogikHelper.spielzugAusführen(heimmannschaft, gastmannschaft);
+			LogikHelper.spielzugAusführen(ball, heimmannschaft, gastmannschaft);
 			break;
 		case 1:
 			// Spielstand anzeigen

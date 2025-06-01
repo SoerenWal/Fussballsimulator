@@ -10,7 +10,7 @@ public abstract class Roboter implements Serializable {
 	private int id;
 	private double geschwindigkeit;
 	private int energie = 20;
-	private boolean hatBallBesitz = false;
+	private boolean ballBesitz = false;
 	private double praezisionPass;
 	private double praezisionSchuss;
 	private int initialZeile;
@@ -36,8 +36,8 @@ public abstract class Roboter implements Serializable {
 		return this.energie;
 	}
 
-	public boolean getHatBallBesitz() {
-		return this.hatBallBesitz;
+	public boolean getBallBesitz() {
+		return this.ballBesitz;
 	}
 
 	public int getZeile() {
@@ -81,7 +81,7 @@ public abstract class Roboter implements Serializable {
 	}
 
 	public void setBallBesitz(boolean ballBesitz) {
-		this.hatBallBesitz = ballBesitz;
+		this.ballBesitz = ballBesitz;
 	}
 
 	public void setZeile(int zeile) {
@@ -128,13 +128,13 @@ public abstract class Roboter implements Serializable {
 	}
 
 	public void passen(Roboter roboter) {
-		if (this.hatBallBesitz && this.energie != 0) {
+		if (this.ballBesitz && this.energie != 0) {
 			if ((this.praezisionPass / verbraucheEnergie(5)) >= RoboterHelper.randomZahl()) {
-				this.hatBallBesitz = false;
-				roboter.hatBallBesitz = true;
+				this.ballBesitz = false;
+				roboter.ballBesitz = true;
 				System.out.println("Erfolgreicher Pass");
 			} else {
-				this.hatBallBesitz = false;
+				this.ballBesitz = false;
 				System.out.println("Fehlpass");
 				}
 		} else {
@@ -167,5 +167,9 @@ public abstract class Roboter implements Serializable {
 
 	public String toString() {
 		return this.name;
+	}
+
+	public boolean pruefeBallbesitz() {
+		return this.getBallBesitz();
 	}
 }

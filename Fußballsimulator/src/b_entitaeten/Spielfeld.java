@@ -16,7 +16,7 @@ public class Spielfeld {
 		maleRasen();
 		maleMarkierungen(ball, heimmannschaft, gastmannschaft);
 		maleTore();
-		maleBall(ball);
+		maleBall(ball, heimmannschaft, gastmannschaft);
 
 	}
 
@@ -135,7 +135,7 @@ public class Spielfeld {
 	 * 
 	 * @param ball
 	 */
-	private static void maleBall(Ball ball) {
+	private static void maleBall(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		spielfeld[ball.zeile][ball.spalte] = ConsoleColors.CYAN_BACKGROUND_BRIGHT + " ";
 	}
 

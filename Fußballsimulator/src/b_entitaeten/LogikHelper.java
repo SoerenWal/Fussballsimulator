@@ -63,13 +63,12 @@ public class LogikHelper {
 		switch (LogikHelper.menuEingabe(2)) {
 		case 0:
 			heimmannschaft.spieler.get("Stürmer").setBallBesitz(true);
-			heimmannschaft.ballBesitz = true;
-			ball.zeile = heimmannschaft.spieler.get("Stürmer").getZeile();
-			ball.spalte = heimmannschaft.spieler.get("Stürmer").getSpalte();
-			
+			heimmannschaft.pruefeBallbesitz(ball);
+			break;
 		case 1:
 			gastmannschaft.spieler.get("Stürmer").setBallBesitz(true);
-			gastmannschaft.ballBesitz = true;
+			heimmannschaft.pruefeBallbesitz(ball);
+			break;
 		}
 	}
 
@@ -120,31 +119,20 @@ public class LogikHelper {
 
 	}
 
-	public static int abfragenSpieldauer() {
-		Scanner sc = new Scanner(System.in);
-		while (true) {
-			System.out.print("\nWie viele Spielzüge möchten Sie insgesamt spielen?\nAnzahl: ");
-			try {
-				spieldauer = sc.nextInt();
-				if (spieldauer > 0 && spieldauer < 51) {
-					return spieldauer;
-				} else {
-					System.out.println("Bitte geben Sie eine Ganzzahl zwischen 1 und 50 ein.");
-				}
-			} catch (InputMismatchException e) {
-				System.out.println("Bitte geben Sie eine Ganzzahl zwischen 1 und 50 ein.");
-				sc.next();
-			}
-		}
+	public static void abfragenSpieldauer() {
+		System.out.println("\nWie viele Runden möchten Sie spielen?");
+		spieldauer = menuEingabe(50);
 	}
-	
-	public static void spielzugAusführen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		Collection<Roboter> spieler = heimmannschaft.spieler.values();
+
+	public static void spielzugAusführen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		System.out.println("\n" + heimmannschaft.pruefeBallbesitz(ball));
+		System.out.println(gastmannschaft.pruefeBallbesitz(ball));
+		// Spielzug-Logik
 	}
 
 	public static void stelleMannschaftenAuf(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		heimmannschaft.aufstellen();
-		gastmannschaft.aufstellen();		
+		gastmannschaft.aufstellen();
 	}
-	
+
 }
