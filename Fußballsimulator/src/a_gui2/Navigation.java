@@ -15,11 +15,11 @@ public class Navigation {
 	static Mannschaft heimmannschaft;
 	static Mannschaft gastmannschaft;
 	static Ball ball;
-	static String Hallo;
+	
 	
 
 	public static void main(String[] args) {
-		Hallo = "Hallo";
+		
 
 		heimmannschaft = new Mannschaft(new HashMap<String, Roboter>(), new Tor(Spielfeld.zeilen / 2, 0));
 		gastmannschaft = new Mannschaft(new HashMap<String, Roboter>(),
