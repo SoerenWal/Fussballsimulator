@@ -29,6 +29,28 @@ public class LogikHelper {
 		}
 		return eingabe;
 	}
+	
+	public static int menuEingabe(int minMenuOption, int maxMenuOption) {
+		Scanner sc = new Scanner(System.in);
+		int eingabe = 0;
+		while (true) {
+			System.out.print("\nEingabe: ");
+			try {
+				eingabe = sc.nextInt();
+				if (eingabe >= minMenuOption && eingabe <= maxMenuOption) {
+					break;
+				} else {
+					System.out.println("\nBitte geben Sie eine Ganzzahl zwischen " + minMenuOption + " und " + maxMenuOption + " an.");
+				}
+			} catch (InputMismatchException ime) {
+				// Der Scanner entfernt bei Auftreten der Exception nicht den gültigen Wert,
+				// sondern liest diesen erneut ein, wodurch eine Endlosschleife entsteht.
+				sc.next();
+				System.out.println("\nBitte geben Sie eine Ganzzahl zwischen " + minMenuOption + " und " + maxMenuOption + " an.");
+			}
+		}
+		return eingabe;
+	}
 
 	/**
 	 * Durch diese Methode wird eine gastmanschaft und eine Heimmanschaft angelegt
@@ -117,7 +139,7 @@ public class LogikHelper {
 
 	public static void abfragenSpieldauer(Ball ball) {
 		System.out.println("\nWie viele Runden möchten Sie spielen?");
-		ball.spieldauer = menuEingabe(50);
+		ball.spieldauer = menuEingabe(2, 50);
 	}
 
 	public static void aktualisiereBallbesitz(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {

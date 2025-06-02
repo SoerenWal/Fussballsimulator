@@ -238,18 +238,18 @@ public abstract class Roboter implements Serializable {
 
 	public void laufen() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Wohin soll " + this.name + " laufen?");
-		System.out.println("Zeilen nach unten (X).\nZeilen nach oben (-X).");
-		int zeile = LogikHelper.menuEingabe(17);
-		System.out.println("Spalten nach rechts (X).\nSpalten nach links (-X).");
+		System.out.println("\nWohin soll " + this.name + " laufen?");
+		System.out.println("\nZeilen nach unten (X).\nZeilen nach oben (-X).");
+		int zeile = LogikHelper.menuEingabe(-17, 17);
+		System.out.println("\nSpalten nach rechts (X).\nSpalten nach links (-X).");
 		int spalte = LogikHelper.menuEingabe(81);
 		if (this.zeile + zeile > 0 && this.zeile + zeile < 17 && this.spalte + spalte > 0
-				&& this.spalte + spalte < 81) {
+				&& this.spalte + spalte < 81 && Spielfeld.istFeldFrei(this.zeile + zeile, this.spalte + spalte)) {
 			verbraucheEnergie(Math.abs(zeile + spalte));
 			this.zeile = this.zeile + zeile;
 			this.spalte = this.spalte + spalte;
 		} else {
-			System.out.println("Ihr Spiel darf das Spielfeld nicht verlassen.");
+			System.out.println("\nIhr Spieler darf das Spielfeld nicht verlassen.");
 			laufen();
 		}
 	}
