@@ -2,6 +2,7 @@ package b_entitaeten;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -368,17 +369,16 @@ public abstract class Roboter implements Serializable {
 		return this.getBallbesitz();
 	}
 	
-	public List<Roboter> findeRoboter(List<Roboter> alleRoboter){
+	public Roboter findeRoboter(Collection<Roboter> gegner){
 		final double maxAbstand = 3;
 		
-		List<Roboter> imRadius = new ArrayList<>();
-		for (Roboter anderer : alleRoboter) {
-			if(anderer == this) continue;
+		Roboter imRadius = null;
+		for (Roboter g : gegner) {
 			
-			double abstand = Math.sqrt(Math.pow(this.getSpalte(), anderer.spalte) + Math.pow(this.zeile, anderer.getZeile()));
+			double abstand = Math.sqrt(Math.pow(this.spalte, g.getSpalte()) + Math.pow(this.zeile, g.getZeile()));
 			
 			if(abstand <= maxAbstand) {
-				imRadius.add(anderer);
+				imRadius = g;
 			}
 		}
 		return imRadius;

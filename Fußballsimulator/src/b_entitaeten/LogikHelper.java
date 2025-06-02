@@ -2,6 +2,7 @@ package b_entitaeten;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import c_datenhaltung.Datenhaltung;
@@ -198,7 +199,8 @@ public class LogikHelper {
 			break;
 		case 4:
 			// Blocken
-			r.blocken();
+			if(heimmannschaft.spieler.values().contains(r))
+			r.blocken(ball, r.findeRoboter(heimmannschaft.spieler.values()));
 			aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
@@ -214,4 +216,8 @@ public class LogikHelper {
 		heimmannschaft.aufstellen();
 		gastmannschaft.aufstellen();
 	}
+	
+	
+	
 }
+
