@@ -35,7 +35,7 @@ public class Spielfeld {
 		}
 		spielfeld[zeile][spalte] = kuerzel + zeichen + ConsoleColors.RESET;
 	}
-	
+
 	public static boolean istFeldFrei(int zeile, int spalte) {
 		return spielfeld[zeile][spalte].replaceAll("\u001B\\[[;\\d]*m", "").trim().isEmpty();
 	}
@@ -81,24 +81,16 @@ public class Spielfeld {
 		}
 	}
 
-	/*
-	 * // Mittellinie
-	 * 
-	 * for (int j = 0; j < spalten; j++) { markiereMitHintergrundfarbe(middle, j,
-	 * ConsoleColors.WHITE_BACKGROUND); }
-	 */
-
-	// Mittelkreis
 	/**
 	 * Eine Methode die einen Mittelkreis auf das Spielfeld malt.
 	 */
 	private static void maleMittelkreis() {
 		int middle = zeilen / 2;
 		int centerCol = spalten / 2;
-		markiereMitHintergrundfarbe(middle - 1, centerCol, ConsoleColors.WHITE_BACKGROUND);
-		markiereMitHintergrundfarbe(middle + 1, centerCol, ConsoleColors.WHITE_BACKGROUND);
-		markiereMitHintergrundfarbe(middle, centerCol - 1, ConsoleColors.WHITE_BACKGROUND);
-		markiereMitHintergrundfarbe(middle, centerCol + 1, ConsoleColors.WHITE_BACKGROUND);
+		markiereMitHintergrundfarbe(mittelpunktZeile - 1, mittelpunktSpalte, ConsoleColors.WHITE_BACKGROUND);
+		markiereMitHintergrundfarbe(mittelpunktZeile + 1, mittelpunktSpalte, ConsoleColors.WHITE_BACKGROUND);
+		markiereMitHintergrundfarbe(mittelpunktZeile, mittelpunktSpalte - 1, ConsoleColors.WHITE_BACKGROUND);
+		markiereMitHintergrundfarbe(mittelpunktZeile, mittelpunktSpalte + 1, ConsoleColors.WHITE_BACKGROUND);
 	}
 
 	private static void maleStrafraum() {
@@ -124,10 +116,10 @@ public class Spielfeld {
 	private static void maleTore() {
 		// links und rechts, je 3 Zeilen hoch und 2 Zeichen breit
 		for (int i = zeilen / 2 - 1; i < zeilen / 2 + 2; i++) {
-			spielfeld[i][1] = ConsoleColors.WHITE_BACKGROUND + " " + ConsoleColors.RESET;
-			spielfeld[i][2] = ConsoleColors.WHITE_BACKGROUND + " " + ConsoleColors.RESET;
-			spielfeld[i][spalten - 3] = ConsoleColors.WHITE_BACKGROUND + " " + ConsoleColors.RESET;
-			spielfeld[i][spalten - 2] = ConsoleColors.WHITE_BACKGROUND + " " + ConsoleColors.RESET;
+			markiereMitHintergrundfarbe(i, 1, ConsoleColors.WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, 2, ConsoleColors.WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, spalten - 3, ConsoleColors.WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, spalten - 2, ConsoleColors.WHITE_BACKGROUND);
 		}
 	}
 
@@ -144,7 +136,7 @@ public class Spielfeld {
 		String kuerzel;
 		for (Roboter s : mannschaft.spieler.values()) {
 			kuerzel = String.valueOf(s.getName().charAt(1));
-			if(mannschaft.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
+			if (mannschaft.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 				kuerzel = kuerzel.toLowerCase();
 			}
 			markiereMitHintergrundfarbe(s.getZeile(), s.getSpalte(), kuerzel);
