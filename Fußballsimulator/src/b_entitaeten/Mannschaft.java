@@ -6,6 +6,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Mannschaft implements Serializable {
+	
+	private static final String ROLLE_STUERMER = "(Stürmer) ";
+	private static final String ROLLE_MITTELFELDSPIELER = "(Ṁittelfeldspieler) ";
+	private static final String ROLLE_MITTELFELDSPIELER2 = "(Ṃittelfeldspieler) ";
+	private static final String ROLLE_VERTEIDIGER = "(Verteidiger) ";
+	private static final String ROLLE_TORWART = "(Torwart) ";
 
 	public String name;
 	public int tore = 0;
@@ -27,13 +33,13 @@ public class Mannschaft implements Serializable {
 
 	protected void anlegen() {
 		this.name = RoboterHelper.erfrageNamen("\nName der Mannschaft: ");
-		this.spieler.put("Stürmer", new Stuermer(RoboterHelper.erfrageNamen("Name des Stürmers: ")));
+		this.spieler.put("Stürmer", new Stuermer(ROLLE_STUERMER + RoboterHelper.erfrageNamen("Name des Stürmers: ")));
 		this.spieler.put("Mittelfeldspieler",
-				new Mittelfeldspieler(RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
+				new Mittelfeldspieler(ROLLE_MITTELFELDSPIELER + RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
 		this.spieler.put("Mittelfeldspieler2",
-				new Mittelfeldspieler(RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
-		this.spieler.put("Verteidiger", new Verteidiger(RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
-		this.spieler.put("Torwart", new Torwart(RoboterHelper.erfrageNamen("Name des Torwarts: ")));
+				new Mittelfeldspieler(ROLLE_MITTELFELDSPIELER2 + RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
+		this.spieler.put("Verteidiger", new Verteidiger(ROLLE_VERTEIDIGER + RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
+		this.spieler.put("Torwart", new Torwart(ROLLE_TORWART + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
 	
 	public String pruefeBallbesitz(Ball ball) {

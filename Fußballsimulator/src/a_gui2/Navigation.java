@@ -24,7 +24,7 @@ public class Navigation {
 	}
 
 	private static String menuStartText = "0. Spiel laden\n1. Mannschaften laden\n2. Mannschaften anlegen\n3. Spiel starten\n4. Mannschaften speichern\n5. Programm beenden";
-	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel beenden";
+	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel speichern & beenden";
 
 	private static void menuStart(int menuOption) {
 		switch (menuOption) {
@@ -54,7 +54,7 @@ public class Navigation {
 				System.out.println("\nIhre Mannschaften wurden erfolgreich geladen.\nSie können ein neues Spiel starten.");
 			} catch (NullPointerException e) {
 				System.out.println(
-						"\nEs konnte leider kein Mannschaften geladen werden.\nLegen Sie bitte zunächst beide Mannschaften an.");
+						"\nEs konnte leider keine Mannschaften geladen werden.\nLegen Sie bitte zunächst beide Mannschaften an.");
 			}
 			break;
 		case 2:
@@ -144,7 +144,7 @@ public class Navigation {
 	private static void menuStartSchleife() {
 		while (true) {
 			System.out.println("\n" + menuStartText);
-			menuStart(LogikHelper.menuEingabe(4));
+			menuStart(LogikHelper.menuEingabe(5));
 		}
 	}
 

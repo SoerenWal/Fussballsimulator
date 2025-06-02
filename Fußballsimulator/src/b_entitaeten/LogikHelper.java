@@ -132,10 +132,9 @@ public class LogikHelper {
 				for (Roboter r : m.spieler.values()) {
 					if (r.getEnergie() == 0) {
 						System.out.println(
-								"\n" + r.getName() + " (" + r.getName().charAt(0) + ") fällt in dieser Runde aus.");
+								"\n" + r.getName() + " fällt in dieser Runde aus.");
 					} else {
-						System.out.println("\n" + r.getName() + " (" + r.getName().charAt(0)
-								+ ") soll folgende Aktion ausführen:");
+						System.out.println("\n" + r.getName() + " soll folgende Aktion ausführen:");
 						System.out.println(
 								"\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
 

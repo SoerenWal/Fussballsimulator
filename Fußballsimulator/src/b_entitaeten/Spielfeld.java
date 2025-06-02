@@ -140,7 +140,7 @@ public class Spielfeld {
 	private static void maleSpieler(Mannschaft mannschaft) {
 		String kuerzel;
 		for (Roboter s : mannschaft.spieler.values()) {
-			kuerzel = String.valueOf(s.getName().charAt(0));
+			kuerzel = String.valueOf(s.getName().charAt(1));
 			if(mannschaft.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 				kuerzel = kuerzel.toLowerCase();
 			}
