@@ -1,7 +1,5 @@
 package b_entitaeten;
 
-import java.io.Console;
-
 public class Spielfeld {
 
 	public static int zeilen = 17;

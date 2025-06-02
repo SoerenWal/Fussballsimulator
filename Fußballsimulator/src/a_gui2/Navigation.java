@@ -105,7 +105,6 @@ public class Navigation {
 			// Spielrunde ausführen
 			System.out.println("\nNoch " + Navigation.ball.spieldauer + " Spielrunden verbleiben.");
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
-			Spielfeld.spielfeldAnzeigen();
 			if (!LogikHelper.aktualisiereSpielfeld(ball, heimmannschaft, gastmannschaft)) {
 				menuSpiel(3);
 			}

@@ -154,7 +154,7 @@ public class LogikHelper {
 			break;
 		case 1:
 			// Laufen
-			r.laufen(0, 0);
+			r.laufen();
 			aktualisiereSpielfeld(ball, heimmannschaft, gastmannschaft);
 			break;
 		case 2:
