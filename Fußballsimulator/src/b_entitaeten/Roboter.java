@@ -1,6 +1,8 @@
 package b_entitaeten;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public abstract class Roboter implements Serializable {
@@ -315,9 +317,18 @@ public abstract class Roboter implements Serializable {
 	 * @return true, wenn Block ausgelöst wird
 	 */
 
-	public boolean blocken() {
-		// Beim Aufruf dieser Funktion soll der Ball eines gegners geblocket werden 
-		return true;
+	public boolean blocken(Ball ball, Roboter r ) {
+		double abstand = Math.sqrt(Math.pow(this.getSpalte(), ball.spalte) + Math.pow(this.zeile, ball.getZeile()));
+		final double maxAbstand = 3;
+		
+		if(maxAbstand >= abstand) {
+			this.ballBesitz = true;
+			r.ballBesitz = false;
+			
+			return true;
+		}else {
+		return false;
+		}
 	}
 
 	/**
@@ -354,5 +365,21 @@ public abstract class Roboter implements Serializable {
 
 	public boolean pruefeBallbesitz() {
 		return this.getBallBesitz();
+	}
+	
+	public List<Roboter> findeRoboter(List<Roboter> alleRoboter){
+		final double maxAbstand = 3;
+		
+		List<Roboter> imRadius = new ArrayList<>();
+		for (Roboter anderer : alleRoboter) {
+			if(anderer == this) continue;
+			
+			double abstand = Math.sqrt(Math.pow(this.getSpalte(), anderer.spalte) + Math.pow(this.zeile, anderer.getZeile()));
+			
+			if(abstand <= maxAbstand) {
+				imRadius.add(anderer);
+			}
+		}
+		return imRadius;
 	}
 }
