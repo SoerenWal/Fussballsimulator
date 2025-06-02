@@ -23,7 +23,7 @@ public class Navigation {
 		menuInteraktion();
 	}
 
-	private static String menuStartText = "0. Spiel laden\n1. Mannschaften anlegen\n2. Spiel starten\n3. Mannschaften speichern\n4. Programm beenden";
+	private static String menuStartText = "0. Spiel laden\n1. Mannschaften laden\n2. Mannschaften anlegen\n3. Spiel starten\n4. Mannschaften speichern\n5. Programm beenden";
 	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel beenden";
 
 	private static void menuStart(int menuOption) {
@@ -35,21 +35,33 @@ public class Navigation {
 				entitaeten = LogikHelper.laden(); // wirft eine NullPointerException
 				heimmannschaft = (Mannschaft) entitaeten.get(0);
 				gastmannschaft = (Mannschaft) entitaeten.get(1);
-				System.out.println("\nIhr Fortschritt wurde erfolgreich geladen.");
 				ball = (Ball) entitaeten.get(2); // wirft eine IndexOutOfBoundsException
+				System.out.println("\nIhr Spielstand wurde erfolgreich geladen.");
 				menuSpielSchleife();
 			} catch (NullPointerException e) {
 				System.out.println(
-						"\nEs konnte leider kein Spiel geladen werden. Legen Sie bitte zunächst beide Mannschaften an.");
+						"\nEs konnte leider kein Spiel geladen werden.\nLegen Sie bitte zunächst beide Mannschaften an.");
 			} catch (IndexOutOfBoundsException e) {
-				System.out.println("\nSie können ein neues Spiel beginnen.");
+				System.out.println("\nIhre Mannschaften wurden erfolgreich geladen.\nSie können ein neues Spiel starten.");
 			}
 			break;
 		case 1:
+			// Mannschaften laden
+			try {
+				entitaeten = LogikHelper.laden(); // wirft eine NullPointerException
+				heimmannschaft = (Mannschaft) entitaeten.get(0);
+				gastmannschaft = (Mannschaft) entitaeten.get(1);
+				System.out.println("\nIhre Mannschaften wurden erfolgreich geladen.\nSie können ein neues Spiel starten.");
+			} catch (NullPointerException e) {
+				System.out.println(
+						"\nEs konnte leider kein Mannschaften geladen werden.\nLegen Sie bitte zunächst beide Mannschaften an.");
+			}
+			break;
+		case 2:
 			// Mannschaft anlegen
 			LogikHelper.mannschaftAnlegen(heimmannschaft, gastmannschaft);
 			break;
-		case 2:
+		case 3:
 			// Spiel starten
 			if (heimmannschaft.spieler.isEmpty() && gastmannschaft.spieler.isEmpty()) {
 				System.out.println("\nLaden Sie bitte ein Spiel oder legen Sie zunächst beide Mannschaften an.");
@@ -61,7 +73,7 @@ public class Navigation {
 			LogikHelper.abfragenSpieldauer();
 			menuSpielSchleife();
 			break;
-		case 3:
+		case 4:
 			// Mannschaften speichern
 			ArrayList<Object> mannschaften = new ArrayList<>();
 			if (heimmannschaft != null || gastmannschaft != null) {
@@ -76,7 +88,7 @@ public class Navigation {
 				System.out.println("Bitte legen Sie zunächst eine Mannschaften an.");
 			}
 			break;
-		case 4:
+		case 5:
 			// Programm beenden
 			System.out.println("\nDas Programm wurde erfolgreich beendet.\nBis zum nächsten Mal!");
 			System.exit(1);
@@ -91,7 +103,7 @@ public class Navigation {
 			// Spielrunde ausführen
 			heimmannschaft.pruefeBallbesitz(ball);
 			gastmannschaft.pruefeBallbesitz(ball);
-			System.out.println("\n Noch verbleibende Spielrunden: " + Ball.spieldauer);
+			System.out.println("\nNoch " + Ball.spieldauer + " Spielrunden verbleiben.");
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
 			if (!LogikHelper.spielzugAusführen(ball, heimmannschaft, gastmannschaft)) {

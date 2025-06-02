@@ -110,7 +110,7 @@ public class LogikHelper {
 		try {
 			return Datenhaltung.leseAusDatei();
 		} catch (ClassNotFoundException e) {
-			System.out.println("\nDas Spiel konnte nicht geladen werden. Bitte beginnen Sie ein ein neues Spiel.");
+			System.out.println("\nDas Spiel konnte nicht geladen werden.\nBitte beginnen Sie ein ein neues Spiel.");
 		}
 		return null;
 	}
@@ -125,27 +125,53 @@ public class LogikHelper {
 		System.out.println(gastmannschaft.pruefeBallbesitz(ball));
 
 		while (true) {
-			int zahl = 0;
 			Scanner sc = new Scanner(System.in);
-			System.out.println("\nBitte wählen Sie die Spielzüge Ihrer Spieler:");
-			for (Roboter s : heimmannschaft.spieler.values()) {
-				System.out.println(zahl + ". " + s.getName() + " (" + s.getName().charAt(0) + ")");
-				zahl++;
+			System.out.println("\nBitte wählen die Aktionen Ihrer Spieler.");
+			Mannschaft[] mannschaften = { heimmannschaft, gastmannschaft };
+			for (Mannschaft m : mannschaften) {
+				for (Roboter r : m.spieler.values()) {
+					if (r.getEnergie() == 0) {
+						System.out.println(
+								"\n" + r.getName() + " (" + r.getName().charAt(0) + ") fällt in dieser Runde aus.");
+					} else {
+						System.out.println("\n" + r.getName() + " (" + r.getName().charAt(0)
+								+ ") soll folgende Aktion ausführen:");
+						System.out.println(
+								"\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
+
+						menuSpielzug(r, LogikHelper.menuEingabe(5));
+					}
+				}
 			}
-			menuSpielzug(LogikHelper.menuEingabe(5));
 			Ball.spieldauer--;
 			return true;
 		}
 	}
 
-	private static void menuSpielzug(int menuOption) {
-		System.out.println("");
+	private static void menuSpielzug(Roboter r, int menuOption) {
 		switch (menuOption) {
 		case 0:
+			// Keine Aktion
 			break;
 		case 1:
+			// Laufen
+			r.laufen(0, 0);
 			break;
 		case 2:
+			// Passen
+			r.passen(null);
+			break;
+		case 3:
+			// Torschuss
+			r.schiessen();
+			break;
+		case 4:
+			// Blocken
+			r.blocken();
+			break;
+		case 5:
+			// Energie aufladen
+			r.energieAufladen();
 			break;
 		}
 	}
