@@ -331,12 +331,14 @@ public abstract class Roboter implements Serializable {
 			if (maxAbstand >= abstand) {
 				this.ballbesitz = true;
 				r.ballbesitz = false;
-
+				System.out.println("Der Block war erfolgreich.\nDer Ballbesitz wechselte von " + r.getName() + " zu " + this.name + ".");
 				return true;
 			} else {
+				System.out.println("Ihr Spieler führte einen Block aus zu größer Distanz durch.");
 				return false;
 			}
 		}
+		System.out.println("Der Block Ihres Spielers ist misslungen.");
 		return false;
 	}
 
