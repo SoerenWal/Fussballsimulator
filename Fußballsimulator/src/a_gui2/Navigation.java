@@ -105,10 +105,13 @@ public class Navigation {
 			// Spielrunde ausführen
 			System.out.println("\nNoch " + Navigation.ball.spieldauer + " Spielrunden verbleiben.");
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
-			if (!LogikHelper.aktualisiereSpielfeld(ball, heimmannschaft, gastmannschaft)) {
+			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.spielfeldAnzeigen();
+			if (!LogikHelper.spielzugAusfuehren(ball, heimmannschaft, gastmannschaft)) {
 				menuSpiel(3);
+				break;
 			}
-			break;
 		case 1:
 			// Spielstand anzeigen
 			heimmannschaft.gegenueberstellen(ball, gastmannschaft);

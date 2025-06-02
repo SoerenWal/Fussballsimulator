@@ -9,6 +9,7 @@ public class Spielfeld {
 	static int mittelpunktSpalte = Spielfeld.spalten / 2;
 
 	public static void maleSpielfeld(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		spielfeld = new String[zeilen][spalten];
 		maleSpieler(heimmannschaft);
 		maleSpieler(gastmannschaft);
 		maleRasen();
