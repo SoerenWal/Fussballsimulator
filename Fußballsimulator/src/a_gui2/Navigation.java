@@ -203,7 +203,15 @@ public class Navigation {
 			break;
 		case 2:
 			// Passen
-			r.passen(null);
+			System.out.println("\nWelchem Teamkollegen möchten Sie passen?");
+			System.out.println(
+					"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart");
+			if(heimmannschaft.spieler.values().contains(r)) {
+				r.passen(menuSpieler(LogikHelper.menuEingabe(5), heimmannschaft));
+			} else {
+				r.passen(menuSpieler(LogikHelper.menuEingabe(5), gastmannschaft));
+			}
+			
 			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();

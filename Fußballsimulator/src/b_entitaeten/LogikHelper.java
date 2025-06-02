@@ -30,7 +30,7 @@ public class LogikHelper {
 		}
 		return eingabe;
 	}
-	
+
 	public static int menuEingabe(int minMenuOption, int maxMenuOption) {
 		Scanner sc = new Scanner(System.in);
 		int eingabe = 0;
@@ -41,13 +41,15 @@ public class LogikHelper {
 				if (eingabe >= minMenuOption && eingabe <= maxMenuOption) {
 					break;
 				} else {
-					System.out.println("\nBitte geben Sie eine Ganzzahl zwischen " + minMenuOption + " und " + maxMenuOption + " an.");
+					System.out.println("\nBitte geben Sie eine Ganzzahl zwischen " + minMenuOption + " und "
+							+ maxMenuOption + " an.");
 				}
 			} catch (InputMismatchException ime) {
 				// Der Scanner entfernt bei Auftreten der Exception nicht den gültigen Wert,
 				// sondern liest diesen erneut ein, wodurch eine Endlosschleife entsteht.
 				sc.next();
-				System.out.println("\nBitte geben Sie eine Ganzzahl zwischen " + minMenuOption + " und " + maxMenuOption + " an.");
+				System.out.println(
+						"\nBitte geben Sie eine Ganzzahl zwischen " + minMenuOption + " und " + maxMenuOption + " an.");
 			}
 		}
 		return eingabe;
@@ -61,20 +63,12 @@ public class LogikHelper {
 	 */
 
 	public static void mannschaftAnlegen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		System.out.println("\nWelche Mannschaft möchten Sie zuerst anlegen?");
-		System.out.println("0. Heimmannschaft\n1. Gastmannschaft\n2. Zurück");
-		switch (LogikHelper.menuEingabe(2)) {
-		case 0:
-			heimmannschaft.anlegen();
-			gastmannschaft.anlegen();
-			break;
-		case 1:
-			gastmannschaft.anlegen();
-			heimmannschaft.anlegen();
-			break;
-		case 2:
-			break;
-		}
+		String[] heimmannschaft_praefix = { "S|Stürmer", "Ṁ|Mittelfeldspieler", "Ṃ|Mittelfeldspieler", "V|Verteidiger",
+				"T|Torwart" };
+		String[] gastmannschaft_praefix = { "s|Stürmer", "ṁ|Mittelfeldspieler", "ṃ|Mittelfeldspieler", "v|Verteidiger",
+				"t|Torwart" };
+		heimmannschaft.anlegen(heimmannschaft_praefix);
+		gastmannschaft.anlegen(gastmannschaft_praefix);
 	}
 
 	public static void ballbesitzSetzen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
@@ -152,8 +146,5 @@ public class LogikHelper {
 		heimmannschaft.aufstellen();
 		gastmannschaft.aufstellen();
 	}
-	
-	
-	
-}
 
+}

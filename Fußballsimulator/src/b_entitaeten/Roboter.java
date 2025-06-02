@@ -289,10 +289,10 @@ public abstract class Roboter implements Serializable {
 				if ((this.praezisionPass / verbraucheEnergie(5)) >= RoboterHelper.randomZahl()) {
 					this.ballbesitz = false;
 					roboter.ballbesitz = true;
-					System.out.println("\nErfolgreicher Pass");
+					System.out.println("\nDer Pass war erfolgreich.");
 				} else {
 					this.ballbesitz = false;
-					System.out.println("Fehlpass");
+					System.out.println("\nDer Pass ist leider fehlgeschlagen und der Ball liegt nun frei auf dem Spielfeld.");
 				}
 			} else {
 				System.out.println("\nDer Spieler hat nicht genug Energie, um einen Pass durchzuführen.");

@@ -6,12 +6,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Mannschaft implements Serializable {
-	
-	private static final String ROLLE_STUERMER = "(Stürmer (S)) ";
-	private static final String ROLLE_MITTELFELDSPIELER = "(Ṁittelfeldspieler (Ṁ)) ";
-	private static final String ROLLE_MITTELFELDSPIELER2 = "(Ṃittelfeldspieler (Ṃ)) ";
-	private static final String ROLLE_VERTEIDIGER = "(Verteidiger (V)) ";
-	private static final String ROLLE_TORWART = "(Torwart (T)) ";
 
 	public String name;
 	public int tore = 0;
@@ -31,15 +25,15 @@ public class Mannschaft implements Serializable {
 		this.tor = tor;
 	}
 
-	protected void anlegen() {
+	protected void anlegen(String[] praefix) {
 		this.name = RoboterHelper.erfrageNamen("\nName der Mannschaft: ");
-		this.spieler.put("Stürmer", new Stuermer(ROLLE_STUERMER + RoboterHelper.erfrageNamen("Name des Stürmers: ")));
+		this.spieler.put("Stürmer", new Stuermer(praefix[0] + RoboterHelper.erfrageNamen("Name des Stürmers: ")));
 		this.spieler.put("Mittelfeldspieler",
-				new Mittelfeldspieler(ROLLE_MITTELFELDSPIELER + RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
+				new Mittelfeldspieler(praefix[1] + RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
 		this.spieler.put("Mittelfeldspieler2",
-				new Mittelfeldspieler(ROLLE_MITTELFELDSPIELER2 + RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
-		this.spieler.put("Verteidiger", new Verteidiger(ROLLE_VERTEIDIGER + RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
-		this.spieler.put("Torwart", new Torwart(ROLLE_TORWART + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
+				new Mittelfeldspieler(praefix[2] + RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
+		this.spieler.put("Verteidiger", new Verteidiger(praefix[3] + RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
+		this.spieler.put("Torwart", new Torwart(praefix[4] + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
 	
 	public String pruefeBallbesitz(Ball ball) {
