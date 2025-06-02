@@ -316,7 +316,7 @@ public abstract class Roboter implements Serializable {
 	 */
 
 	public boolean blocken() {
-		// Beim Aufruf dieser Funktion soll der Ball eines gegners geblocket werden
+		// Beim Aufruf dieser Funktion soll der Ball eines gegners geblocket werden 
 		return true;
 	}
 
