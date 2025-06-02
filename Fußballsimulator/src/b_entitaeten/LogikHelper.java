@@ -199,8 +199,11 @@ public class LogikHelper {
 			break;
 		case 4:
 			// Blocken
-			if(heimmannschaft.spieler.values().contains(r))
+			if(heimmannschaft.spieler.values().contains(r)) {
 			r.blocken(ball, r.findeRoboter(heimmannschaft.spieler.values()));
+			}else {
+				r.blocken(ball, r.findeRoboter(gastmannschaft.spieler.values()));
+			}
 			aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
