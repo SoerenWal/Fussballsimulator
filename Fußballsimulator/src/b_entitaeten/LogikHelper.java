@@ -115,18 +115,19 @@ public class LogikHelper {
 		return null;
 	}
 
-	public static void abfragenSpieldauer() {
+	public static void abfragenSpieldauer(Ball ball) {
 		System.out.println("\nWie viele Runden möchten Sie spielen?");
-		Ball.spieldauer = menuEingabe(50);
+		ball.spieldauer = menuEingabe(50);
 	}
 
-	public static boolean spielzugAusführen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+	public static boolean aktualisiereSpielfeld(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\n" + heimmannschaft.pruefeBallbesitz(ball));
 		System.out.println(gastmannschaft.pruefeBallbesitz(ball));
+		Spielfeld.spielfeldAnzeigen();
 
 		while (true) {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("\nBitte wählen die Aktionen Ihrer Spieler.");
+			System.out.println("\nBitte wählen Sie die Aktionen Ihrer Spieler.");
 			Mannschaft[] mannschaften = { heimmannschaft, gastmannschaft };
 			for (Mannschaft m : mannschaften) {
 				for (Roboter r : m.spieler.values()) {
@@ -137,17 +138,16 @@ public class LogikHelper {
 						System.out.println("\n" + r.getName() + " soll folgende Aktion ausführen:");
 						System.out.println(
 								"\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
-
-						menuSpielzug(r, LogikHelper.menuEingabe(5));
+						menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft, gastmannschaft);
 					}
 				}
 			}
-			Ball.spieldauer--;
+			ball.spieldauer--;
 			return true;
 		}
 	}
 
-	private static void menuSpielzug(Roboter r, int menuOption) {
+	private static void menuSpielzug(Roboter r, int menuOption, Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		switch (menuOption) {
 		case 0:
 			// Keine Aktion
@@ -155,18 +155,22 @@ public class LogikHelper {
 		case 1:
 			// Laufen
 			r.laufen(0, 0);
+			aktualisiereSpielfeld(ball, heimmannschaft, gastmannschaft);
 			break;
 		case 2:
 			// Passen
 			r.passen(null);
+			aktualisiereSpielfeld(ball, heimmannschaft, gastmannschaft);
 			break;
 		case 3:
 			// Torschuss
 			r.schiessen();
+			aktualisiereSpielfeld(ball, heimmannschaft, gastmannschaft);
 			break;
 		case 4:
 			// Blocken
 			r.blocken();
+			aktualisiereSpielfeld(ball, heimmannschaft, gastmannschaft);
 			break;
 		case 5:
 			// Energie aufladen

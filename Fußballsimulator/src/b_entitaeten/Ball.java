@@ -5,8 +5,8 @@ import java.io.Serializable;
 public final class Ball implements Serializable {
  
 	private static Ball INSTANCE;
-	public static int spieldauer;
- 
+	
+	public int spieldauer;
 	int zeile;
 	int spalte;
 	private boolean amSpielFeldRand;

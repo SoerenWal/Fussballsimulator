@@ -24,7 +24,7 @@ public class Navigation {
 	}
 
 	private static String menuStartText = "0. Spiel laden\n1. Mannschaften laden\n2. Mannschaften anlegen\n3. Spiel starten\n4. Mannschaften speichern\n5. Programm beenden";
-	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern\n3. Spiel speichern & beenden";
+	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern & beenden";
 
 	private static void menuStart(int menuOption) {
 		switch (menuOption) {
@@ -42,7 +42,8 @@ public class Navigation {
 				System.out.println(
 						"\nEs konnte leider kein Spiel geladen werden.\nLegen Sie bitte zunächst beide Mannschaften an.");
 			} catch (IndexOutOfBoundsException e) {
-				System.out.println("\nIhre Mannschaften wurden erfolgreich geladen.\nSie können ein neues Spiel starten.");
+				System.out.println(
+						"\nIhre Mannschaften wurden erfolgreich geladen.\nSie können ein neues Spiel starten.");
 			}
 			break;
 		case 1:
@@ -51,7 +52,8 @@ public class Navigation {
 				entitaeten = LogikHelper.laden(); // wirft eine NullPointerException
 				heimmannschaft = (Mannschaft) entitaeten.get(0);
 				gastmannschaft = (Mannschaft) entitaeten.get(1);
-				System.out.println("\nIhre Mannschaften wurden erfolgreich geladen.\nSie können ein neues Spiel starten.");
+				System.out.println(
+						"\nIhre Mannschaften wurden erfolgreich geladen.\nSie können ein neues Spiel starten.");
 			} catch (NullPointerException e) {
 				System.out.println(
 						"\nEs konnte leider keine Mannschaften geladen werden.\nLegen Sie bitte zunächst beide Mannschaften an.");
@@ -70,7 +72,7 @@ public class Navigation {
 			LogikHelper.ballbesitzSetzen(ball, heimmannschaft, gastmannschaft);
 			LogikHelper.initialePositionenSetzen(ball, heimmannschaft, gastmannschaft);
 			LogikHelper.stelleMannschaftenAuf(heimmannschaft, gastmannschaft);
-			LogikHelper.abfragenSpieldauer();
+			LogikHelper.abfragenSpieldauer(ball);
 			menuSpielSchleife();
 			break;
 		case 4:
@@ -101,12 +103,10 @@ public class Navigation {
 		switch (menuOption) {
 		case 0:
 			// Spielrunde ausführen
-			heimmannschaft.pruefeBallbesitz(ball);
-			gastmannschaft.pruefeBallbesitz(ball);
-			System.out.println("\nNoch " + Ball.spieldauer + " Spielrunden verbleiben.");
+			System.out.println("\nNoch " + Navigation.ball.spieldauer + " Spielrunden verbleiben.");
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
-			if (!LogikHelper.spielzugAusführen(ball, heimmannschaft, gastmannschaft)) {
+			if (!LogikHelper.aktualisiereSpielfeld(ball, heimmannschaft, gastmannschaft)) {
 				menuSpiel(3);
 			}
 			break;
@@ -121,9 +121,6 @@ public class Navigation {
 			entitaeten.add(gastmannschaft);
 			entitaeten.add(ball);
 			LogikHelper.speichern(entitaeten);
-			break;
-		case 3:
-			// Spiel beenden
 			LogikHelper.siegerAnzeigen(heimmannschaft, gastmannschaft);
 			menuStartSchleife();
 			break;
@@ -152,7 +149,7 @@ public class Navigation {
 		System.out.println("\nWillkommen im Spielmenu!");
 		while (true) {
 			System.out.println("\n" + menuSpielText);
-			menuSpiel(LogikHelper.menuEingabe(3));
+			menuSpiel(LogikHelper.menuEingabe(2));
 		}
 	}
 
