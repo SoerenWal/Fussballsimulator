@@ -245,7 +245,7 @@ public abstract class Roboter implements Serializable {
 		System.out.println("\nZeilen nach unten (X).\nZeilen nach oben (-X).");
 		int zeile = LogikHelper.menuEingabe(-17, 17);
 		System.out.println("\nSpalten nach rechts (X).\nSpalten nach links (-X).");
-		int spalte = LogikHelper.menuEingabe(81);
+		int spalte = LogikHelper.menuEingabe(-81, 81);
 		if (this.zeile + zeile > 0 && this.zeile + zeile < 17 && this.spalte + spalte > 0 && this.spalte + spalte < 81
 				&& Spielfeld.istFeldFrei(this.zeile + zeile, this.spalte + spalte)) {
 			verbraucheEnergie(Math.abs(zeile + spalte));
