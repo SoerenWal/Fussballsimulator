@@ -65,7 +65,7 @@ public abstract class Roboter implements Serializable {
 	 * @return true, wenn Ballbesitz vorliegt
 	 */
 
-	public boolean getBallBesitz() {
+	public boolean getBallbesitz() {
 		return this.ballBesitz;
 	}
 
@@ -351,8 +351,4 @@ public abstract class Roboter implements Serializable {
 	 *
 	 * @return true, wenn Ballbesitz vorhanden ist
 	 */
-
-	public boolean pruefeBallbesitz() {
-		return this.getBallBesitz();
-	}
 }
