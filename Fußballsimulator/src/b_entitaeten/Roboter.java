@@ -364,11 +364,6 @@ public abstract class Roboter implements Serializable {
 	 *
 	 * @return true, wenn Ballbesitz vorhanden ist
 	 */
-
-
-	public boolean pruefeBallbesitz() {
-		return this.getBallbesitz();
-	}
 	
 	public Roboter findeRoboter(Collection<Roboter> gegner){
 		final double maxAbstand = 3;
