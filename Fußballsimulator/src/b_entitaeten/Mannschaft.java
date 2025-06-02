@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class Mannschaft implements Serializable {
 	
-	private static final String ROLLE_STUERMER = "(Stürmer) ";
-	private static final String ROLLE_MITTELFELDSPIELER = "(Ṁittelfeldspieler) ";
-	private static final String ROLLE_MITTELFELDSPIELER2 = "(Ṃittelfeldspieler) ";
-	private static final String ROLLE_VERTEIDIGER = "(Verteidiger) ";
-	private static final String ROLLE_TORWART = "(Torwart) ";
+	private static final String ROLLE_STUERMER = "(Stürmer (S)) ";
+	private static final String ROLLE_MITTELFELDSPIELER = "(Ṁittelfeldspieler (Ṁ)) ";
+	private static final String ROLLE_MITTELFELDSPIELER2 = "(Ṃittelfeldspieler (Ṃ)) ";
+	private static final String ROLLE_VERTEIDIGER = "(Verteidiger (V)) ";
+	private static final String ROLLE_TORWART = "(Torwart (T)) ";
 
 	public String name;
 	public int tore = 0;

@@ -2,6 +2,8 @@ package a_gui2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
+
 import b_entitaeten.Ball;
 import b_entitaeten.LogikHelper;
 import b_entitaeten.Mannschaft;
@@ -108,10 +110,7 @@ public class Navigation {
 			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
-			if (!LogikHelper.spielzugAusfuehren(ball, heimmannschaft, gastmannschaft)) {
-				menuSpiel(3);
-				
-			}
+			spielzugAusfuehren(ball, gastmannschaft, gastmannschaft);
 			break;
 		case 1:
 			// Spielstand anzeigen
@@ -126,6 +125,107 @@ public class Navigation {
 			LogikHelper.speichern(entitaeten);
 			LogikHelper.siegerAnzeigen(heimmannschaft, gastmannschaft);
 			menuStartSchleife();
+			break;
+		}
+	}
+
+	public static boolean spielzugAusfuehren(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+		int menuEingabe;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\nBitte wählen Sie die Aktionenen für " + heimmannschaft.name + ".");
+		while (true) {
+			System.out.println(
+					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
+			menuEingabe = LogikHelper.menuEingabe(5);
+			Roboter r = menuSpieler(menuEingabe, heimmannschaft);
+			System.out
+					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
+			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
+			if(r == null) {
+				break;
+			}
+		}
+		System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.name + ".");
+		while (true) {
+			System.out.println(
+					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
+			menuEingabe = LogikHelper.menuEingabe(5);
+			Roboter r = menuSpieler(menuEingabe, gastmannschaft);
+			System.out
+					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
+			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
+			if(r == null) {
+				break;
+			}
+		}
+		ball.spieldauer--;
+		return true;
+	}
+
+	private static Roboter menuSpieler(int menuOption, Mannschaft mannschaft) {
+		switch (menuOption) {
+		case 0:
+			// Stürmer
+			return mannschaft.spieler.get("Stuermer");
+		case 1:
+			// Mittelfeldspieler
+			return mannschaft.spieler.get("Mittelfeldspieler");
+		case 2:
+			// Mittelfeldspieler2
+			return mannschaft.spieler.get("Mittelfeldspieler2");
+		case 3:
+			// Verteidiger
+			return mannschaft.spieler.get("Verteidiger");
+		case 4:
+			// Torwart
+			return mannschaft.spieler.get("Torwart");
+		case 5:
+			// Spielzug beenden
+			return null;
+		}
+		return null;
+	}
+
+	private static void menuSpielzug(Roboter r, int menuOption, Ball ball, Mannschaft mannschaft) {
+		switch (menuOption) {
+		case 0:
+			// Keine Aktion
+			break;
+		case 1:
+			// Laufen
+			r.laufen();
+			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.spielfeldAnzeigen();
+			break;
+		case 2:
+			// Passen
+			r.passen(null);
+			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.spielfeldAnzeigen();
+			break;
+		case 3:
+			// Torschuss
+			r.schiessen();
+			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.spielfeldAnzeigen();
+			break;
+		case 4:
+			// Blocken
+			if (heimmannschaft.spieler.values().contains(r)) {
+				r.blocken(ball, r.findeRoboter(heimmannschaft.spieler.values()));
+			} else {
+				r.blocken(ball, r.findeRoboter(gastmannschaft.spieler.values()));
+			}
+			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.spielfeldAnzeigen();
+			break;
+		case 5:
+			// Energie aufladen
+			r.energieAufladen();
 			break;
 		}
 	}
