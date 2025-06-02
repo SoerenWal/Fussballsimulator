@@ -110,8 +110,9 @@ public class Navigation {
 			Spielfeld.spielfeldAnzeigen();
 			if (!LogikHelper.spielzugAusfuehren(ball, heimmannschaft, gastmannschaft)) {
 				menuSpiel(3);
-				break;
+				
 			}
+			break;
 		case 1:
 			// Spielstand anzeigen
 			heimmannschaft.gegenueberstellen(ball, gastmannschaft);

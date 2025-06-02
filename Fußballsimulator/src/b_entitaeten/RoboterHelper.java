@@ -40,9 +40,9 @@ public class RoboterHelper {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(abfrage);
 		String name = sc.nextLine().trim().toLowerCase();
-		char anfangsbuchstabe = name.charAt(0);
-		name = Character.toUpperCase(anfangsbuchstabe) + name.substring(1);
 		if (validiereNamen(name) == true) {
+			char anfangsbuchstabe = name.charAt(0);
+		name = Character.toUpperCase(anfangsbuchstabe) + name.substring(1);
 			return name;
 		} else {
 			return erfrageNamen(abfrage);
@@ -56,13 +56,13 @@ public class RoboterHelper {
 	 */
 	public static boolean validiereNamen(String name) {
 		if(name.isBlank()) {
-			System.out.println("Geben Sie bitte einen Namen ein.");
+			System.out.println("\nGeben Sie bitte einen Namen ein.");
 			return false;
 		}
 		for(int i = 0; i < name.length(); i++) {
 			char c = name.charAt(i);
 			if(!Character.isAlphabetic(c)) {
-				System.out.println("Bitte nutzen Sie für die Namen ausschließlich Buchstaben.");
+				System.out.println("\nBitte nutzen Sie für die Namen ausschließlich Buchstaben.");
 				return false;
 			}
 		}

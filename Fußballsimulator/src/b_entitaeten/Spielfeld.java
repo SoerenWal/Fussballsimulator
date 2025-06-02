@@ -24,16 +24,20 @@ public class Spielfeld {
 	 * dar. Diese Methode befüllt das zwei-dimensionale Array feld mit
 	 * Spielfeldmarkierungen und einem quarierten zweifarbigen Rasen
 	 */
-	private static void markiereMitHintergrundfarbe(int i, int j, String kuerzel) {
+	private static void markiereMitHintergrundfarbe(int zeile, int spalte, String kuerzel) {
 		String zeichen = " ";
-		if (spielfeld[i][j] != null) {
+		if (spielfeld[zeile][spalte] != null) {
 			// Extrahiere das sichtbare Zeichen
-			zeichen = spielfeld[i][j].replaceAll("\u001B\\[[;\\d]*m", "").trim();
+			zeichen = spielfeld[zeile][spalte].replaceAll("\u001B\\[[;\\d]*m", "").trim();
 			if (zeichen.isEmpty() || zeichen.equals(kuerzel)) {
 				zeichen = " ";
 			}
 		}
-		spielfeld[i][j] = kuerzel + zeichen + ConsoleColors.RESET;
+		spielfeld[zeile][spalte] = kuerzel + zeichen + ConsoleColors.RESET;
+	}
+	
+	public static boolean istFeldFrei(int zeile, int spalte) {
+		return spielfeld[zeile][spalte].replaceAll("\u001B\\[[;\\d]*m", "").trim().isEmpty();
 	}
 
 	/**

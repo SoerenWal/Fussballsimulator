@@ -44,7 +44,7 @@ public class Mannschaft implements Serializable {
 	
 	public String pruefeBallbesitz(Ball ball) {
 		for(Roboter s : this.spieler.values()) {
-			if(s.pruefeBallbesitz()) {
+			if(s.getBallbesitz()) {
 				this.ballBesitz = true;
 				ball.zeile = s.getZeile();
 				ball.spalte = s.getSpalte();
