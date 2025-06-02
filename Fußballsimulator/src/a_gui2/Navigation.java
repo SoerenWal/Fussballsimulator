@@ -110,7 +110,7 @@ public class Navigation {
 			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
-			spielzugAusfuehren(ball, gastmannschaft, gastmannschaft);
+			spielzugAusfuehren(ball, heimmannschaft, gastmannschaft);
 			break;
 		case 1:
 			// Spielstand anzeigen
@@ -136,27 +136,30 @@ public class Navigation {
 		while (true) {
 			System.out.println(
 					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
+			
 			menuEingabe = LogikHelper.menuEingabe(5);
 			Roboter r = menuSpieler(menuEingabe, heimmannschaft);
-			System.out
-					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
-			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
 			if(r == null) {
 				break;
 			}
+			System.out
+					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
+			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
+			
 		}
 		System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.name + ".");
 		while (true) {
 			System.out.println(
-					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
+					"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
 			menuEingabe = LogikHelper.menuEingabe(5);
 			Roboter r = menuSpieler(menuEingabe, gastmannschaft);
-			System.out
-					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
-			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
 			if(r == null) {
 				break;
 			}
+			System.out
+					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
+			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
+			
 		}
 		ball.spieldauer--;
 		return true;
@@ -166,7 +169,7 @@ public class Navigation {
 		switch (menuOption) {
 		case 0:
 			// Stürmer
-			return mannschaft.spieler.get("Stuermer");
+			return mannschaft.spieler.get("Stürmer");
 		case 1:
 			// Mittelfeldspieler
 			return mannschaft.spieler.get("Mittelfeldspieler");

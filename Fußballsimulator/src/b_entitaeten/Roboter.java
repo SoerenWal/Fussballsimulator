@@ -15,7 +15,7 @@ public abstract class Roboter implements Serializable {
 	private int id;
 	private double geschwindigkeit;
 	private int energie = 20;
-	private boolean ballBesitz = false;
+	private boolean ballbesitz = false;
 	private double praezisionPass;
 	private double praezisionSchuss;
 	private int initialZeile;
@@ -69,7 +69,7 @@ public abstract class Roboter implements Serializable {
 	 */
 
 	public boolean getBallbesitz() {
-		return this.ballBesitz;
+		return this.ballbesitz;
 	}
 
 	/**
@@ -168,10 +168,10 @@ public abstract class Roboter implements Serializable {
 	/**
 	 * Setzt den Ballbesitzstatus.
 	 * 
-	 * @param ballBesitz true, wenn Ballbesitz
+	 * @param ballbesitz true, wenn Ballbesitz
 	 */
-	public void setBallBesitz(boolean ballBesitz) {
-		this.ballBesitz = ballBesitz;
+	public void setBallBesitz(boolean ballbesitz) {
+		this.ballbesitz = ballbesitz;
 	}
 
 	/**
@@ -246,8 +246,8 @@ public abstract class Roboter implements Serializable {
 		int zeile = LogikHelper.menuEingabe(-17, 17);
 		System.out.println("\nSpalten nach rechts (X).\nSpalten nach links (-X).");
 		int spalte = LogikHelper.menuEingabe(81);
-		if (this.zeile + zeile > 0 && this.zeile + zeile < 17 && this.spalte + spalte > 0
-				&& this.spalte + spalte < 81 && Spielfeld.istFeldFrei(this.zeile + zeile, this.spalte + spalte)) {
+		if (this.zeile + zeile > 0 && this.zeile + zeile < 17 && this.spalte + spalte > 0 && this.spalte + spalte < 81
+				&& Spielfeld.istFeldFrei(this.zeile + zeile, this.spalte + spalte)) {
 			verbraucheEnergie(Math.abs(zeile + spalte));
 			this.zeile = this.zeile + zeile;
 			this.spalte = this.spalte + spalte;
@@ -284,17 +284,21 @@ public abstract class Roboter implements Serializable {
 	 */
 
 	public void passen(Roboter roboter) {
-		if (this.ballBesitz && this.energie != 0) {
-			if ((this.praezisionPass / verbraucheEnergie(5)) >= RoboterHelper.randomZahl()) {
-				this.ballBesitz = false;
-				roboter.ballBesitz = true;
-				System.out.println("Erfolgreicher Pass");
+		if (this.ballbesitz) {
+			if (this.energie != 0) {
+				if ((this.praezisionPass / verbraucheEnergie(5)) >= RoboterHelper.randomZahl()) {
+					this.ballbesitz = false;
+					roboter.ballbesitz = true;
+					System.out.println("\nErfolgreicher Pass");
+				} else {
+					this.ballbesitz = false;
+					System.out.println("Fehlpass");
+				}
 			} else {
-				this.ballBesitz = false;
-				System.out.println("Fehlpass");
+				System.out.println("\nDer Spieler hat nicht genug Energie, um einen Pass durchzuführen.");
 			}
 		} else {
-			System.out.println("Der Spieler hat den Ball nicht");
+			System.out.println("\nDer Spieler hat den Ball nicht.");
 		}
 	}
 
@@ -318,20 +322,20 @@ public abstract class Roboter implements Serializable {
 	 * @return true, wenn Block ausgelöst wird
 	 */
 
-	public boolean blocken(Ball ball, Roboter r ) {
+	public boolean blocken(Ball ball, Roboter r) {
 		verbraucheEnergie(4);
-		if(0.75 > RoboterHelper.randomZahl()) {
-		double abstand = Math.sqrt(Math.pow(this.getSpalte(), ball.spalte) + Math.pow(this.zeile, ball.getZeile()));
-		final double maxAbstand = 3;
-		
-		if(maxAbstand >= abstand) {
-			this.ballBesitz = true;
-			r.ballBesitz = false;
-			
-			return true;
-		}else {
-		return false;
-		}
+		if (0.75 > RoboterHelper.randomZahl()) {
+			double abstand = Math.sqrt(Math.pow(this.getSpalte(), ball.spalte) + Math.pow(this.zeile, ball.getZeile()));
+			final double maxAbstand = 3;
+
+			if (maxAbstand >= abstand) {
+				this.ballbesitz = true;
+				r.ballbesitz = false;
+
+				return true;
+			} else {
+				return false;
+			}
 		}
 		return false;
 	}
@@ -367,16 +371,16 @@ public abstract class Roboter implements Serializable {
 	 *
 	 * @return true, wenn Ballbesitz vorhanden ist
 	 */
-	
-	public Roboter findeRoboter(Collection<Roboter> gegner){
+
+	public Roboter findeRoboter(Collection<Roboter> gegner) {
 		final double maxAbstand = 3;
-		
+
 		Roboter imRadius = null;
 		for (Roboter g : gegner) {
-			
+
 			double abstand = Math.sqrt(Math.pow(this.spalte, g.getSpalte()) + Math.pow(this.zeile, g.getZeile()));
-			
-			if(abstand <= maxAbstand) {
+
+			if (abstand <= maxAbstand) {
 				imRadius = g;
 			}
 		}
