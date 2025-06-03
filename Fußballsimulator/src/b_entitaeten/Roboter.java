@@ -362,7 +362,7 @@ public abstract class Roboter implements Serializable {
 	 * Setzt den Roboter außer Gefecht.
 	 */
 
-<<<<<<< HEAD
+
 	public void ausfallen(Ball ball) {
 		if (this.ausgefallen) {
 			this.energie++;
@@ -374,9 +374,6 @@ public abstract class Roboter implements Serializable {
 		if (this.energie >= 2) {
 			this.ausgefallen = false;
 		}
-=======
-	public void ausfallen() {
->>>>>>> branch 'master' of git@github.com:SoerenWal/Fussballsimulator.git
 	}
 
 	/**
