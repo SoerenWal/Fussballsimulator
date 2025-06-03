@@ -27,13 +27,13 @@ public class Mannschaft implements Serializable {
 
 	protected void anlegen(String[] praefix) {
 		this.name = RoboterHelper.erfrageNamen("\nName der Mannschaft: ");
-		this.spieler.put("Stürmer", new Stuermer(praefix[0] + RoboterHelper.erfrageNamen("Name des Stürmers: ")));
+		this.spieler.put("Stürmer", new Stuermer(praefix[0] + " " + RoboterHelper.erfrageNamen("Name des Stürmers: ")));
 		this.spieler.put("Mittelfeldspieler",
-				new Mittelfeldspieler(praefix[1] + RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
+				new Mittelfeldspieler(praefix[1] + " " + RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
 		this.spieler.put("Mittelfeldspieler2",
-				new Mittelfeldspieler(praefix[2] + RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
-		this.spieler.put("Verteidiger", new Verteidiger(praefix[3] + RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
-		this.spieler.put("Torwart", new Torwart(praefix[4] + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
+				new Mittelfeldspieler(praefix[2] + " " + RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
+		this.spieler.put("Verteidiger", new Verteidiger(praefix[3] + " " + RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
+		this.spieler.put("Torwart", new Torwart(praefix[4] + " " + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
 	
 	public String druckeBallbesitz(Ball ball) {
@@ -85,8 +85,8 @@ public class Mannschaft implements Serializable {
 	public void gegenueberstellen(Ball ball, Mannschaft mannschaft) {
 		if (!this.spieler.isEmpty() && !mannschaft.spieler.isEmpty()) {
 			System.out.println("\n" + this.name + " " + this.tore + " - " + mannschaft.tore + " " + mannschaft.name);
-			System.out.println(this.pruefeBallbesitz(ball));
-			System.out.println(mannschaft.pruefeBallbesitz(ball));
+			System.out.println(this.druckeBallbesitz(ball));
+			System.out.println(mannschaft.druckeBallbesitz(ball));
 			this.energieAnzeigen();
 			mannschaft.energieAnzeigen();
 		} else {

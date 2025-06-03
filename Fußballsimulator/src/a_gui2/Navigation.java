@@ -143,8 +143,8 @@ public class Navigation {
 				break;
 			}
 			System.out
-					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
-			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
+					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen\n6. Ball aufheben");
+			menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
 
 		}
 		System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.name + ".");
@@ -157,7 +157,7 @@ public class Navigation {
 				break;
 			}
 			System.out
-					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
+					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen\n6. Ball aufheben");
 			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
 
 		}
@@ -280,6 +280,9 @@ public class Navigation {
 			if (!heimmannschaft.pruefeBallbesitz(ball) && !gastmannschaft.pruefeBallbesitz(ball)) {
 				if (!r.ausgefallen) {
 					r.ballAufheben(ball);
+					LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+					Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+					Spielfeld.spielfeldAnzeigen();
 				} else {
 					System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 				}
