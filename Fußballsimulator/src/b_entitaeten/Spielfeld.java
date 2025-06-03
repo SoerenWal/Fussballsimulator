@@ -85,8 +85,6 @@ public class Spielfeld {
 	 * Eine Methode die einen Mittelkreis auf das Spielfeld malt.
 	 */
 	private static void maleMittelkreis() {
-		int middle = zeilen / 2;
-		int centerCol = spalten / 2;
 		markiereMitHintergrundfarbe(mittelpunktZeile - 1, mittelpunktSpalte, ConsoleColors.WHITE_BACKGROUND);
 		markiereMitHintergrundfarbe(mittelpunktZeile + 1, mittelpunktSpalte, ConsoleColors.WHITE_BACKGROUND);
 		markiereMitHintergrundfarbe(mittelpunktZeile, mittelpunktSpalte - 1, ConsoleColors.WHITE_BACKGROUND);
