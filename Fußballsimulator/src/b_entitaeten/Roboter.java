@@ -355,7 +355,6 @@ public abstract class Roboter implements Serializable {
 	 */
 
 	public void ausfallen() {
-
 	}
 
 	/**
