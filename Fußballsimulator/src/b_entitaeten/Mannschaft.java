@@ -36,7 +36,7 @@ public class Mannschaft implements Serializable {
 		this.spieler.put("Torwart", new Torwart(praefix[4] + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
 	
-	public String pruefeBallbesitz(Ball ball) {
+	public String druckeBallbesitz(Ball ball) {
 		for(Roboter s : this.spieler.values()) {
 			if(s.getBallbesitz()) {
 				this.ballBesitz = true;
@@ -47,6 +47,32 @@ public class Mannschaft implements Serializable {
 		}
 		this.ballBesitz = false;
 		return this.name + " hat aktuell keinen Ballbesitz.";
+	}
+	
+	public boolean pruefeBallbesitz(Ball ball) {
+		for(Roboter s : this.spieler.values()) {
+			if(s.getBallbesitz()) {
+				this.ballBesitz = true;
+				ball.zeile = s.getZeile();
+				ball.spalte = s.getSpalte();
+				return true;
+			}
+		}
+		this.ballBesitz = false;
+		return false;
+	}
+	
+	public Roboter holeSpielerBallbesitz(Ball ball) {
+		for(Roboter s : this.spieler.values()) {
+			if(s.getBallbesitz()) {
+				this.ballBesitz = true;
+				ball.zeile = s.getZeile();
+				ball.spalte = s.getSpalte();
+				return s;
+			}
+		}
+		this.ballBesitz = false;
+		return null;
 	}
 
 	private void energieAnzeigen() {

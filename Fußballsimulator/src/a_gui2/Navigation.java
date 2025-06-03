@@ -221,10 +221,10 @@ public class Navigation {
 				System.out.println(
 						"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart");
 				if (heimmannschaft.spieler.values().contains(r)) {
-					r.passen(menuSpieler(LogikHelper.menuEingabe(5), heimmannschaft));
+					r.passen(menuSpieler(LogikHelper.menuEingabe(5), heimmannschaft), ball);
 					r.ausfallen(ball);
 				} else {
-					r.passen(menuSpieler(LogikHelper.menuEingabe(5), gastmannschaft));
+					r.passen(menuSpieler(LogikHelper.menuEingabe(5), gastmannschaft), ball);
 					r.ausfallen(ball);
 				}
 			} else {
@@ -246,15 +246,18 @@ public class Navigation {
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
+			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.spielfeldAnzeigen();
 			break;
 		case 4:
 			// Blocken
 			if (!r.ausgefallen) {
 				if (heimmannschaft.spieler.values().contains(r)) {
-					r.blocken(ball, r.findeRoboter(heimmannschaft.spieler.values()));
+					r.blocken(ball, gastmannschaft.holeSpielerBallbesitz(ball));
 					r.ausfallen(ball);
 				} else {
-					r.blocken(ball, r.findeRoboter(gastmannschaft.spieler.values()));
+					r.blocken(ball, heimmannschaft.holeSpielerBallbesitz(ball));
 					r.ausfallen(ball);
 				}
 				LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
@@ -272,6 +275,15 @@ public class Navigation {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
 			break;
+		case 6:
+			// Ball aufheben
+			if (!heimmannschaft.pruefeBallbesitz(ball) && !gastmannschaft.pruefeBallbesitz(ball)) {
+				if (!r.ausgefallen) {
+					r.ballAufheben(ball);
+				} else {
+					System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
+				}
+			}
 		}
 	}
 

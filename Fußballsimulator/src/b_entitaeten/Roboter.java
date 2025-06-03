@@ -282,7 +282,7 @@ public abstract class Roboter implements Serializable {
 	 * @param roboter Zielspieler
 	 */
 
-	public void passen(Roboter roboter) {
+	public void passen(Roboter roboter, Ball ball) {
 		if (this.ballbesitz) {
 			if (this.energie != 0) {
 				if ((this.praezisionPass / verbraucheEnergie(5)) >= RoboterHelper.randomZahl()) {
@@ -291,6 +291,9 @@ public abstract class Roboter implements Serializable {
 					System.out.println("\nDer Pass war erfolgreich.");
 				} else {
 					this.ballbesitz = false;
+					ball.setSpalte(
+							this.spalte + (int) ((roboter.getSpalte() - this.spalte) * RoboterHelper.randomZahl()));
+					ball.setZeile(this.zeile + (int) ((roboter.getZeile() - this.zeile) * RoboterHelper.randomZahl()));
 					System.out.println(
 							"\nDer Pass ist leider fehlgeschlagen und der Ball liegt nun frei auf dem Spielfeld.");
 				}
@@ -308,7 +311,8 @@ public abstract class Roboter implements Serializable {
 
 	public void schiessen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		// prüfeDistanz() if this.getX mit Linie
-		if ((this.spalte <= 16 && this.zeile > 3 && this.zeile < 14) || this.spalte <= 63 && this.zeile > 3 && this.zeile < 14) {
+		if ((this.spalte <= 16 && this.zeile > 3 && this.zeile < 14)
+				|| this.spalte <= 63 && this.zeile > 3 && this.zeile < 14) {
 			if ((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
 				System.out.println("Es wurde ein Tor geschossen.");
 				this.ballbesitz = false;
@@ -332,8 +336,9 @@ public abstract class Roboter implements Serializable {
 	public boolean blocken(Ball ball, Roboter r) {
 		verbraucheEnergie(4);
 		if (0.75 > RoboterHelper.randomZahl()) {
-			double abstand = Math.sqrt(Math.pow(this.getSpalte(), ball.spalte) + Math.pow(this.zeile, ball.getZeile()));
-			final double maxAbstand = 3;
+			double abstand = Math
+					.sqrt(Math.pow(this.getSpalte() - ball.spalte, 2) + Math.pow(this.zeile - ball.getZeile(), 2));
+			final double maxAbstand = 6;
 
 			if (maxAbstand >= abstand) {
 				this.ballbesitz = true;
@@ -361,7 +366,6 @@ public abstract class Roboter implements Serializable {
 	/**
 	 * Setzt den Roboter außer Gefecht.
 	 */
-
 
 	public void ausfallen(Ball ball) {
 		if (this.ausgefallen) {
@@ -392,18 +396,18 @@ public abstract class Roboter implements Serializable {
 	 * @return true, wenn Ballbesitz vorhanden ist
 	 */
 
-	public Roboter findeRoboter(Collection<Roboter> gegner) {
-		final double maxAbstand = 3;
+	public boolean ballAufheben(Ball ball) {
+		double abstand = Math
+				.sqrt(Math.pow(this.getSpalte() - ball.spalte, 2) + Math.pow(this.zeile - ball.getZeile(), 2));
+		final double maxAbstand = 6;
 
-		Roboter imRadius = null;
-		for (Roboter g : gegner) {
-
-			double abstand = Math.sqrt(Math.pow(this.spalte, g.getSpalte()) + Math.pow(this.zeile, g.getZeile()));
-
-			if (abstand <= maxAbstand) {
-				imRadius = g;
-			}
+		if (maxAbstand >= abstand) {
+			this.ballbesitz = true;
+			System.out.println(this.name + " hat den Ball aufgehoben ");
+			return true;
+		} else {
+			System.out.println("Ihr Spieler versuchte den Ball aus zu größer Distanz aufzuheben.");
+			return false;
 		}
-		return imRadius;
 	}
 }

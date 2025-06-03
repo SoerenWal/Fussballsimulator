@@ -138,8 +138,8 @@ public class LogikHelper {
 	}
 
 	public static void aktualisiereBallbesitz(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		System.out.println("\n" + heimmannschaft.pruefeBallbesitz(ball));
-		System.out.println(gastmannschaft.pruefeBallbesitz(ball));
+		System.out.println("\n" + heimmannschaft.druckeBallbesitz(ball));
+		System.out.println(gastmannschaft.druckeBallbesitz(ball));
 	}
 
 	public static void stelleMannschaftenAuf(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
