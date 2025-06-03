@@ -136,16 +136,16 @@ public class Navigation {
 		while (true) {
 			System.out.println(
 					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
-			
+
 			menuEingabe = LogikHelper.menuEingabe(5);
 			Roboter r = menuSpieler(menuEingabe, heimmannschaft);
-			if(r == null) {
+			if (r == null) {
 				break;
 			}
 			System.out
 					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
 			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
-			
+
 		}
 		System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.name + ".");
 		while (true) {
@@ -153,14 +153,22 @@ public class Navigation {
 					"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
 			menuEingabe = LogikHelper.menuEingabe(5);
 			Roboter r = menuSpieler(menuEingabe, gastmannschaft);
-			if(r == null) {
+			if (r == null) {
 				break;
 			}
 			System.out
 					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen");
 			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
-			
+
 		}
+
+		for (Roboter r : heimmannschaft.spieler.values()) {
+			r.ausfallen(ball);
+		}
+		for (Roboter r : gastmannschaft.spieler.values()) {
+			r.ausfallen(ball);
+		}
+
 		ball.spieldauer--;
 		return true;
 	}
@@ -196,47 +204,73 @@ public class Navigation {
 			break;
 		case 1:
 			// Laufen
-			r.laufen();
-			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
-			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
-			Spielfeld.spielfeldAnzeigen();
+			if (!r.ausgefallen) {
+				r.laufen();
+				r.ausfallen(ball);
+				LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+				Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+				Spielfeld.spielfeldAnzeigen();
+			} else {
+				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
+			}
 			break;
 		case 2:
 			// Passen
-			System.out.println("\nWelchem Teamkollegen möchten Sie passen?");
-			System.out.println(
-					"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart");
-			if(heimmannschaft.spieler.values().contains(r)) {
-				r.passen(menuSpieler(LogikHelper.menuEingabe(5), heimmannschaft));
+			if (!r.ausgefallen) {
+				System.out.println("\nWelchem Teamkollegen möchten Sie passen?");
+				System.out.println(
+						"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart");
+				if (heimmannschaft.spieler.values().contains(r)) {
+					r.passen(menuSpieler(LogikHelper.menuEingabe(5), heimmannschaft));
+					r.ausfallen(ball);
+				} else {
+					r.passen(menuSpieler(LogikHelper.menuEingabe(5), gastmannschaft));
+					r.ausfallen(ball);
+				}
 			} else {
-				r.passen(menuSpieler(LogikHelper.menuEingabe(5), gastmannschaft));
+				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
-			
+
 			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
 			break;
 		case 3:
 			// Torschuss
-			r.schiessen();
-			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
-			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
-			Spielfeld.spielfeldAnzeigen();
+			if (!r.ausgefallen) {
+				r.schiessen(heimmannschaft, gastmannschaft);
+				r.ausfallen(ball);
+				LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+				Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+				Spielfeld.spielfeldAnzeigen();
+			} else {
+				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
+			}
 			break;
 		case 4:
 			// Blocken
-			if (heimmannschaft.spieler.values().contains(r)) {
-				r.blocken(ball, r.findeRoboter(heimmannschaft.spieler.values()));
+			if (!r.ausgefallen) {
+				if (heimmannschaft.spieler.values().contains(r)) {
+					r.blocken(ball, r.findeRoboter(heimmannschaft.spieler.values()));
+					r.ausfallen(ball);
+				} else {
+					r.blocken(ball, r.findeRoboter(gastmannschaft.spieler.values()));
+					r.ausfallen(ball);
+				}
+				LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+				Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+				Spielfeld.spielfeldAnzeigen();
 			} else {
-				r.blocken(ball, r.findeRoboter(gastmannschaft.spieler.values()));
+				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
-			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
-			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
-			Spielfeld.spielfeldAnzeigen();
 			break;
 		case 5:
 			// Energie aufladen
-			r.energieAufladen();
+			if (!r.ausgefallen) {
+				r.energieAufladen();
+			} else {
+				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
+			}
 			break;
 		}
 	}

@@ -1,9 +1,7 @@
 package b_entitaeten;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Scanner;
 
 public abstract class Roboter implements Serializable {
@@ -14,7 +12,7 @@ public abstract class Roboter implements Serializable {
 	private String name;
 	private int id;
 	private double geschwindigkeit;
-	private int energie = 20;
+	private int energie = 50;
 	private boolean ballbesitz = false;
 	private double praezisionPass;
 	private double praezisionSchuss;
@@ -24,6 +22,7 @@ public abstract class Roboter implements Serializable {
 	private int spalte;
 	protected double faktorPass;
 	protected double faktorSchuss;
+	public boolean ausgefallen = false;
 
 	/**
 	 * Gibt den Namen des Roboters zurück.
@@ -292,7 +291,8 @@ public abstract class Roboter implements Serializable {
 					System.out.println("\nDer Pass war erfolgreich.");
 				} else {
 					this.ballbesitz = false;
-					System.out.println("\nDer Pass ist leider fehlgeschlagen und der Ball liegt nun frei auf dem Spielfeld.");
+					System.out.println(
+							"\nDer Pass ist leider fehlgeschlagen und der Ball liegt nun frei auf dem Spielfeld.");
 				}
 			} else {
 				System.out.println("\nDer Spieler hat nicht genug Energie, um einen Pass durchzuführen.");
@@ -306,14 +306,21 @@ public abstract class Roboter implements Serializable {
 	 * Führt einen Schussversuch auf das Tor aus.
 	 */
 
-	public void schiessen() {
+	public void schiessen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		// prüfeDistanz() if this.getX mit Linie
-		if (this.zeile >= 15 || this.zeile <= 65) {
+		if ((this.spalte <= 16 && this.zeile > 3 && this.zeile < 14) || this.spalte <= 63 && this.zeile > 3 && this.zeile < 14) {
 			if ((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
-
+				System.out.println("Es wurde ein Tor geschossen.");
+				this.ballbesitz = false;
+				gastmannschaft.spieler.get("Stürmer").ballbesitz = true;
+				LogikHelper.stelleMannschaftenAuf(heimmannschaft, gastmannschaft);
+			} else {
+				System.out.println("Der Torschuss war nicht erfolgreich.");
+				gastmannschaft.spieler.get("Torwart").ballbesitz = true;
 			}
+		} else {
+			System.out.println("Der Spieler steht außerhalb der Torreichweite, um einen Torschuss durchzuführen.");
 		}
-
 	}
 
 	/**
@@ -331,7 +338,8 @@ public abstract class Roboter implements Serializable {
 			if (maxAbstand >= abstand) {
 				this.ballbesitz = true;
 				r.ballbesitz = false;
-				System.out.println("Der Block war erfolgreich.\nDer Ballbesitz wechselte von " + r.getName() + " zu " + this.name + ".");
+				System.out.println("Der Block war erfolgreich.\nDer Ballbesitz wechselte von " + r.getName() + " zu "
+						+ this.name + ".");
 				return true;
 			} else {
 				System.out.println("Ihr Spieler führte einen Block aus zu größer Distanz durch.");
@@ -343,19 +351,28 @@ public abstract class Roboter implements Serializable {
 	}
 
 	/**
-	 * Lädt die Energie des Roboters um 2 Punkte auf (max. 20).
+	 * Lädt die Energie des Roboters um 20 Punkte auf (max. 50).
 	 */
 
 	public void energieAufladen() {
-		this.energie = Math.min(this.energie + 2, 20);
+		this.energie = Math.min(this.energie + 20, 50);
 	}
 
 	/**
 	 * Setzt den Roboter außer Gefecht.
 	 */
 
-	public void ausfallen() {
-
+	public void ausfallen(Ball ball) {
+		if (this.ausgefallen) {
+			this.energie++;
+		}
+		if (this.energie == 0) {
+			this.ausgefallen = true;
+			System.out.println("\nIhr Roboter fällt für 2 Runden ausgefallen, da dieser keine Energie mehr hat.");
+		}
+		if (this.energie >= 2) {
+			this.ausgefallen = false;
+		}
 	}
 
 	/**
