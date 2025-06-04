@@ -141,9 +141,9 @@ public class Spielfeld {
 
 	private static void maleSpieler(Mannschaft mannschaft) {
 		String kuerzel;
-		for (Roboter s : mannschaft.spieler.values()) {
+		for (Roboter s : mannschaft.getSpieler().values()) {
 			kuerzel = String.valueOf(s.getName().charAt(0));
-			if (mannschaft.spieler.get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
+			if (mannschaft.getSpieler().get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 				kuerzel = kuerzel.toLowerCase();
 			}
 			markiereMitHintergrundfarbe(s.getZeile(), s.getSpalte(), kuerzel);

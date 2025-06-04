@@ -316,11 +316,11 @@ public abstract class Roboter implements Serializable {
 			if ((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
 				System.out.println("Es wurde ein Tor geschossen.");
 				this.ballbesitz = false;
-				gastmannschaft.spieler.get("Stürmer").ballbesitz = true;
+				gastmannschaft.getSpieler().get("Stürmer").ballbesitz = true;
 				LogikHelper.stelleMannschaftenAuf(heimmannschaft, gastmannschaft);
 			} else {
 				System.out.println("Der Torschuss war nicht erfolgreich.");
-				gastmannschaft.spieler.get("Torwart").ballbesitz = true;
+				gastmannschaft.getSpieler().get("Torwart").ballbesitz = true;
 			}
 		} else {
 			System.out.println("Der Spieler steht außerhalb der Torreichweite, um einen Torschuss durchzuführen.");

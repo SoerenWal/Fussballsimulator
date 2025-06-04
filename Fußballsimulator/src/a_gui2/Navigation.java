@@ -67,7 +67,7 @@ public class Navigation {
 			break;
 		case 3:
 			// Spiel starten
-			if (heimmannschaft.spieler.isEmpty() && gastmannschaft.spieler.isEmpty()) {
+			if (heimmannschaft.getSpieler().isEmpty() && gastmannschaft.getSpieler().isEmpty()) {
 				System.out.println("\nLaden Sie bitte ein Spiel oder legen Sie zunächst beide Mannschaften an.");
 				menuStartSchleife();
 			}
@@ -132,7 +132,7 @@ public class Navigation {
 	public static boolean spielzugAusfuehren(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		int menuEingabe;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("\nBitte wählen Sie die Aktionenen für " + heimmannschaft.name + ".");
+		System.out.println("\nBitte wählen Sie die Aktionenen für " + heimmannschaft.getName() + ".");
 		while (true) {
 			System.out.println(
 					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
@@ -147,7 +147,7 @@ public class Navigation {
 			menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
 
 		}
-		System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.name + ".");
+		System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.getName() + ".");
 		while (true) {
 			System.out.println(
 					"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
@@ -162,10 +162,10 @@ public class Navigation {
 
 		}
 
-		for (Roboter r : heimmannschaft.spieler.values()) {
+		for (Roboter r : heimmannschaft.getSpieler().values()) {
 			r.ausfallen(ball);
 		}
-		for (Roboter r : gastmannschaft.spieler.values()) {
+		for (Roboter r : gastmannschaft.getSpieler().values()) {
 			r.ausfallen(ball);
 		}
 
@@ -177,19 +177,19 @@ public class Navigation {
 		switch (menuOption) {
 		case 0:
 			// Stürmer
-			return mannschaft.spieler.get("Stürmer");
+			return mannschaft.getSpieler().get("Stürmer");
 		case 1:
 			// Mittelfeldspieler
-			return mannschaft.spieler.get("Mittelfeldspieler");
+			return mannschaft.getSpieler().get("Mittelfeldspieler");
 		case 2:
 			// Mittelfeldspieler2
-			return mannschaft.spieler.get("Mittelfeldspieler2");
+			return mannschaft.getSpieler().get("Mittelfeldspieler2");
 		case 3:
 			// Verteidiger
-			return mannschaft.spieler.get("Verteidiger");
+			return mannschaft.getSpieler().get("Verteidiger");
 		case 4:
 			// Torwart
-			return mannschaft.spieler.get("Torwart");
+			return mannschaft.getSpieler().get("Torwart");
 		case 5:
 			// Spielzug beenden
 			return null;
@@ -220,7 +220,7 @@ public class Navigation {
 				System.out.println("\nWelchem Teamkollegen möchten Sie passen?");
 				System.out.println(
 						"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart");
-				if (heimmannschaft.spieler.values().contains(r)) {
+				if (heimmannschaft.getSpieler().values().contains(r)) {
 					r.passen(menuSpieler(LogikHelper.menuEingabe(5), heimmannschaft), ball);
 					r.ausfallen(ball);
 				} else {
@@ -253,7 +253,7 @@ public class Navigation {
 		case 4:
 			// Blocken
 			if (!r.ausgefallen) {
-				if (heimmannschaft.spieler.values().contains(r)) {
+				if (heimmannschaft.getSpieler().values().contains(r)) {
 					r.blocken(ball, gastmannschaft.holeSpielerBallbesitz(ball));
 					r.ausfallen(ball);
 				} else {
