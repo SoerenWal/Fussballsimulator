@@ -40,8 +40,8 @@ public class Mannschaft implements Serializable {
 		for(Roboter s : this.spieler.values()) {
 			if(s.getBallbesitz()) {
 				this.ballBesitz = true;
-				ball.zeile = s.getZeile();
-				ball.spalte = s.getSpalte();
+				ball.setZeile(s.getZeile());
+				ball.setSpalte(s.getSpalte());
 				return s.getName() + " (" + this.name + ") hat aktuell Ballbesitz.";
 			}
 		}
@@ -53,8 +53,8 @@ public class Mannschaft implements Serializable {
 		for(Roboter s : this.spieler.values()) {
 			if(s.getBallbesitz()) {
 				this.ballBesitz = true;
-				ball.zeile = s.getZeile();
-				ball.spalte = s.getSpalte();
+				ball.setZeile(s.getZeile());
+				ball.setSpalte(s.getSpalte());
 				return true;
 			}
 		}
@@ -66,8 +66,8 @@ public class Mannschaft implements Serializable {
 		for(Roboter s : this.spieler.values()) {
 			if(s.getBallbesitz()) {
 				this.ballBesitz = true;
-				ball.zeile = s.getZeile();
-				ball.spalte = s.getSpalte();
+				ball.setZeile(s.getZeile());
+				ball.setSpalte(s.getSpalte());
 				return s;
 			}
 		}

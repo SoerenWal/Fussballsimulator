@@ -7,10 +7,8 @@ public final class Ball implements Serializable {
 	private static Ball INSTANCE;
 	
 	public int spieldauer;
-	int zeile;
-	int spalte;
-	private boolean amSpielFeldRand;
-	private boolean imTor;
+	private int zeile;
+	private int spalte;
  
 	/**
 	 * Erzeugt eine neue Instanz der Singleton-Klasse Ball.
@@ -40,14 +38,6 @@ public final class Ball implements Serializable {
 		return INSTANCE;
 	}
  
-	public boolean IsImTor() {
-		return imTor;
-	}
- 
-	public void setImTor(boolean imTor) {
-		this.imTor = imTor;
-	}
- 
 	public int getZeile() {
 		return zeile;
 	}
@@ -62,11 +52,6 @@ public final class Ball implements Serializable {
  
 	public void setSpalte(int spalte) {
 		this.spalte = spalte;
-	}
- 
-	public boolean isAmSpielFeldRand() {
-		return amSpielFeldRand;
-	}
- 
+	} 
 }
  

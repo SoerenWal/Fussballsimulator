@@ -337,7 +337,7 @@ public abstract class Roboter implements Serializable {
 		verbraucheEnergie(4);
 		if (0.75 > RoboterHelper.randomZahl()) {
 			double abstand = Math
-					.sqrt(Math.pow(this.getSpalte() - ball.spalte, 2) + Math.pow(this.zeile - ball.getZeile(), 2));
+					.sqrt(Math.pow(this.getSpalte() - ball.getSpalte(), 2) + Math.pow(this.zeile - ball.getZeile(), 2));
 			final double maxAbstand = 3;
 
 			if (maxAbstand >= abstand) {
@@ -398,7 +398,7 @@ public abstract class Roboter implements Serializable {
 
 	public boolean ballAufheben(Ball ball) {
 		double abstand = Math
-				.sqrt(Math.pow(this.getSpalte() - ball.spalte, 2) + Math.pow(this.zeile - ball.getZeile(), 2));
+				.sqrt(Math.pow(this.getSpalte() - ball.getSpalte(), 2) + Math.pow(this.zeile - ball.getZeile(), 2));
 		final double maxAbstand = 3;
 
 		if (maxAbstand >= abstand) {

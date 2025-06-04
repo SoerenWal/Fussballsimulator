@@ -127,7 +127,7 @@ public class Spielfeld {
 	 * @param ball
 	 */
 	private static void maleBall(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		markiereMitHintergrundfarbe(ball.zeile, ball.spalte, ConsoleColors.CYAN_BACKGROUND_BRIGHT);
+		markiereMitHintergrundfarbe(ball.getZeile(), ball.getSpalte(), ConsoleColors.CYAN_BACKGROUND_BRIGHT);
 	}
 
 	private static void maleSpieler(Mannschaft mannschaft) {
