@@ -1,6 +1,15 @@
 package b_entitaeten;
 
 public class Spielfeld {
+	
+	// Quelle: https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+	// Reset
+    public static final String RESET = "\033[0m";  // Text Reset
+    // Background
+    public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
+    public static final String GREEN_BACKGROUND_BRIGHT = "\033[0;102m";// GREEN
+    public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
+    public static final String WHITE_BACKGROUND = "\033[47m";  // WHITE
 
 	public static int zeilen = 17;
 	public static int spalten = 81;
@@ -33,7 +42,7 @@ public class Spielfeld {
 				zeichen = " ";
 			}
 		}
-		spielfeld[zeile][spalte] = kuerzel + zeichen + ConsoleColors.RESET;
+		spielfeld[zeile][spalte] = kuerzel + zeichen + RESET;
 	}
 
 	public static boolean istFeldFrei(int zeile, int spalte) {
@@ -47,9 +56,9 @@ public class Spielfeld {
 		for (int i = 0; i < zeilen; i++) {
 			for (int j = 0; j < spalten; j++) {
 				if ((i + j) % 2 == 0) {
-					markiereMitHintergrundfarbe(i, j, ConsoleColors.GREEN_BACKGROUND_BRIGHT);
+					markiereMitHintergrundfarbe(i, j, GREEN_BACKGROUND_BRIGHT);
 				} else {
-					markiereMitHintergrundfarbe(i, j, ConsoleColors.GREEN_BACKGROUND);
+					markiereMitHintergrundfarbe(i, j, GREEN_BACKGROUND);
 				}
 			}
 		}
@@ -68,16 +77,16 @@ public class Spielfeld {
 	private static void maleSeitenlinienObenUnten() {
 		for (int i = 0; i < zeilen; i++) {
 			for (int j = 0; j < spalten; j++) {
-				markiereMitHintergrundfarbe(0, j, ConsoleColors.WHITE_BACKGROUND);
-				markiereMitHintergrundfarbe(zeilen - 1, j, ConsoleColors.WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(0, j, WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(zeilen - 1, j, WHITE_BACKGROUND);
 			}
 		}
 	}
 
 	private static void maleSeitenlinienLinksRechts() {
 		for (int i = 0; i < zeilen; i++) {
-			markiereMitHintergrundfarbe(i, 0, ConsoleColors.WHITE_BACKGROUND);
-			markiereMitHintergrundfarbe(i, spalten - 1, ConsoleColors.WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, 0, WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, spalten - 1, WHITE_BACKGROUND);
 		}
 	}
 
@@ -85,25 +94,25 @@ public class Spielfeld {
 	 * Eine Methode die einen Mittelkreis auf das Spielfeld malt.
 	 */
 	private static void maleMittelkreis() {
-		markiereMitHintergrundfarbe(mittelpunktZeile - 1, mittelpunktSpalte, ConsoleColors.WHITE_BACKGROUND);
-		markiereMitHintergrundfarbe(mittelpunktZeile + 1, mittelpunktSpalte, ConsoleColors.WHITE_BACKGROUND);
-		markiereMitHintergrundfarbe(mittelpunktZeile, mittelpunktSpalte - 1, ConsoleColors.WHITE_BACKGROUND);
-		markiereMitHintergrundfarbe(mittelpunktZeile, mittelpunktSpalte + 1, ConsoleColors.WHITE_BACKGROUND);
+		markiereMitHintergrundfarbe(mittelpunktZeile - 1, mittelpunktSpalte, WHITE_BACKGROUND);
+		markiereMitHintergrundfarbe(mittelpunktZeile + 1, mittelpunktSpalte, WHITE_BACKGROUND);
+		markiereMitHintergrundfarbe(mittelpunktZeile, mittelpunktSpalte - 1, WHITE_BACKGROUND);
+		markiereMitHintergrundfarbe(mittelpunktZeile, mittelpunktSpalte + 1, WHITE_BACKGROUND);
 	}
 
 	private static void maleStrafraum() {
 		for (int i = zeilen / 2 - 5; i < zeilen / 2 + 6; i++) {
 			for (int j = 0; j < 16 + 1; j++) {
 				// seitliche Strafraum-Linie
-				markiereMitHintergrundfarbe(i, 16, ConsoleColors.WHITE_BACKGROUND);
-				markiereMitHintergrundfarbe(i, spalten - 17, ConsoleColors.WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(i, 16, WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(i, spalten - 17, WHITE_BACKGROUND);
 
 				// obere Strafraum-Linie
-				markiereMitHintergrundfarbe(zeilen / 2 - 5, j, ConsoleColors.WHITE_BACKGROUND);
-				markiereMitHintergrundfarbe(zeilen / 2 - 5, spalten - 17 + j, ConsoleColors.WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(zeilen / 2 - 5, j, WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(zeilen / 2 - 5, spalten - 17 + j, WHITE_BACKGROUND);
 
-				markiereMitHintergrundfarbe(zeilen / 2 + 5, j, ConsoleColors.WHITE_BACKGROUND);
-				markiereMitHintergrundfarbe(zeilen / 2 + 5, spalten - 17 + j, ConsoleColors.WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(zeilen / 2 + 5, j, WHITE_BACKGROUND);
+				markiereMitHintergrundfarbe(zeilen / 2 + 5, spalten - 17 + j, WHITE_BACKGROUND);
 			}
 		}
 	}
@@ -114,10 +123,10 @@ public class Spielfeld {
 	private static void maleTore() {
 		// links und rechts, je 3 Zeilen hoch und 2 Zeichen breit
 		for (int i = zeilen / 2 - 1; i < zeilen / 2 + 2; i++) {
-			markiereMitHintergrundfarbe(i, 1, ConsoleColors.WHITE_BACKGROUND);
-			markiereMitHintergrundfarbe(i, 2, ConsoleColors.WHITE_BACKGROUND);
-			markiereMitHintergrundfarbe(i, spalten - 3, ConsoleColors.WHITE_BACKGROUND);
-			markiereMitHintergrundfarbe(i, spalten - 2, ConsoleColors.WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, 1, WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, 2, WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, spalten - 3, WHITE_BACKGROUND);
+			markiereMitHintergrundfarbe(i, spalten - 2, WHITE_BACKGROUND);
 		}
 	}
 
@@ -127,7 +136,7 @@ public class Spielfeld {
 	 * @param ball
 	 */
 	private static void maleBall(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		markiereMitHintergrundfarbe(ball.getZeile(), ball.getSpalte(), ConsoleColors.CYAN_BACKGROUND_BRIGHT);
+		markiereMitHintergrundfarbe(ball.getZeile(), ball.getSpalte(), CYAN_BACKGROUND_BRIGHT);
 	}
 
 	private static void maleSpieler(Mannschaft mannschaft) {
@@ -147,7 +156,7 @@ public class Spielfeld {
 			for (int j = 0; j < spielfeld[i].length; j++) {
 				System.out.print(spielfeld[i][j]);
 			}
-			System.out.println(ConsoleColors.RESET);
+			System.out.println(RESET);
 		}
 	}
 
