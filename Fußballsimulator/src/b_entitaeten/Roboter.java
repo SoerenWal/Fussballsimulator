@@ -60,6 +60,15 @@ public abstract class Roboter implements Serializable {
 	public int getEnergie() {
 		return this.energie;
 	}
+	
+	/**
+	 * Gibt zurück ob ein Spieler ausgefallen ist oder nicht.
+	 * 
+	 * @return boolean
+	 */
+	public boolean getAusgefallen() {
+		return ausgefallen;
+	}
 
 	/**
 	 * Prüft, ob der Roboter den Ball besitzt.
@@ -201,7 +210,15 @@ public abstract class Roboter implements Serializable {
 	public void setInitialZeile(int initialZeile) {
 		this.initialZeile = initialZeile;
 	}
-
+	
+	/**
+	 * Setzt boolischen Wert ausgefallen.
+	 * @param ausgefallen
+	 */
+	public void setAusgefallen(boolean ausgefallen) {
+		this.ausgefallen = ausgefallen;
+	}
+	
 	/**
 	 * Setzt die Start-Spalte.
 	 * 
@@ -412,13 +429,5 @@ public abstract class Roboter implements Serializable {
 			System.out.println("\n" + this.name + " versuchte den Ball aus zu größer Distanz aufzuheben.");
 			return false;
 		}
-	}
-
-	public boolean getAusgefallen() {
-		return ausgefallen;
-	}
-
-	public void setAusgefallen(boolean ausgefallen) {
-		this.ausgefallen = ausgefallen;
 	}
 }
