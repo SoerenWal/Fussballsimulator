@@ -213,6 +213,7 @@ public abstract class Roboter implements Serializable {
 	
 	/**
 	 * Setzt boolischen Wert ausgefallen.
+	 * 
 	 * @param ausgefallen
 	 */
 	public void setAusgefallen(boolean ausgefallen) {
