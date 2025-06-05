@@ -394,9 +394,9 @@ public abstract class Roboter implements Serializable {
 	}
 
 	/**
-	 * Die Mehode prüft ob sich der ball in der nähe des Spielers befindet und setzt den Ballbesitz auf true, wenn dies erfüllt ist.
+	 * Die Methode prüft ob sich der Ball in der Nähe des Spielers befindet und setzt den Ballbesitz auf true, wenn dies erfüllt ist.
 	 *
-	 * @return true, wenn Ballbesitz vorhanden ist
+	 * @return true, wenn der Ball sich im Radius befindet und false, wenn der Ball zu weit weg ist
 	 */
 
 	public boolean ballAufheben(Ball ball) {
