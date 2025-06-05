@@ -11,12 +11,29 @@ public class Spielfeld {
     public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
     public static final String WHITE_BACKGROUND = "\033[47m";  // WHITE
 
+    /**
+     * Gesamtanzahl der Zeilen des Spielfelds.
+     */
+    
 	public static int zeilen = 17;
+	
+	/**
+     * Gesamtanzahl der Spalten des Spielfelds.
+     */
+	
 	public static int spalten = 81;
 	private static String[][] spielfeld = new String[zeilen][spalten];
 	static int mittelpunktZeile = Spielfeld.zeilen / 2;
 	static int mittelpunktSpalte = Spielfeld.spalten / 2;
 
+	/**
+     * Zeichnet das Spielfeld neu, inklusive Rasen, Spielern, Ball und Markierungen.
+     *
+     * @param ball 
+     * @param heimmannschaft 
+     * @param gastmannschaft 
+     */
+	
 	public static void maleSpielfeld(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		spielfeld = new String[zeilen][spalten];
 		maleSpieler(heimmannschaft);
@@ -45,6 +62,14 @@ public class Spielfeld {
 		spielfeld[zeile][spalte] = kuerzel + zeichen + RESET;
 	}
 
+	/**
+     * Überprüft, ob ein bestimmtes Feld auf dem Spielfeld frei ist (also leer dargestellt wird).
+     *
+     * @param zeile 
+     * @param spalte 
+     * @return true, wenn das Feld leer ist, sonst false
+     */
+	
 	public static boolean istFeldFrei(int zeile, int spalte) {
 		return spielfeld[zeile][spalte].replaceAll("\u001B\\[[;\\d]*m", "").trim().isEmpty();
 	}
@@ -149,6 +174,11 @@ public class Spielfeld {
 			markiereMitHintergrundfarbe(s.getZeile(), s.getSpalte(), kuerzel);
 		}
 	}
+	
+	/**
+     * Gibt das aktuelle Spielfeld auf der Konsole aus.
+     * Die Farben und Spielerpositionen werden visuell dargestellt.
+     */
 
 	public static void spielfeldAnzeigen() {
 		System.out.println();
