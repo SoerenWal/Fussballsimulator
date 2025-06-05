@@ -22,7 +22,7 @@ public abstract class Roboter implements Serializable {
 	private int spalte;
 	protected double faktorPass;
 	protected double faktorSchuss;
-	public boolean ausgefallen = false;
+	private boolean ausgefallen = false;
 
 	/**
 	 * Gibt den Namen des Roboters zurück.
@@ -371,15 +371,15 @@ public abstract class Roboter implements Serializable {
 	 */
 
 	public void ausfallen(Ball ball) {
-		if (this.ausgefallen) {
+		if (this.getAusgefallen()) {
 			this.energie++;
 		}
 		if (this.energie == 0) {
-			this.ausgefallen = true;
+			this.setAusgefallen(true);
 			System.out.println("\n" + this.name + " fällt für 2 Runden aus, da dieser keine Energie mehr hat.");
 		}
 		if (this.energie >= 2) {
-			this.ausgefallen = false;
+			this.setAusgefallen(false);
 		}
 	}
 
@@ -412,5 +412,13 @@ public abstract class Roboter implements Serializable {
 			System.out.println("\n" + this.name + " versuchte den Ball aus zu größer Distanz aufzuheben.");
 			return false;
 		}
+	}
+
+	public boolean getAusgefallen() {
+		return ausgefallen;
+	}
+
+	public void setAusgefallen(boolean ausgefallen) {
+		this.ausgefallen = ausgefallen;
 	}
 }
