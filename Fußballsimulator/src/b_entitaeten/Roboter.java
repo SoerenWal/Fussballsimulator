@@ -251,7 +251,7 @@ public abstract class Roboter implements Serializable {
 			this.zeile = this.zeile + zeile;
 			this.spalte = this.spalte + spalte;
 		} else {
-			System.out.println("\nIhr Spieler darf das Spielfeld nicht verlassen.");
+			System.out.println("\n" + this.name + " darf das Spielfeld nicht verlassen.");
 			laufen();
 		}
 	}
@@ -310,21 +310,21 @@ public abstract class Roboter implements Serializable {
 	 */
 
 	public void schiessen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
-		if(this.ballbesitz) {
-		if ((this.spalte <= 16 && this.zeile > 3 && this.zeile < 14)
-				|| this.spalte <= 63 && this.zeile > 3 && this.zeile < 14) {
-			if ((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
-				System.out.println("\n" + this.name + " hat ein Tor geschossen.");
-				this.ballbesitz = false;
-				gastmannschaft.getSpieler().get("Stürmer").ballbesitz = true;
-				LogikHelper.stelleMannschaftenAuf(heimmannschaft, gastmannschaft);
+		if (this.ballbesitz) {
+			if (((this.spalte <= 16 && this.spalte >= 63) && (this.zeile >= 3 && this.zeile <= 14))) {
+				if ((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
+					System.out.println("\n" + this.name + " hat ein Tor geschossen.");
+					this.ballbesitz = false;
+					gastmannschaft.getSpieler().get("Stürmer").ballbesitz = true;
+					LogikHelper.stelleMannschaftenAuf(heimmannschaft, gastmannschaft);
+				} else {
+					System.out.println("\n" + this.name + " hat am Tor vorbeigeschossen.");
+					gastmannschaft.getSpieler().get("Torwart").ballbesitz = true;
+				}
 			} else {
-				System.out.println("\n" + this.name + " hat am Tor vorbeigeschossen.");
-				gastmannschaft.getSpieler().get("Torwart").ballbesitz = true;
+				System.out.println(
+						"\n" + this.name + " steht außerhalb der Torreichweite, um einen Torschuss durchzuführen.");
 			}
-		} else {
-			System.out.println("\n" + this.name + " steht außerhalb der Torreichweite, um einen Torschuss durchzuführen.");
-		}
 		} else {
 			System.out.println("\n" + this.name + " besitzt den Ball nicht.");
 		}
@@ -346,11 +346,12 @@ public abstract class Roboter implements Serializable {
 			if (maxAbstand >= abstand) {
 				this.ballbesitz = true;
 				r.ballbesitz = false;
-				System.out.println("\nDer Block von " + this.name + " war erfolgreich.\nDer Ballbesitz wechselte von " + r.getName() + " zu "
-						+ this.name + ".");
+				System.out.println("\nDer Block von " + this.name + " war erfolgreich.\nDer Ballbesitz wechselte von "
+						+ r.getName() + " zu " + this.name + ".");
 				return true;
 			} else {
-				System.out.println("\n" + this.name + " konnte " + r.getName() + " nicht blocken.\nDie Distanz war zu groß.");
+				System.out.println(
+						"\n" + this.name + " konnte " + r.getName() + " nicht blocken.\nDie Distanz war zu groß.");
 				return false;
 			}
 		}
