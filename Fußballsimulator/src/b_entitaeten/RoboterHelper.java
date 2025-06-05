@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class RoboterHelper {
 	/**
-	 *  Die Methode generiert die Präzision für den Pass und Schuss.
+	 *  Diese Methode generiert die Präzision für den Pass und Schuss.
 	 *  
 	 * @param faktor
 	 * @return 
@@ -15,7 +15,7 @@ public class RoboterHelper {
 	}
 
 	/**
-	 * Diese Funktion gibt einen zufälligen Wert zwischen 0.0-1.0 zurück
+	 * Diese Methode gibt einen zufälligen Wert zwischen 0.0-1.0 zurück.
 	 * 
 	 * @return Zufällige Zahl zwischen 0 und 1
 	 */
@@ -32,7 +32,7 @@ public class RoboterHelper {
 	}
 
 	/**
-	 * Eine Methode die Namen nach validen Namen fragt.
+	 * Eine Methode, die Namen nach validen Namen fragt.
 	 * @param Eine Abfrage eines Namens
 	 * @return Einen validen Namen
 	 */
@@ -50,7 +50,7 @@ public class RoboterHelper {
 	}
 	
 	/**
-	 * Eine Methode die Namen validiert.
+	 * Eine Methode, die Namen validiert.
 	 * @param name
 	 * @return True, sofern der Name nicht leer ist und keine Zahlen besitzt. 
 	 */
