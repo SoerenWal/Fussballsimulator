@@ -12,62 +12,26 @@ public class Mannschaft implements Serializable {
 	private boolean ballBesitz = false;
 	private HashMap<String, Roboter> spieler;
 
-	/**
-     * Gibt den Namen der Mannschaft zurück.
-     *
-     * @return Der Name der Mannschaft
-     */
-	
 	public String getName() {
 		return name;
 	}
 
-	/**
-     * Legt den Namen der Mannschaft fest.
-     *
-     * @param name 
-     */
-	
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	/**
-     * Gibt die Anzahl der Tore zurück, die diese Mannschaft erzielt hat.
-     *
-     * @return Anzahl der Tore
-     */
 	
 	public int getTore() {
 		return tore;
 	}
 
-	 /**
-     * Legt die Anzahl der erzielten Tore fest.
-     *
-     * @param tore 
-     */
-	
 	public void setTore(int tore) {
 		this.tore = tore;
 	}
-	
-	/**
-     * Gibt alle Spieler der Mannschaft als HashMap zurück.
-     *
-     * @return Spieler-HashMap 
-     */
 	
 	public HashMap<String, Roboter> getSpieler() {
 		return spieler;
 	}
 
-	/**
-     * Setzt die Spieler der Mannschaft.
-     *
-     * @param spieler 
-     */
-	
 	public void setSpieler(HashMap<String, Roboter> spieler) {
 		this.spieler = spieler;
 	}
@@ -94,14 +58,6 @@ public class Mannschaft implements Serializable {
 		this.getSpieler().put("Torwart", new Torwart(praefix[4] + " " + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
 	
-	
-	/**
-     * Gibt einen Text zurück, ob die Mannschaft gerade Ballbesitz hat und welcher Spieler.
-     *
-     * @param ball Der Spielball
-     * @return String mit Ballbesitz-Status
-     */
-	
 	public String druckeBallbesitz(Ball ball) {
 		for(Roboter s : this.getSpieler().values()) {
 			if(s.getBallbesitz()) {
@@ -115,15 +71,6 @@ public class Mannschaft implements Serializable {
 		return this.getName() + " hat aktuell keinen Ballbesitz.";
 	}
 	
-	/**
-     * Gibt an, ob ein Spieler dieser Mannschaft aktuell Ballbesitz hat.
-     * Setzt gleichzeitig die Position des Balls.
-     *
-     * @param ball 
-     * @return true, wenn ein Spieler Ballbesitz hat
-     */
-	
-	
 	public boolean pruefeBallbesitz(Ball ball) {
 		for(Roboter s : this.getSpieler().values()) {
 			if(s.getBallbesitz()) {
@@ -136,13 +83,6 @@ public class Mannschaft implements Serializable {
 		this.ballBesitz = false;
 		return false;
 	}
-	
-	/**
-     * Gibt den Spieler dieser Mannschaft zurück, der den Ball besitzt.
-     *
-     * @param ball 
-     * @return Roboter mit Ballbesitz oder null
-     */
 	
 	public Roboter holeSpielerBallbesitz(Ball ball) {
 		for(Roboter s : this.getSpieler().values()) {
@@ -163,13 +103,6 @@ public class Mannschaft implements Serializable {
 			System.out.println(r.getName() + " hat noch " + r.getEnergie() + " Energie.");
 		}
 	}
-	
-	/**
-     * Gibt den aktuellen Spielstand sowie Ballbesitz und Energie aller Spieler beider Mannschaften aus.
-     *
-     * @param ball 
-     * @param mannschaft 
-     */
 
 	public void gegenueberstellen(Ball ball, Mannschaft mannschaft) {
 		if (!this.getSpieler().isEmpty() && !mannschaft.getSpieler().isEmpty()) {
@@ -194,13 +127,7 @@ public class Mannschaft implements Serializable {
 			r.setSpalte(r.getInitialSpalte());
 		}
 	}
-	
-	 /**
-     * Ermöglicht die Auswahl und Zuweisung einer Aufstellung (1-1-1-1, 1-3, 2-2, 3-1, 4).
-     * Die Aufstellung hängt von der Spielfeldhälfte ab (Heim oder Gast).
-     *
-     * @param istHeimmannschaft 
-     */
+
 	public void aufstellungWaehlen(boolean istHeimmannschaft) {
 		this.getSpieler().get("Torwart").setInitialZeile(this.tor.getZeile());
 		if (istHeimmannschaft) {
