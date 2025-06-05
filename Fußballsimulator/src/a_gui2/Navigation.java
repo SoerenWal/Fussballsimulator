@@ -11,6 +11,11 @@ import b_entitaeten.Roboter;
 import b_entitaeten.Spielfeld;
 import b_entitaeten.Tor;
 
+/**
+ * Einstiegspunkt des Programms. Initialisiert die Teams und startet die Menüinteraktion.
+ */
+
+
 public class Navigation {
 
 	static Mannschaft heimmannschaft;
@@ -28,6 +33,8 @@ public class Navigation {
 	private static String menuStartText = "0. Spiel laden\n1. Mannschaften laden\n2. Mannschaften anlegen\n3. Spiel starten\n4. Mannschaften speichern\n5. Programm beenden";
 	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern & beenden";
 
+	
+	
 	private static void menuStart(int menuOption) {
 		switch (menuOption) {
 		case 0:
@@ -129,6 +136,15 @@ public class Navigation {
 		}
 	}
 
+	/**
+     * Führt eine komplette Spielrunde für beide Mannschaften aus.
+     *
+     * @param ball
+     * @param heimmannschaft 
+     * @param gastmannschaft 
+     * @return true, wenn die Runde abgeschlossen wurde
+     */
+	
 	public static boolean spielzugAusfuehren(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		int menuEingabe;
 		Scanner sc = new Scanner(System.in);
@@ -313,6 +329,10 @@ public class Navigation {
 		}
 	}
 
+	/**
+     * Startet das Menüsystem für die Spielkonfiguration und den Spielstart.
+     */
+	
 	public static void menuInteraktion() {
 		titelAnzeigen();
 		menuStartSchleife();
