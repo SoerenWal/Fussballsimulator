@@ -18,9 +18,10 @@ import b_entitaeten.Tor;
 
 public class Navigation {
 
-	static Mannschaft heimmannschaft;
-	static Mannschaft gastmannschaft;
-	static Ball ball;
+	public static Mannschaft heimmannschaft;
+	public static Mannschaft gastmannschaft;
+	public static Ball ball;
+	public static int anzahlSpielzuege;
 
 	public static void main(String[] args) {
 		heimmannschaft = new Mannschaft(new HashMap<String, Roboter>(), new Tor(Spielfeld.zeilen / 2, 0));
@@ -175,7 +176,7 @@ public class Navigation {
 			menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
 
 		}
-		
+
 		heimmannschaft.ausfallen();
 		gastmannschaft.ausfallen();
 
@@ -184,7 +185,15 @@ public class Navigation {
 	}
 
 	private static void menuSpielzug(Roboter r, int menuOption, Ball ball, Mannschaft mannschaft) {
+		if (anzahlSpielzuege == 3) {
+			anzahlSpielzuege = 0;
+			menuOption = -1;
+		}
 		switch (menuOption) {
+
+		case -1:
+			System.out.println(
+					"\nSie haben die maximale Anzahl an Spielzügen genutzt.\nBitte beenden Sie Ihren Spielzug.");
 		case 0:
 			// Keine Aktion
 			break;
@@ -199,6 +208,7 @@ public class Navigation {
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
+			anzahlSpielzuege++;
 			break;
 		case 2:
 			// Passen
@@ -216,7 +226,7 @@ public class Navigation {
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
-
+			anzahlSpielzuege++;
 			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
@@ -229,6 +239,7 @@ public class Navigation {
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
+			anzahlSpielzuege++;
 			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 			Spielfeld.spielfeldAnzeigen();
@@ -243,12 +254,13 @@ public class Navigation {
 					r.blocken(ball, heimmannschaft.holeSpielerBallbesitz(ball));
 					r.ausfallen();
 				}
-				LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
-				Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
-				Spielfeld.spielfeldAnzeigen();
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
+			anzahlSpielzuege++;
+			LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
+			Spielfeld.spielfeldAnzeigen();
 			break;
 		case 5:
 			// Energie aufladen
@@ -257,6 +269,7 @@ public class Navigation {
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
+			anzahlSpielzuege++;
 			break;
 		case 6:
 			// Ball aufheben
@@ -270,6 +283,7 @@ public class Navigation {
 					System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 				}
 			}
+			anzahlSpielzuege++;
 		}
 	}
 
