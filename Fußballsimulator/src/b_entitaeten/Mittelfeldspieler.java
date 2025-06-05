@@ -13,7 +13,7 @@ public class Mittelfeldspieler extends Roboter {
 		this.faktorSchuss = 0.85;
 		this.setId(Roboter.anzahlRoboter);
 		RoboterHelper.erhoeheAnzahlRoboter();
-		this.setGeschwindigkeit(0);
+		this.setGeschwindigkeit(1);
 		this.setPraezisionPass(RoboterHelper.praeziRechner(this.faktorPass));
 		this.setPraezisionSchuss(RoboterHelper.praeziRechner(this.faktorSchuss));
 	}
