@@ -14,8 +14,15 @@ import java.util.ArrayList;
 public class Datenhaltung {
 
 	private static final Path DATEI_PFAD = Paths.get(System.getProperty("user.home"), "git", "Fussballsimulator",
+	
 			"Fußballsimulator", "src", "c_datenhaltung", "Fußballsimulator.txt");
 
+	 /**
+     * Speichert die übergebene Liste von Objekten in eine Datei.
+     *
+     * @param entitaeten 
+     */
+	
 	public static void schreibeInDatei(ArrayList<Object> entitaeten) {
 		try (OutputStream fos = Files.newOutputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -26,6 +33,13 @@ public class Datenhaltung {
 		}
 	}
 
+	/**
+     * Liest die gespeicherte Datei aus und gibt die enthaltenen Entitäten zurück.
+     *
+     * @return Eine ArrayList<Object>} mit den geladenen Entitäten oder null, wenn ein Fehler auftritt
+     
+     */
+	
 	public static ArrayList<Object> leseAusDatei() throws ClassNotFoundException {
 		try (InputStream fis = Files.newInputStream(DATEI_PFAD, StandardOpenOption.CREATE);) {
 			ObjectInputStream ois = new ObjectInputStream(fis);
