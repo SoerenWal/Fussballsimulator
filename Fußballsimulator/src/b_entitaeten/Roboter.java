@@ -252,8 +252,6 @@ public abstract class Roboter implements Serializable {
 	/**
 	 * Bewegt den Roboter relativ zur aktuellen Position.
 	 * 
-	 * @param zeile
-	 * @param spalte
 	 */
 
 	public void laufen() {
@@ -281,7 +279,7 @@ public abstract class Roboter implements Serializable {
 	/**
 	 * Verbraucht eine bestimmte Menge an Energie.
 	 * 
-	 * @param energiekosten gewünschte Energieeinheiten
+	 * @param energiekosten
 	 * @return true bei ausreichender Energie, Differenz wenn unzureichend
 	 */
 
@@ -413,24 +411,14 @@ public abstract class Roboter implements Serializable {
 		}
 	}
 
+	
 	/**
-	 * Gibt den Namen des Roboters als String zurück.
-	 * 
-	 * @return Name des Roboters
-	 */
-
-	public String toString() {
-		return this.name;
-	}
-
-	/**
-	 * Die Methode prüft ob sich der Ball in der Nähe des Spielers befindet und
+	 * * Die Methode prüft ob sich der Ball in der Nähe des Spielers befindet und
 	 * setzt den Ballbesitz auf true, wenn dies erfüllt ist.
 	 *
-	 * @return true, wenn der Ball sich im Radius befindet und false, wenn der Ball
-	 *         zu weit weg ist
+	 * @param ball
+	 * @return
 	 */
-
 	public boolean ballAufheben(Ball ball) {
 		double abstand = Math
 				.sqrt(Math.pow(this.getSpalte() - ball.getSpalte(), 2) + Math.pow(this.zeile - ball.getZeile(), 2));

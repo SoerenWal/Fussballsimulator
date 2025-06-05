@@ -36,7 +36,7 @@ public class Datenhaltung {
 	/**
 	 * Liest die gespeicherte Datei aus und gibt die enthaltenen Entitäten zurück.
 	 *
-	 * @return Eine ArrayList<Object>} mit den geladenen Entitäten oder null, wenn
+	 * @return Eine ArrayList mit den geladenen Entitäten oder null, wenn
 	 *         ein Fehler auftritt
 	 * 
 	 */

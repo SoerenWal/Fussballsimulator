@@ -51,8 +51,7 @@ public class Spielfeld {
 	}
 
 	/**
-	 * Überprüft, ob ein bestimmtes Feld auf dem Spielfeld frei ist (also leer
-	 * dargestellt wird).
+	 * Überprüft, ob ein bestimmtes Feld auf dem Spielfeld frei ist.
 	 *
 	 * @param zeile
 	 * @param spalte

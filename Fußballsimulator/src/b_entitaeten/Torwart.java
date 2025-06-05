@@ -3,7 +3,7 @@ package b_entitaeten;
 public class Torwart extends Roboter {
 
 	/**
-	 * Erzeugt eine neue Instanz der Klasse Torwart
+	 * Erzeugt eine neue Instanz der Klasse Torwart.
 	 * 
 	 * @param name
 	 */

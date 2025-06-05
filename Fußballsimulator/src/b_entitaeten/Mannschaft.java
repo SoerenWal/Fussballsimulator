@@ -77,6 +77,10 @@ public class Mannschaft implements Serializable {
 		this.tor = tor;
 	}
 
+	/**
+	 * Anlegen von Spielernamen einer Mannschaft.
+	 * @param praefix
+	 */
 	public void anlegen(String[] praefix) {
 		this.setName(RoboterHelper.erfrageNamen("\nName der Mannschaft: "));
 		this.getSpieler().put("Stürmer",
@@ -213,6 +217,9 @@ public class Mannschaft implements Serializable {
 		}
 	}
 
+	/**
+	 * Prüfung, welche Roboter ausfallen.
+	 */
 	public void ausfallen() {
 		for (Roboter r : this.getSpieler().values()) {
 			r.ausfallen();

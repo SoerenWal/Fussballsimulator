@@ -3,7 +3,7 @@ package b_entitaeten;
 public class Verteidiger extends Roboter {
 
 	/**
-	 * Erzeugt eine neue Instanz der Klasse Verteidiger
+	 * Erzeugt eine neue Instanz der Klasse Verteidiger.
 	 * 
 	 * @param name
 	 */

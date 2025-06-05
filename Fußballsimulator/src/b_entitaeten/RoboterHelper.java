@@ -8,7 +8,7 @@ public class RoboterHelper {
 	 * Diese Methode generiert die Präzision für den Pass und Schuss.
 	 * 
 	 * @param faktor
-	 * @return
+	 * @return berechnete Präzision
 	 */
 	public static double praeziRechner(double faktor) {
 		return 0.7 + Math.random() * (faktor - 0.7);
@@ -54,7 +54,7 @@ public class RoboterHelper {
 	 * Eine Methode, die Namen validiert.
 	 * 
 	 * @param name
-	 * @return True, sofern der Name nicht leer ist und keine Zahlen besitzt.
+	 * @return true, sofern der Name nicht leer ist und keine Zahlen besitzt.
 	 */
 	public static boolean validiereNamen(String name) {
 		if (name.isBlank()) {

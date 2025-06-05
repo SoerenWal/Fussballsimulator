@@ -47,7 +47,7 @@ public class Tor implements Serializable {
 	}
 
 	/**
-	 * Ereugt eine neue Instanz der Klasse Tor
+	 * Ereugt eine neue Instanz der Klasse Tor.
 	 * 
 	 * @param zeile
 	 * @param spalte
