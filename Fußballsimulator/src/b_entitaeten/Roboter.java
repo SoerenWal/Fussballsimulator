@@ -265,7 +265,7 @@ public abstract class Roboter implements Serializable {
 		int spalte = LogikHelper.menuEingabe(-81, 81);
 		if (this.zeile + zeile > 0 && this.zeile + zeile < 17 && this.spalte + spalte > 0 && this.spalte + spalte < 81
 				&& Spielfeld.istFeldFrei(this.zeile + zeile, this.spalte + spalte)) {
-			verbraucheEnergie(Math.abs(zeile + spalte));
+			verbraucheEnergie((int)(Math.abs(zeile + spalte) * this.geschwindigkeit));
 			this.zeile = this.zeile + zeile;
 			this.spalte = this.spalte + spalte;
 		} else {
