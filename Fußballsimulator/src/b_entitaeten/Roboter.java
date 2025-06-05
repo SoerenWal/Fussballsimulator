@@ -309,19 +309,14 @@ public abstract class Roboter implements Serializable {
 	 * Führt einen Schussversuch auf das Tor aus.
 	 */
 
-	public void schiessen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
+	public void schießen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		if (this.ballbesitz) {
-			if (((this.spalte <= 16 || this.spalte >= 64) && (this.zeile >= 3 && this.zeile <= 14))) {
+			if (((this.spalte <= 16 && this.spalte >= 63) && (this.zeile >= 3 && this.zeile <= 14))) {
 				if ((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
 					System.out.println("\n" + this.name + " hat ein Tor geschossen.");
 					this.ballbesitz = false;
 					gastmannschaft.getSpieler().get("Stürmer").ballbesitz = true;
 					LogikHelper.stelleMannschaftenAuf(heimmannschaft, gastmannschaft);
-					if (this.spalte <= 16) {
-						heimmannschaft.setTore(heimmannschaft.getTore() + 1);
-					} else if (this.spalte >= 64) {
-						gastmannschaft.setTore(gastmannschaft.getTore() + 1);
-					}
 				} else {
 					System.out.println("\n" + this.name + " hat am Tor vorbeigeschossen.");
 					gastmannschaft.getSpieler().get("Torwart").ballbesitz = true;

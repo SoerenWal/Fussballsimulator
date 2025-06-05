@@ -254,7 +254,7 @@ public class Navigation {
 		case 3:
 			// Torschuss
 			if (!r.ausgefallen) {
-				r.schiessen(heimmannschaft, gastmannschaft);
+				r.schießen(heimmannschaft, gastmannschaft);
 				r.ausfallen(ball);
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
