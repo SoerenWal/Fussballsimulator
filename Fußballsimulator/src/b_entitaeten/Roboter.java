@@ -335,7 +335,6 @@ public abstract class Roboter implements Serializable {
 	 * 
 	 * @return true, wenn Block ausgelöst wird
 	 */
-
 	public boolean blocken(Ball ball, Roboter r) {
 		verbraucheEnergie(4);
 		if (0.75 > RoboterHelper.randomZahl()) {
@@ -360,7 +359,7 @@ public abstract class Roboter implements Serializable {
 	}
 
 	/**
-	 * Lädt die Energie des Roboters um 20 Punkte auf (max. 50).
+	 * Lädt die Energie des Roboters auf.
 	 */
 
 	public void energieAufladen() {
