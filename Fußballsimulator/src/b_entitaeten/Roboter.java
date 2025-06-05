@@ -263,11 +263,15 @@ public abstract class Roboter implements Serializable {
 		int zeile = LogikHelper.menuEingabe(-17, 17);
 		System.out.println("\nSpalten nach rechts (X).\nSpalten nach links (-X).");
 		int spalte = LogikHelper.menuEingabe(-81, 81);
-		if (this.zeile + zeile > 0 && this.zeile + zeile < 17 && this.spalte + spalte > 0 && this.spalte + spalte < 81
-				&& Spielfeld.istFeldFrei(this.zeile + zeile, this.spalte + spalte)) {
-			verbraucheEnergie((int) (Math.abs(zeile + spalte) * this.geschwindigkeit));
-			this.zeile = this.zeile + zeile;
-			this.spalte = this.spalte + spalte;
+		if (this.zeile + zeile > 0 && this.zeile + zeile < 17 && this.spalte + spalte > 0
+				&& this.spalte + spalte < 81) {
+			if (Spielfeld.istFeldFrei(this.zeile + zeile, this.spalte + spalte)) {
+				verbraucheEnergie((int) (Math.abs(zeile + spalte) * this.geschwindigkeit));
+				this.zeile = this.zeile + zeile;
+				this.spalte = this.spalte + spalte;
+			} else {
+				System.out.println("\nDas Spielfeld ist bereits durch einen anderen Spieler besetzt.");
+			}
 		} else {
 			System.out.println("\n" + this.name + " darf das Spielfeld nicht verlassen.");
 			laufen();
@@ -327,7 +331,7 @@ public abstract class Roboter implements Serializable {
 			} else {
 				System.out.println("\n" + this.name + " hat den Ball nicht.");
 			}
-		}else {
+		} else {
 			System.out.println("\nDer Spieler " + roboter.name + " ist zu weit entfernt");
 		}
 	}
