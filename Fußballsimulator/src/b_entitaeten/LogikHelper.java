@@ -10,9 +10,9 @@ import c_datenhaltung.Datenhaltung;
 public class LogikHelper {
 
 	/**
-	 * 
+	 *  Liest eine Ganzzahl-Eingabe vom Nutzer ein, die zwischen 0 und einer Obergrenze liegt.
 	 * @param maxMenuOption
-	 * @return
+	 * @return Nutzereingabe
 	 */
 	public static int menuEingabe(int maxMenuOption) {
 		Scanner sc = new Scanner(System.in);
@@ -37,10 +37,10 @@ public class LogikHelper {
 	}
 
 	/**
-	 * 
+	 * * Liest eine Ganzzahl-Eingabe vom Nutzer ein.
 	 * @param minMenuOption
 	 * @param maxMenuOption
-	 * @return
+	 * @return Nutzereingabe
 	 */
 	public static int menuEingabe(int minMenuOption, int maxMenuOption) {
 		Scanner sc = new Scanner(System.in);
@@ -67,7 +67,7 @@ public class LogikHelper {
 	}
 
 	/**
-	 * Durch diese Methode wird eine gastmanschaft und eine Heimmanschaft angelegt
+	 * Durch diese Methode wird eine gastmanschaft und eine Heimmanschaft angelegt.
 	 * 
 	 * @param heimmannschaft
 	 * @param gastmannschaft
@@ -82,7 +82,7 @@ public class LogikHelper {
 	}
 
 	/**
-	 * 
+	 * Fragt vom Nutzer ab, welches Team mit dem Ballbesitz starten soll.
 	 * @param ball
 	 * @param heimmannschaft
 	 * @param gastmannschaft
@@ -103,7 +103,7 @@ public class LogikHelper {
 	}
 	
 	/**
-	 * 
+	 * Gibt das Spielergebnis aus.
 	 * @param heimmannschaft
 	 * @param gastmannschaft
 	 */
@@ -121,11 +121,11 @@ public class LogikHelper {
 	}
 
 	/**
-	 * 
+	 * Legt die initialen Positionen der Spieler beider Teams auf dem Spielfeld fest.
 	 * @param ball
 	 * @param heimmannschaft
 	 * @param gastmannschaft
-	 * @return
+	 * @return true, wenn die Initialisierung erfolgreich war
 	 */
 	public static boolean initialePositionenSetzen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		System.out.println("\nFür welche Mannschaft möchten Sie zuerst die intiale Aufstellung festlegen?");
@@ -148,7 +148,7 @@ public class LogikHelper {
 	}
 
 	/**
-	 * 
+	 * Speichert die aktuellen Objekte des Spiels.
 	 * @param entitaeten
 	 */
 	public static void speichern(ArrayList<Object> entitaeten) {
@@ -156,7 +156,7 @@ public class LogikHelper {
 	}
 
 	/**
-	 * 
+	 * Fragt den Nutzer, wie viele Runden das Spiel dauern soll.
 	 * @return
 	 */
 	public static ArrayList<Object> laden() {
@@ -169,7 +169,7 @@ public class LogikHelper {
 	}
 
 	/**
-	 * 
+	 * Fragt den Nutzer, wie viele Runden das Spiel dauern soll
 	 * @param ball
 	 */
 	public static void abfragenSpieldauer(Ball ball) {
@@ -178,7 +178,7 @@ public class LogikHelper {
 	}
 
 	/**
-	 * 
+	 * Gibt in der Konsole aus, welches Team aktuell Ballbesitz hat.
 	 * @param ball
 	 * @param heimmannschaft
 	 * @param gastmannschaft
@@ -189,7 +189,7 @@ public class LogikHelper {
 	}
 
 	/**
-	 * 
+	 * Positioniert alle Spieler beider Mannschaften gemäß ihrer festgelegten Startkoordinaten.
 	 * @param heimmannschaft
 	 * @param gastmannschaft
 	 */
