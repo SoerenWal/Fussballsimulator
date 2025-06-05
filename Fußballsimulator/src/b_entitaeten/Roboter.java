@@ -60,7 +60,7 @@ public abstract class Roboter implements Serializable {
 	public int getEnergie() {
 		return this.energie;
 	}
-	
+
 	/**
 	 * Gibt zurück ob ein Spieler ausgefallen ist oder nicht.
 	 * 
@@ -210,7 +210,7 @@ public abstract class Roboter implements Serializable {
 	public void setInitialZeile(int initialZeile) {
 		this.initialZeile = initialZeile;
 	}
-	
+
 	/**
 	 * Setzt boolischen Wert ausgefallen.
 	 * 
@@ -219,7 +219,7 @@ public abstract class Roboter implements Serializable {
 	public void setAusgefallen(boolean ausgefallen) {
 		this.ausgefallen = ausgefallen;
 	}
-	
+
 	/**
 	 * Setzt die Start-Spalte.
 	 * 
@@ -265,7 +265,7 @@ public abstract class Roboter implements Serializable {
 		int spalte = LogikHelper.menuEingabe(-81, 81);
 		if (this.zeile + zeile > 0 && this.zeile + zeile < 17 && this.spalte + spalte > 0 && this.spalte + spalte < 81
 				&& Spielfeld.istFeldFrei(this.zeile + zeile, this.spalte + spalte)) {
-			verbraucheEnergie((int)(Math.abs(zeile + spalte) * this.geschwindigkeit));
+			verbraucheEnergie((int) (Math.abs(zeile + spalte) * this.geschwindigkeit));
 			this.zeile = this.zeile + zeile;
 			this.spalte = this.spalte + spalte;
 		} else {
@@ -301,25 +301,34 @@ public abstract class Roboter implements Serializable {
 	 */
 
 	public void passen(Roboter roboter, Ball ball) {
-		if (this.ballbesitz) {
-			if (this.energie != 0) {
-				if ((this.praezisionPass / verbraucheEnergie(5)) >= RoboterHelper.randomZahl()) {
-					this.ballbesitz = false;
-					roboter.ballbesitz = true;
-					System.out.println("\nDer Pass von " + this.name + " war erfolgreich.");
+		double abstand = Math.sqrt(
+				Math.pow(this.getSpalte() - roboter.getSpalte(), 2) + Math.pow(this.zeile - roboter.getZeile(), 2));
+		int radius = 15;
+		if (radius <= abstand) {
+
+			if (this.ballbesitz) {
+				if (this.energie != 0) {
+					if ((this.praezisionPass / verbraucheEnergie(5)) >= RoboterHelper.randomZahl()) {
+						this.ballbesitz = false;
+						roboter.ballbesitz = true;
+						System.out.println("\nDer Pass von " + this.name + " war erfolgreich.");
+					} else {
+						this.ballbesitz = false;
+						ball.setSpalte(
+								this.spalte + (int) ((roboter.getSpalte() - this.spalte) * RoboterHelper.randomZahl()));
+						ball.setZeile(
+								this.zeile + (int) ((roboter.getZeile() - this.zeile) * RoboterHelper.randomZahl()));
+						System.out.println(
+								"\nDer Pass ist leider fehlgeschlagen und der Ball liegt nun frei auf dem Spielfeld.");
+					}
 				} else {
-					this.ballbesitz = false;
-					ball.setSpalte(
-							this.spalte + (int) ((roboter.getSpalte() - this.spalte) * RoboterHelper.randomZahl()));
-					ball.setZeile(this.zeile + (int) ((roboter.getZeile() - this.zeile) * RoboterHelper.randomZahl()));
-					System.out.println(
-							"\nDer Pass ist leider fehlgeschlagen und der Ball liegt nun frei auf dem Spielfeld.");
+					System.out.println("\n" + this.name + " hat nicht genug Energie, um einen Pass durchzuführen.");
 				}
 			} else {
-				System.out.println("\n" + this.name + " hat nicht genug Energie, um einen Pass durchzuführen.");
+				System.out.println("\n" + this.name + " hat den Ball nicht.");
 			}
-		} else {
-			System.out.println("\n" + this.name + " hat den Ball nicht.");
+		}else {
+			System.out.println("\nDer Spieler " + roboter.name + " ist zu weit entfernt");
 		}
 	}
 
@@ -411,9 +420,11 @@ public abstract class Roboter implements Serializable {
 	}
 
 	/**
-	 * Die Methode prüft ob sich der Ball in der Nähe des Spielers befindet und setzt den Ballbesitz auf true, wenn dies erfüllt ist.
+	 * Die Methode prüft ob sich der Ball in der Nähe des Spielers befindet und
+	 * setzt den Ballbesitz auf true, wenn dies erfüllt ist.
 	 *
-	 * @return true, wenn der Ball sich im Radius befindet und false, wenn der Ball zu weit weg ist
+	 * @return true, wenn der Ball sich im Radius befindet und false, wenn der Ball
+	 *         zu weit weg ist
 	 */
 
 	public boolean ballAufheben(Ball ball) {
