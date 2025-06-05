@@ -158,7 +158,7 @@ public class Navigation {
 			}
 			System.out
 					.println("\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen\n6. Ball aufheben");
-			menuSpielzug(r, LogikHelper.menuEingabe(5), ball, heimmannschaft);
+			menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
 
 		}
 
