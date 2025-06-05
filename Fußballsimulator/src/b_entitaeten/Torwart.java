@@ -12,7 +12,7 @@ public class Torwart extends Roboter {
 		this.faktorSchuss = 0.75;
 		this.setId(Roboter.anzahlRoboter);
 		RoboterHelper.erhoeheAnzahlRoboter();
-		this.setGeschwindigkeit(0);
+		this.setGeschwindigkeit(2);
 		this.setPraezisionPass(RoboterHelper.praeziRechner(this.faktorPass));
 		this.setPraezisionSchuss(RoboterHelper.praeziRechner(this.faktorSchuss));
 	}
