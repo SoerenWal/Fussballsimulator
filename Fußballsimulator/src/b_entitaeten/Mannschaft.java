@@ -13,59 +13,59 @@ public class Mannschaft implements Serializable {
 	private HashMap<String, Roboter> spieler;
 
 	/**
-     * Gibt den Namen der Mannschaft zurück.
-     *
-     * @return Der Name der Mannschaft
-     */
+	 * Gibt den Namen der Mannschaft zurück.
+	 *
+	 * @return Der Name der Mannschaft
+	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-     * Legt den Namen der Mannschaft fest.
-     *
-     * @param name 
-     */
+	 * Legt den Namen der Mannschaft fest.
+	 *
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
-     * Gibt die Anzahl der Tore zurück, die diese Mannschaft erzielt hat.
-     *
-     * @return Anzahl der Tore
-     */
+	 * Gibt die Anzahl der Tore zurück, die diese Mannschaft erzielt hat.
+	 *
+	 * @return Anzahl der Tore
+	 */
 	public int getTore() {
 		return tore;
 	}
 
 	/**
-     * Legt die Anzahl der erzielten Tore fest.
-     *
-     * @param tore 
-     */
+	 * Legt die Anzahl der erzielten Tore fest.
+	 *
+	 * @param tore
+	 */
 	public void setTore(int tore) {
 		this.tore = tore;
 	}
-	
+
 	/**
-     * Gibt alle Spieler der Mannschaft als HashMap zurück.
-     *
-     * @return Spieler-HashMap 
-     */
+	 * Gibt alle Spieler der Mannschaft als HashMap zurück.
+	 *
+	 * @return Spieler-HashMap
+	 */
 	public HashMap<String, Roboter> getSpieler() {
 		return spieler;
 	}
 
 	/**
-     * Setzt die Spieler der Mannschaft.
-     *
-     * @param spieler 
-     */
+	 * Setzt die Spieler der Mannschaft.
+	 *
+	 * @param spieler
+	 */
 	public void setSpieler(HashMap<String, Roboter> spieler) {
 		this.spieler = spieler;
 	}
-	
+
 	/**
 	 * Erzeugt eine Instanz der Klasse Mannschaft.
 	 * 
@@ -79,24 +79,28 @@ public class Mannschaft implements Serializable {
 
 	protected void anlegen(String[] praefix) {
 		this.setName(RoboterHelper.erfrageNamen("\nName der Mannschaft: "));
-		this.getSpieler().put("Stürmer", new Stuermer(praefix[0] + " " + RoboterHelper.erfrageNamen("Name des Stürmers: ")));
-		this.getSpieler().put("Mittelfeldspieler",
-				new Mittelfeldspieler(praefix[1] + " " + RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
-		this.getSpieler().put("Mittelfeldspieler2",
-				new Mittelfeldspieler(praefix[2] + " " + RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
-		this.getSpieler().put("Verteidiger", new Verteidiger(praefix[3] + " " + RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
-		this.getSpieler().put("Torwart", new Torwart(praefix[4] + " " + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
+		this.getSpieler().put("Stürmer",
+				new Stuermer(praefix[0] + " " + RoboterHelper.erfrageNamen("Name des Stürmers: ")));
+		this.getSpieler().put("Mittelfeldspieler", new Mittelfeldspieler(
+				praefix[1] + " " + RoboterHelper.erfrageNamen("Name des ersten Mittelfeldspielers: ")));
+		this.getSpieler().put("Mittelfeldspieler2", new Mittelfeldspieler(
+				praefix[2] + " " + RoboterHelper.erfrageNamen("Name des zweiten Mittelfeldspielers: ")));
+		this.getSpieler().put("Verteidiger",
+				new Verteidiger(praefix[3] + " " + RoboterHelper.erfrageNamen("Name des Verteidigers: ")));
+		this.getSpieler().put("Torwart",
+				new Torwart(praefix[4] + " " + RoboterHelper.erfrageNamen("Name des Torwarts: ")));
 	}
-	
+
 	/**
-     * Gibt einen Text zurück, ob die Mannschaft gerade Ballbesitz hat und welcher Spieler.
-     *
-     * @param ball Der Spielball
-     * @return String mit Ballbesitz-Status
-     */
+	 * Gibt einen Text zurück, ob die Mannschaft gerade Ballbesitz hat und welcher
+	 * Spieler.
+	 *
+	 * @param ball Der Spielball
+	 * @return String mit Ballbesitz-Status
+	 */
 	public String druckeBallbesitz(Ball ball) {
-		for(Roboter s : this.getSpieler().values()) {
-			if(s.getBallbesitz()) {
+		for (Roboter s : this.getSpieler().values()) {
+			if (s.getBallbesitz()) {
 				this.ballBesitz = true;
 				ball.setZeile(s.getZeile());
 				ball.setSpalte(s.getSpalte());
@@ -106,17 +110,17 @@ public class Mannschaft implements Serializable {
 		this.ballBesitz = false;
 		return this.getName() + " hat aktuell keinen Ballbesitz.";
 	}
-	
+
 	/**
-     * Gibt an, ob ein Spieler dieser Mannschaft aktuell Ballbesitz hat.
-     * Setzt gleichzeitig die Position des Balls.
-     *
-     * @param ball 
-     * @return true, wenn ein Spieler Ballbesitz hat
-     */
+	 * Gibt an, ob ein Spieler dieser Mannschaft aktuell Ballbesitz hat. Setzt
+	 * gleichzeitig die Position des Balls.
+	 *
+	 * @param ball
+	 * @return true, wenn ein Spieler Ballbesitz hat
+	 */
 	public boolean pruefeBallbesitz(Ball ball) {
-		for(Roboter s : this.getSpieler().values()) {
-			if(s.getBallbesitz()) {
+		for (Roboter s : this.getSpieler().values()) {
+			if (s.getBallbesitz()) {
 				this.ballBesitz = true;
 				ball.setZeile(s.getZeile());
 				ball.setSpalte(s.getSpalte());
@@ -126,16 +130,16 @@ public class Mannschaft implements Serializable {
 		this.ballBesitz = false;
 		return false;
 	}
-	
+
 	/**
-     * Gibt den Spieler dieser Mannschaft zurück, der den Ball besitzt.
-     *
-     * @param ball 
-     * @return Roboter mit Ballbesitz oder null
-     */
+	 * Gibt den Spieler dieser Mannschaft zurück, der den Ball besitzt.
+	 *
+	 * @param ball
+	 * @return Roboter mit Ballbesitz oder null
+	 */
 	public Roboter holeSpielerBallbesitz(Ball ball) {
-		for(Roboter s : this.getSpieler().values()) {
-			if(s.getBallbesitz()) {
+		for (Roboter s : this.getSpieler().values()) {
+			if (s.getBallbesitz()) {
 				this.ballBesitz = true;
 				ball.setZeile(s.getZeile());
 				ball.setSpalte(s.getSpalte());
@@ -154,14 +158,16 @@ public class Mannschaft implements Serializable {
 	}
 
 	/**
-     * Gibt den aktuellen Spielstand sowie Ballbesitz und Energie aller Spieler beider Mannschaften aus.
-     *
-     * @param ball 
-     * @param mannschaft 
-     */
+	 * Gibt den aktuellen Spielstand sowie Ballbesitz und Energie aller Spieler
+	 * beider Mannschaften aus.
+	 *
+	 * @param ball
+	 * @param mannschaft
+	 */
 	public void gegenueberstellen(Ball ball, Mannschaft mannschaft) {
 		if (!this.getSpieler().isEmpty() && !mannschaft.getSpieler().isEmpty()) {
-			System.out.println("\n" + this.getName() + " " + this.getTore() + " - " + mannschaft.getTore() + " " + mannschaft.getName());
+			System.out.println("\n" + this.getName() + " " + this.getTore() + " - " + mannschaft.getTore() + " "
+					+ mannschaft.getName());
 			System.out.println(this.druckeBallbesitz(ball));
 			System.out.println(mannschaft.druckeBallbesitz(ball));
 			this.energieAnzeigen();
@@ -170,7 +176,7 @@ public class Mannschaft implements Serializable {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		}
 	}
-	
+
 	public Roboter menuSpieler(int menuOption) {
 		switch (menuOption) {
 		case 0:
@@ -206,7 +212,7 @@ public class Mannschaft implements Serializable {
 			r.setSpalte(r.getInitialSpalte());
 		}
 	}
-	
+
 	public void ausfallen() {
 		for (Roboter r : this.getSpieler().values()) {
 			r.ausfallen();
@@ -214,11 +220,11 @@ public class Mannschaft implements Serializable {
 	}
 
 	/**
-     * Ermöglicht die Auswahl und Zuweisung einer Aufstellung (1-1-1-1, 1-3, 2-2, 3-1, 4).
-     * Die Aufstellung hängt von der Spielfeldhälfte ab (Heim oder Gast).
-     *
-     * @param istHeimmannschaft 
-     */
+	 * Ermöglicht die Auswahl und Zuweisung einer Aufstellung (1-1-1-1, 1-3, 2-2,
+	 * 3-1, 4). Die Aufstellung hängt von der Spielfeldhälfte ab (Heim oder Gast).
+	 *
+	 * @param istHeimmannschaft
+	 */
 	public void aufstellungWaehlen(boolean istHeimmannschaft) {
 		this.getSpieler().get("Torwart").setInitialZeile(this.tor.getZeile());
 		if (istHeimmannschaft) {
@@ -249,13 +255,13 @@ public class Mannschaft implements Serializable {
 		case 1:
 			for (Roboter s : this.getSpieler().values()) {
 				if (s != this.getSpieler().get("Torwart")) {
-					
+
 					if (this.getSpieler().get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 						this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 30);
 						this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile);
-						
+
 						if (s != this.getSpieler().get("Verteidiger")) {
-							
+
 							s.setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
 						}
 						this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
@@ -280,38 +286,33 @@ public class Mannschaft implements Serializable {
 			for (Roboter s : this.getSpieler().values()) {
 				if (s != this.getSpieler().get("Torwart")) {
 
-					
+					if (this.getSpieler().get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 
-						if (this.getSpieler().get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
-							
-							this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
-							this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
-							this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
-							this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
+						this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
+						this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
+						this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
 
-							this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
-							this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
-							this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
-							this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
+						this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
+						this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
 
-						}
+					}
 
-							if (this.getSpieler().get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
-								
-								this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
-								this.getSpieler().get("Mittelfeldspieler")
-										.setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
-								this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
-								this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+					if (this.getSpieler().get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
 
-								this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
-								this.getSpieler().get("Mittelfeldspieler2")
-										.setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
-								this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
-								this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
-							}
-						
-					
+						this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
+						this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
+						this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
+						this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+
+						this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
+						this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
+					}
+
 				}
 			}
 			break;
@@ -320,7 +321,7 @@ public class Mannschaft implements Serializable {
 				if (s != this.getSpieler().get("Torwart")) {
 
 					if (this.getSpieler().get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
-							
+
 						this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
 						this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
 						this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte + 20);
@@ -331,21 +332,20 @@ public class Mannschaft implements Serializable {
 						this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte + 4);
 						this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile);
 
-						}
+					}
 
-						if (this.getSpieler().get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
+					if (this.getSpieler().get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
 
-							this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
-							this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
-							this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
-							this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile);
-							this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
-							this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
+						this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
+						this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte - 20);
+						this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile);
+						this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
 
-							this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte - 4);
-							this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile);
-							
-						
+						this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte - 4);
+						this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile);
+
 					}
 				}
 			}
@@ -353,34 +353,34 @@ public class Mannschaft implements Serializable {
 		case 4:
 			for (Roboter s : this.getSpieler().values()) {
 				if (s != this.getSpieler().get("Torwart")) {
-					
-						if (this.getSpieler().get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
-							
-							this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
-							this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
-							this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
-							this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
 
-							this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile -4);
-							this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
-							this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 1);
-							this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 1);
+					if (this.getSpieler().get("Torwart").getInitialSpalte() > Spielfeld.mittelpunktSpalte) {
 
-						}
-						
-						if (this.getSpieler().get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
-								
-								this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
-								this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
-								this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
-								this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
+						this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
+						this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
+						this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte + 10);
 
-								this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile -4);
-								this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
-								this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 1);
-								this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 1);	
-							}
-				
+						this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 1);
+						this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 1);
+
+					}
+
+					if (this.getSpieler().get("Torwart").getInitialSpalte() < Spielfeld.mittelpunktSpalte) {
+
+						this.getSpieler().get("Verteidiger").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
+						this.getSpieler().get("Mittelfeldspieler").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
+						this.getSpieler().get("Stürmer").setInitialSpalte(Spielfeld.mittelpunktSpalte - 10);
+
+						this.getSpieler().get("Verteidiger").setInitialZeile(Spielfeld.mittelpunktZeile - 4);
+						this.getSpieler().get("Mittelfeldspieler").setInitialZeile(Spielfeld.mittelpunktZeile + 4);
+						this.getSpieler().get("Mittelfeldspieler2").setInitialZeile(Spielfeld.mittelpunktZeile + 1);
+						this.getSpieler().get("Stürmer").setInitialZeile(Spielfeld.mittelpunktZeile - 1);
+					}
+
 					break;
 				}
 			}

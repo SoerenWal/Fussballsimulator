@@ -1,9 +1,10 @@
 package b_entitaeten;
 
 public class Torwart extends Roboter {
-	
+
 	/**
 	 * Erzeugt eine neue Instanz der Klasse Torwart
+	 * 
 	 * @param name
 	 */
 	public Torwart(String name) {

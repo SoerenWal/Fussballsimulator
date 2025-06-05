@@ -4,6 +4,7 @@ public class Stuermer extends Roboter {
 
 	/**
 	 * Erzeugt eine neue Instanz der Klasse Stuermer
+	 * 
 	 * @param name
 	 */
 	public Stuermer(String name) {

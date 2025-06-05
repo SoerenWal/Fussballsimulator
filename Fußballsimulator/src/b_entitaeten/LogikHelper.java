@@ -9,7 +9,9 @@ import c_datenhaltung.Datenhaltung;
 public class LogikHelper {
 
 	/**
-	 *  Liest eine Ganzzahl-Eingabe vom Nutzer ein, die zwischen 0 und einer Obergrenze liegt.
+	 * Liest eine Ganzzahl-Eingabe vom Nutzer ein, die zwischen 0 und einer
+	 * Obergrenze liegt.
+	 * 
 	 * @param maxMenuOption
 	 * @return Nutzereingabe
 	 */
@@ -37,6 +39,7 @@ public class LogikHelper {
 
 	/**
 	 * * Liest eine Ganzzahl-Eingabe vom Nutzer ein.
+	 * 
 	 * @param minMenuOption
 	 * @param maxMenuOption
 	 * @return Nutzereingabe
@@ -82,6 +85,7 @@ public class LogikHelper {
 
 	/**
 	 * Fragt vom Nutzer ab, welches Team mit dem Ballbesitz starten soll.
+	 * 
 	 * @param ball
 	 * @param heimmannschaft
 	 * @param gastmannschaft
@@ -100,27 +104,33 @@ public class LogikHelper {
 			break;
 		}
 	}
-	
+
 	/**
 	 * Gibt das Spielergebnis aus.
+	 * 
 	 * @param heimmannschaft
 	 * @param gastmannschaft
 	 */
 	public static void siegerAnzeigen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		if (heimmannschaft.getTore() > gastmannschaft.getTore()) {
-			System.out.print("\n" + heimmannschaft.getName() + " hat die Fußball-Partie gegen " + gastmannschaft.getName()
-					+ " mit einem Sieg (" + heimmannschaft.getTore() + ":" + gastmannschaft.getTore() + ") beendet.");
+			System.out.print("\n" + heimmannschaft.getName() + " hat die Fußball-Partie gegen "
+					+ gastmannschaft.getName() + " mit einem Sieg (" + heimmannschaft.getTore() + ":"
+					+ gastmannschaft.getTore() + ") beendet.");
 		} else if (heimmannschaft.getTore() < gastmannschaft.getTore()) {
-			System.out.print("\n" + gastmannschaft.getName() + " hat die Fußball-Partie gegen " + heimmannschaft.getName()
-					+ " mit einer Niederlage (" + gastmannschaft.getTore() + ":" + heimmannschaft.getTore() + ") beendet.");
+			System.out.print("\n" + gastmannschaft.getName() + " hat die Fußball-Partie gegen "
+					+ heimmannschaft.getName() + " mit einer Niederlage (" + gastmannschaft.getTore() + ":"
+					+ heimmannschaft.getTore() + ") beendet.");
 		} else {
-			System.out.println("\n" + heimmannschaft.getName() + " hat die Fußball-Partie gegen " + gastmannschaft.getName()
-					+ " mit einem Unentschieden (" + heimmannschaft.getTore() + ":" + gastmannschaft.getTore() + ") beendet.");
+			System.out.println("\n" + heimmannschaft.getName() + " hat die Fußball-Partie gegen "
+					+ gastmannschaft.getName() + " mit einem Unentschieden (" + heimmannschaft.getTore() + ":"
+					+ gastmannschaft.getTore() + ") beendet.");
 		}
 	}
 
 	/**
-	 * Legt die initialen Positionen der Spieler beider Teams auf dem Spielfeld fest.
+	 * Legt die initialen Positionen der Spieler beider Teams auf dem Spielfeld
+	 * fest.
+	 * 
 	 * @param ball
 	 * @param heimmannschaft
 	 * @param gastmannschaft
@@ -148,6 +158,7 @@ public class LogikHelper {
 
 	/**
 	 * Speichert die aktuellen Objekte des Spiels.
+	 * 
 	 * @param entitaeten
 	 */
 	public static void speichern(ArrayList<Object> entitaeten) {
@@ -156,6 +167,7 @@ public class LogikHelper {
 
 	/**
 	 * Fragt den Nutzer, wie viele Runden das Spiel dauern soll.
+	 * 
 	 * @return
 	 */
 	public static ArrayList<Object> laden() {
@@ -169,6 +181,7 @@ public class LogikHelper {
 
 	/**
 	 * Fragt den Nutzer, wie viele Runden das Spiel dauern soll
+	 * 
 	 * @param ball
 	 */
 	public static void abfragenSpieldauer(Ball ball) {
@@ -178,6 +191,7 @@ public class LogikHelper {
 
 	/**
 	 * Gibt in der Konsole aus, welches Team aktuell Ballbesitz hat.
+	 * 
 	 * @param ball
 	 * @param heimmannschaft
 	 * @param gastmannschaft
@@ -188,7 +202,9 @@ public class LogikHelper {
 	}
 
 	/**
-	 * Positioniert alle Spieler beider Mannschaften gemäß ihrer festgelegten Startkoordinaten.
+	 * Positioniert alle Spieler beider Mannschaften gemäß ihrer festgelegten
+	 * Startkoordinaten.
+	 * 
 	 * @param heimmannschaft
 	 * @param gastmannschaft
 	 */

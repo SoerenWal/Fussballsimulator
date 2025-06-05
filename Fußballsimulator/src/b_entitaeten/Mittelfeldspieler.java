@@ -2,9 +2,9 @@ package b_entitaeten;
 
 public class Mittelfeldspieler extends Roboter {
 
-
 	/**
 	 * Erzeugt eine neue Instanz der Klasse Mittelfeldspieler
+	 * 
 	 * @param name
 	 */
 	public Mittelfeldspieler(String name) {

@@ -4,6 +4,7 @@ public class Verteidiger extends Roboter {
 
 	/**
 	 * Erzeugt eine neue Instanz der Klasse Verteidiger
+	 * 
 	 * @param name
 	 */
 	public Verteidiger(String name) {

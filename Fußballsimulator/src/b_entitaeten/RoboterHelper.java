@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class RoboterHelper {
 	/**
-	 *  Diese Methode generiert die Präzision für den Pass und Schuss.
-	 *  
+	 * Diese Methode generiert die Präzision für den Pass und Schuss.
+	 * 
 	 * @param faktor
-	 * @return 
+	 * @return
 	 */
 	public static double praeziRechner(double faktor) {
 		return 0.7 + Math.random() * (faktor - 0.7);
@@ -33,6 +33,7 @@ public class RoboterHelper {
 
 	/**
 	 * Eine Methode, die Namen nach validen Namen fragt.
+	 * 
 	 * @param Eine Abfrage eines Namens
 	 * @return Einen validen Namen
 	 */
@@ -42,26 +43,27 @@ public class RoboterHelper {
 		String name = sc.nextLine().trim().toLowerCase();
 		if (validiereNamen(name) == true) {
 			char anfangsbuchstabe = name.charAt(0);
-		name = Character.toUpperCase(anfangsbuchstabe) + name.substring(1);
+			name = Character.toUpperCase(anfangsbuchstabe) + name.substring(1);
 			return name;
 		} else {
 			return erfrageNamen(abfrage);
 		}
 	}
-	
+
 	/**
 	 * Eine Methode, die Namen validiert.
+	 * 
 	 * @param name
-	 * @return True, sofern der Name nicht leer ist und keine Zahlen besitzt. 
+	 * @return True, sofern der Name nicht leer ist und keine Zahlen besitzt.
 	 */
 	public static boolean validiereNamen(String name) {
-		if(name.isBlank()) {
+		if (name.isBlank()) {
 			System.out.println("\nGeben Sie bitte einen Namen ein.");
 			return false;
 		}
-		for(int i = 0; i < name.length(); i++) {
+		for (int i = 0; i < name.length(); i++) {
 			char c = name.charAt(i);
-			if(!Character.isAlphabetic(c)) {
+			if (!Character.isAlphabetic(c)) {
 				System.out.println("\nBitte nutzen Sie für die Namen ausschließlich Buchstaben.");
 				return false;
 			}

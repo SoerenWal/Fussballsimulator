@@ -8,39 +8,40 @@ public class Tor implements Serializable {
 	private int spalte;
 
 	/**
-     * Setzt die Zeilenposition des Tors.
-     *
-     * @param zeile 
-     */
-	
+	 * Setzt die Zeilenposition des Tors.
+	 *
+	 * @param zeile
+	 */
+
 	public void setZeile(int zeile) {
 		this.zeile = zeile;
 	}
-	
-	 /**
-     * Setzt die Spaltenposition des Tors.
-     *
-     * @param spalte 
-     */
+
+	/**
+	 * Setzt die Spaltenposition des Tors.
+	 *
+	 * @param spalte
+	 */
 	public void setSpalte(int spalte) {
 		this.spalte = spalte;
 	}
-	 /**
-     * Gibt die aktuelle Zeilenposition des Tors zurück.
-     *
-     * @return Die Zeilenkoordinate des Tors
-     */
-	
+
+	/**
+	 * Gibt die aktuelle Zeilenposition des Tors zurück.
+	 *
+	 * @return Die Zeilenkoordinate des Tors
+	 */
+
 	public int getZeile() {
 		return zeile;
 	}
 
-	 /**
-     * Gibt die aktuelle Spaltenposition des Tors zurück.
-     *
-     * @return Die Spaltenkoordinate des Tors
-     */
-	
+	/**
+	 * Gibt die aktuelle Spaltenposition des Tors zurück.
+	 *
+	 * @return Die Spaltenkoordinate des Tors
+	 */
+
 	public int getSpalte() {
 		return spalte;
 	}
