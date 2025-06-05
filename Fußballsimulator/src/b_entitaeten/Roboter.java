@@ -394,7 +394,7 @@ public abstract class Roboter implements Serializable {
 	}
 
 	/**
-	 * Methode zur Prüfung des Ballbesitzes.
+	 * Die Mehode prüft ob sich der ball in der nähe des Spielers befindet und setzt den Ballbesitz auf true, wenn dies erfüllt ist.
 	 *
 	 * @return true, wenn Ballbesitz vorhanden ist
 	 */
