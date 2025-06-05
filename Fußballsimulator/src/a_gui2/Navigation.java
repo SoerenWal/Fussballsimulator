@@ -220,7 +220,7 @@ public class Navigation {
 			break;
 		case 1:
 			// Laufen
-			if (!r.ausgefallen) {
+			if (!r.getAusgefallen()) {
 				r.laufen();
 				r.ausfallen(ball);
 				LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
@@ -232,7 +232,7 @@ public class Navigation {
 			break;
 		case 2:
 			// Passen
-			if (!r.ausgefallen) {
+			if (!r.getAusgefallen()) {
 				System.out.println("\nWelchem Teamkollegen möchten Sie passen?");
 				System.out.println(
 						"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart");
@@ -253,7 +253,7 @@ public class Navigation {
 			break;
 		case 3:
 			// Torschuss
-			if (!r.ausgefallen) {
+			if (!r.getAusgefallen()) {
 				r.schießen(heimmannschaft, gastmannschaft);
 				r.ausfallen(ball);
 			} else {
@@ -265,7 +265,7 @@ public class Navigation {
 			break;
 		case 4:
 			// Blocken
-			if (!r.ausgefallen) {
+			if (!r.getAusgefallen()) {
 				if (heimmannschaft.getSpieler().values().contains(r)) {
 					r.blocken(ball, gastmannschaft.holeSpielerBallbesitz(ball));
 					r.ausfallen(ball);
@@ -282,7 +282,7 @@ public class Navigation {
 			break;
 		case 5:
 			// Energie aufladen
-			if (!r.ausgefallen) {
+			if (!r.getAusgefallen()) {
 				r.energieAufladen();
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
@@ -291,7 +291,7 @@ public class Navigation {
 		case 6:
 			// Ball aufheben
 			if (!heimmannschaft.pruefeBallbesitz(ball) && !gastmannschaft.pruefeBallbesitz(ball)) {
-				if (!r.ausgefallen) {
+				if (!r.getAusgefallen()) {
 					r.ballAufheben(ball);
 					LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 					Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
@@ -333,7 +333,7 @@ public class Navigation {
      * Startet das Menüsystem für die Spielkonfiguration und den Spielstart.
      */
 	
-	public static void menuInteraktion() {
+	private static void menuInteraktion() {
 		titelAnzeigen();
 		menuStartSchleife();
 	}

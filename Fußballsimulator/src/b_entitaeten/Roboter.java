@@ -22,7 +22,7 @@ public abstract class Roboter implements Serializable {
 	private int spalte;
 	protected double faktorPass;
 	protected double faktorSchuss;
-	public boolean ausgefallen = false;
+	private boolean ausgefallen = false;
 
 	/**
 	 * Gibt den Namen des Roboters zurück.
@@ -59,6 +59,15 @@ public abstract class Roboter implements Serializable {
 	 */
 	public int getEnergie() {
 		return this.energie;
+	}
+	
+	/**
+	 * Gibt zurück ob ein Spieler ausgefallen ist oder nicht.
+	 * 
+	 * @return boolean
+	 */
+	public boolean getAusgefallen() {
+		return ausgefallen;
 	}
 
 	/**
@@ -201,7 +210,16 @@ public abstract class Roboter implements Serializable {
 	public void setInitialZeile(int initialZeile) {
 		this.initialZeile = initialZeile;
 	}
-
+	
+	/**
+	 * Setzt boolischen Wert ausgefallen.
+	 * 
+	 * @param ausgefallen
+	 */
+	public void setAusgefallen(boolean ausgefallen) {
+		this.ausgefallen = ausgefallen;
+	}
+	
 	/**
 	 * Setzt die Start-Spalte.
 	 * 
@@ -371,15 +389,15 @@ public abstract class Roboter implements Serializable {
 	 */
 
 	public void ausfallen(Ball ball) {
-		if (this.ausgefallen) {
+		if (this.getAusgefallen()) {
 			this.energie++;
 		}
 		if (this.energie == 0) {
-			this.ausgefallen = true;
+			this.setAusgefallen(true);
 			System.out.println("\n" + this.name + " fällt für 2 Runden aus, da dieser keine Energie mehr hat.");
 		}
 		if (this.energie >= 2) {
-			this.ausgefallen = false;
+			this.setAusgefallen(false);
 		}
 	}
 
