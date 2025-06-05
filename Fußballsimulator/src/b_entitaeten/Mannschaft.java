@@ -170,6 +170,30 @@ public class Mannschaft implements Serializable {
 			System.out.println("\nBitte legen Sie zunächst beide Mannschaften an.");
 		}
 	}
+	
+	public Roboter menuSpieler(int menuOption) {
+		switch (menuOption) {
+		case 0:
+			// Stürmer
+			return this.getSpieler().get("Stürmer");
+		case 1:
+			// Mittelfeldspieler
+			return this.getSpieler().get("Mittelfeldspieler");
+		case 2:
+			// Mittelfeldspieler2
+			return this.getSpieler().get("Mittelfeldspieler2");
+		case 3:
+			// Verteidiger
+			return this.getSpieler().get("Verteidiger");
+		case 4:
+			// Torwart
+			return this.getSpieler().get("Torwart");
+		case 5:
+			// Spielzug beenden
+			return null;
+		}
+		return null;
+	}
 
 	/**
 	 * Beim Aufrufen dieser Methode werden alle Spieler auf ihre inizialisierte

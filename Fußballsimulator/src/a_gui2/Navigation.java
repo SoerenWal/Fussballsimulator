@@ -154,7 +154,7 @@ public class Navigation {
 					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
 
 			menuEingabe = LogikHelper.menuEingabe(5);
-			Roboter r = menuSpieler(menuEingabe, heimmannschaft);
+			Roboter r = heimmannschaft.menuSpieler(menuEingabe);
 			if (r == null) {
 				break;
 			}
@@ -168,7 +168,7 @@ public class Navigation {
 			System.out.println(
 					"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
 			menuEingabe = LogikHelper.menuEingabe(5);
-			Roboter r = menuSpieler(menuEingabe, gastmannschaft);
+			Roboter r = gastmannschaft.menuSpieler(menuEingabe);
 			if (r == null) {
 				break;
 			}
@@ -187,30 +187,6 @@ public class Navigation {
 
 		ball.spieldauer--;
 		return true;
-	}
-
-	private static Roboter menuSpieler(int menuOption, Mannschaft mannschaft) {
-		switch (menuOption) {
-		case 0:
-			// Stürmer
-			return mannschaft.getSpieler().get("Stürmer");
-		case 1:
-			// Mittelfeldspieler
-			return mannschaft.getSpieler().get("Mittelfeldspieler");
-		case 2:
-			// Mittelfeldspieler2
-			return mannschaft.getSpieler().get("Mittelfeldspieler2");
-		case 3:
-			// Verteidiger
-			return mannschaft.getSpieler().get("Verteidiger");
-		case 4:
-			// Torwart
-			return mannschaft.getSpieler().get("Torwart");
-		case 5:
-			// Spielzug beenden
-			return null;
-		}
-		return null;
 	}
 
 	private static void menuSpielzug(Roboter r, int menuOption, Ball ball, Mannschaft mannschaft) {
@@ -237,10 +213,10 @@ public class Navigation {
 				System.out.println(
 						"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart");
 				if (heimmannschaft.getSpieler().values().contains(r)) {
-					r.passen(menuSpieler(LogikHelper.menuEingabe(5), heimmannschaft), ball);
+					r.passen(heimmannschaft.menuSpieler(LogikHelper.menuEingabe(5)), ball);
 					r.ausfallen(ball);
 				} else {
-					r.passen(menuSpieler(LogikHelper.menuEingabe(5), gastmannschaft), ball);
+					r.passen(gastmannschaft.menuSpieler(LogikHelper.menuEingabe(5)), ball);
 					r.ausfallen(ball);
 				}
 			} else {
