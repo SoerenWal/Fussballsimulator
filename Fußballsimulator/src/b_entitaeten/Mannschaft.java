@@ -206,6 +206,12 @@ public class Mannschaft implements Serializable {
 			r.setSpalte(r.getInitialSpalte());
 		}
 	}
+	
+	public void ausfallen() {
+		for (Roboter r : this.getSpieler().values()) {
+			r.ausfallen();
+		}
+	}
 
 	/**
      * Ermöglicht die Auswahl und Zuweisung einer Aufstellung (1-1-1-1, 1-3, 2-2, 3-1, 4).
