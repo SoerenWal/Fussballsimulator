@@ -180,7 +180,7 @@ public class LogikHelper {
 	}
 
 	/**
-	 * Fragt den Nutzer, wie viele Runden das Spiel dauern soll
+	 * Fragt den Nutzer nach der Spieldauer.
 	 * 
 	 * @param ball
 	 */

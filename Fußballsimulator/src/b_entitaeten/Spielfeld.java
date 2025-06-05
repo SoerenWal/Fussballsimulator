@@ -12,15 +12,7 @@ public class Spielfeld {
 	public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m"; // CYAN
 	public static final String WHITE_BACKGROUND = "\033[47m"; // WHITE
 
-	/**
-	 * Gesamtanzahl der Zeilen des Spielfelds.
-	 */
-
 	public static int zeilen = 17;
-
-	/**
-	 * Gesamtanzahl der Spalten des Spielfelds.
-	 */
 
 	public static int spalten = 81;
 	private static String[][] spielfeld = new String[zeilen][spalten];
@@ -46,11 +38,6 @@ public class Spielfeld {
 
 	}
 
-	/**
-	 * Diese Methode wurde von ChatGPT implementiert und stellt keine Eigenleistung
-	 * dar. Diese Methode befüllt das zwei-dimensionale Array feld mit
-	 * Spielfeldmarkierungen und einem quarierten zweifarbigen Rasen
-	 */
 	private static void markiereMitHintergrundfarbe(int zeile, int spalte, String kuerzel) {
 		String zeichen = " ";
 		if (spielfeld[zeile][spalte] != null) {
@@ -93,6 +80,9 @@ public class Spielfeld {
 
 	/**
 	 * Eine Methode, die Fußballfeld-Markierungen auf dem Spielfeld malt.
+	 * @param ball
+	 * @param heimmannschaft
+	 * @param gastmannschaft
 	 */
 	public static void maleMarkierungen(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		maleSeitenlinienObenUnten();
@@ -159,8 +149,9 @@ public class Spielfeld {
 
 	/**
 	 * Eine Methode die den Ball auf das Spielfeld malt.
-	 * 
 	 * @param ball
+	 * @param heimmannschaft
+	 * @param gastmannschaft
 	 */
 	private static void maleBall(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		markiereMitHintergrundfarbe(ball.getZeile(), ball.getSpalte(), CYAN_BACKGROUND_BRIGHT);

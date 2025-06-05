@@ -77,7 +77,7 @@ public class Mannschaft implements Serializable {
 		this.tor = tor;
 	}
 
-	protected void anlegen(String[] praefix) {
+	public void anlegen(String[] praefix) {
 		this.setName(RoboterHelper.erfrageNamen("\nName der Mannschaft: "));
 		this.getSpieler().put("Stürmer",
 				new Stuermer(praefix[0] + " " + RoboterHelper.erfrageNamen("Name des Stürmers: ")));
