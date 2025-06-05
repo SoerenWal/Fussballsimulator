@@ -387,8 +387,7 @@ public abstract class Roboter implements Serializable {
 	/**
 	 * Setzt den Roboter außer Gefecht.
 	 */
-
-	public void ausfallen(Ball ball) {
+	public void ausfallen() {
 		if (this.getAusgefallen()) {
 			this.energie++;
 		}

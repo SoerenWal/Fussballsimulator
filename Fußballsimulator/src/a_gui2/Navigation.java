@@ -12,9 +12,9 @@ import b_entitaeten.Spielfeld;
 import b_entitaeten.Tor;
 
 /**
- * Einstiegspunkt des Programms. Initialisiert die Teams und startet die Menüinteraktion.
+ * Einstiegspunkt des Programms. Initialisiert die Teams und startet die
+ * Menüinteraktion.
  */
-
 
 public class Navigation {
 
@@ -33,8 +33,6 @@ public class Navigation {
 	private static String menuStartText = "0. Spiel laden\n1. Mannschaften laden\n2. Mannschaften anlegen\n3. Spiel starten\n4. Mannschaften speichern\n5. Programm beenden";
 	private static String menuSpielText = "0. Spielrunde ausführen\n1. Spielstand anzeigen\n2. Spiel speichern & beenden";
 
-	
-	
 	private static void menuStart(int menuOption) {
 		switch (menuOption) {
 		case 0:
@@ -137,14 +135,14 @@ public class Navigation {
 	}
 
 	/**
-     * Führt eine komplette Spielrunde für beide Mannschaften aus.
-     *
-     * @param ball
-     * @param heimmannschaft 
-     * @param gastmannschaft 
-     * @return true, wenn die Runde abgeschlossen wurde
-     */
-	
+	 * Führt eine komplette Spielrunde für beide Mannschaften aus.
+	 *
+	 * @param ball
+	 * @param heimmannschaft
+	 * @param gastmannschaft
+	 * @return true, wenn die Runde abgeschlossen wurde
+	 */
+
 	public static boolean spielzugAusfuehren(Ball ball, Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		int menuEingabe;
 		Scanner sc = new Scanner(System.in);
@@ -154,7 +152,7 @@ public class Navigation {
 					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
 
 			menuEingabe = LogikHelper.menuEingabe(5);
-			Roboter r = menuSpieler(menuEingabe, heimmannschaft);
+			Roboter r = heimmannschaft.menuSpieler(menuEingabe);
 			if (r == null) {
 				break;
 			}
@@ -168,7 +166,7 @@ public class Navigation {
 			System.out.println(
 					"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
 			menuEingabe = LogikHelper.menuEingabe(5);
-			Roboter r = menuSpieler(menuEingabe, gastmannschaft);
+			Roboter r = gastmannschaft.menuSpieler(menuEingabe);
 			if (r == null) {
 				break;
 			}
@@ -177,40 +175,12 @@ public class Navigation {
 			menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
 
 		}
-
-		for (Roboter r : heimmannschaft.getSpieler().values()) {
-			r.ausfallen(ball);
-		}
-		for (Roboter r : gastmannschaft.getSpieler().values()) {
-			r.ausfallen(ball);
-		}
+		
+		heimmannschaft.ausfallen();
+		gastmannschaft.ausfallen();
 
 		ball.spieldauer--;
 		return true;
-	}
-
-	private static Roboter menuSpieler(int menuOption, Mannschaft mannschaft) {
-		switch (menuOption) {
-		case 0:
-			// Stürmer
-			return mannschaft.getSpieler().get("Stürmer");
-		case 1:
-			// Mittelfeldspieler
-			return mannschaft.getSpieler().get("Mittelfeldspieler");
-		case 2:
-			// Mittelfeldspieler2
-			return mannschaft.getSpieler().get("Mittelfeldspieler2");
-		case 3:
-			// Verteidiger
-			return mannschaft.getSpieler().get("Verteidiger");
-		case 4:
-			// Torwart
-			return mannschaft.getSpieler().get("Torwart");
-		case 5:
-			// Spielzug beenden
-			return null;
-		}
-		return null;
 	}
 
 	private static void menuSpielzug(Roboter r, int menuOption, Ball ball, Mannschaft mannschaft) {
@@ -222,7 +192,7 @@ public class Navigation {
 			// Laufen
 			if (!r.getAusgefallen()) {
 				r.laufen();
-				r.ausfallen(ball);
+				r.ausfallen();
 				LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 				Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
 				Spielfeld.spielfeldAnzeigen();
@@ -237,11 +207,11 @@ public class Navigation {
 				System.out.println(
 						"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart");
 				if (heimmannschaft.getSpieler().values().contains(r)) {
-					r.passen(menuSpieler(LogikHelper.menuEingabe(5), heimmannschaft), ball);
-					r.ausfallen(ball);
+					r.passen(heimmannschaft.menuSpieler(LogikHelper.menuEingabe(5)), ball);
+					r.ausfallen();
 				} else {
-					r.passen(menuSpieler(LogikHelper.menuEingabe(5), gastmannschaft), ball);
-					r.ausfallen(ball);
+					r.passen(gastmannschaft.menuSpieler(LogikHelper.menuEingabe(5)), ball);
+					r.ausfallen();
 				}
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
@@ -255,7 +225,7 @@ public class Navigation {
 			// Torschuss
 			if (!r.getAusgefallen()) {
 				r.schießen(heimmannschaft, gastmannschaft);
-				r.ausfallen(ball);
+				r.ausfallen();
 			} else {
 				System.out.println("\n" + r.getName() + " fällt weiterhin aus.");
 			}
@@ -268,10 +238,10 @@ public class Navigation {
 			if (!r.getAusgefallen()) {
 				if (heimmannschaft.getSpieler().values().contains(r)) {
 					r.blocken(ball, gastmannschaft.holeSpielerBallbesitz(ball));
-					r.ausfallen(ball);
+					r.ausfallen();
 				} else {
 					r.blocken(ball, heimmannschaft.holeSpielerBallbesitz(ball));
-					r.ausfallen(ball);
+					r.ausfallen();
 				}
 				LogikHelper.aktualisiereBallbesitz(ball, heimmannschaft, gastmannschaft);
 				Spielfeld.maleSpielfeld(ball, heimmannschaft, gastmannschaft);
@@ -330,9 +300,9 @@ public class Navigation {
 	}
 
 	/**
-     * Startet das Menüsystem für die Spielkonfiguration und den Spielstart.
-     */
-	
+	 * Startet das Menüsystem für die Spielkonfiguration und den Spielstart.
+	 */
+
 	private static void menuInteraktion() {
 		titelAnzeigen();
 		menuStartSchleife();
