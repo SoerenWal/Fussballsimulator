@@ -28,7 +28,7 @@ public class LogikHelper {
 					System.out.println("\nBitte geben Sie eine Ganzzahl zwischen 0 und " + maxMenuOption + " an.");
 				}
 			} catch (InputMismatchException ime) {
-				// Der Scanner entfernt bei Auftreten der Exception nicht den gültigen Wert,
+				// Der Scanner entfernt bei Auftreten der Exception nicht den ungültigen Wert,
 				// sondern liest diesen erneut ein, wodurch eine Endlosschleife entsteht.
 				sc.next();
 				System.out.println("\nBitte geben Sie eine Ganzzahl zwischen 0 und " + maxMenuOption + " an.");

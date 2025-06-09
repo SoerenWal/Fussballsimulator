@@ -306,7 +306,7 @@ public abstract class Roboter implements Serializable {
 		double abstand = Math.sqrt(
 				Math.pow(this.getSpalte() - roboter.getSpalte(), 2) + Math.pow(this.zeile - roboter.getZeile(), 2));
 		int radius = 15;
-		if (radius <= abstand) {
+		if (radius >= abstand) {
 
 			if (this.ballbesitz) {
 				if (this.energie != 0) {
@@ -340,7 +340,7 @@ public abstract class Roboter implements Serializable {
 
 	public void schießen(Mannschaft heimmannschaft, Mannschaft gastmannschaft) {
 		if (this.ballbesitz) {
-			if (((this.spalte <= 16 && this.spalte >= 63) && (this.zeile >= 3 && this.zeile <= 14))) {
+			if (((this.spalte <= 16 || this.spalte >= 63) && (this.zeile >= 3 && this.zeile <= 14))) {
 				if ((this.praezisionSchuss / verbraucheEnergie(8)) >= RoboterHelper.randomZahl()) {
 					System.out.println("\n" + this.name + " hat ein Tor geschossen.");
 					this.ballbesitz = false;
