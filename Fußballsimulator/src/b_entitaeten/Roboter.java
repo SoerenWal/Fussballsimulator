@@ -383,7 +383,7 @@ public abstract class Roboter implements Serializable {
 				return false;
 			}
 		}
-		System.out.println("\n" + this.name + " ist der Block von  misslungen.");
+		System.out.println("\n" + this.name + " ist der Block von " + r.getName() + " misslungen.");
 		return false;
 	}
 
