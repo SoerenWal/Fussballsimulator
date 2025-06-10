@@ -148,6 +148,7 @@ public class Navigation {
 		int menuEingabe;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\nBitte wählen Sie die Aktionenen für " + heimmannschaft.getName() + ".");
+		anzahlSpielzuege = 0;
 		while (true) {
 			while (true) {
 				if (anzahlSpielzuege == 3) {
@@ -171,6 +172,7 @@ public class Navigation {
 
 			}
 			System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.getName() + ".");
+			anzahlSpielzuege = 0;
 			while (true) {
 				if (anzahlSpielzuege == 3) {
 					anzahlSpielzuege = 0;
