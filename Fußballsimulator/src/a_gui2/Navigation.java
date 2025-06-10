@@ -149,51 +149,58 @@ public class Navigation {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\nBitte wählen Sie die Aktionenen für " + heimmannschaft.getName() + ".");
 		while (true) {
-			System.out.println(
-					"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
+			while (true) {
+				if (anzahlSpielzuege == 3) {
+					anzahlSpielzuege = 0;
+					System.out.println(
+							"\nSie haben die maximale Anzahl an Spielzügen genutzt.\nDer Spielzug wurde beendet.");
+					break;
+				}
+				System.out.println(
 
-			menuEingabe = LogikHelper.menuEingabe(5);
-			Roboter r = heimmannschaft.menuSpieler(menuEingabe);
-			if (r == null) {
-				break;
+						"\n0. Stuermer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
+
+				menuEingabe = LogikHelper.menuEingabe(5);
+				Roboter r = heimmannschaft.menuSpieler(menuEingabe);
+				if (r == null) {
+					break;
+				}
+				System.out.println(
+						"\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen\n6. Ball aufheben");
+				menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
+
 			}
-			System.out.println(
-					"\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen\n6. Ball aufheben");
-			menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
+			System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.getName() + ".");
+			while (true) {
+				if (anzahlSpielzuege == 3) {
+					anzahlSpielzuege = 0;
+					System.out.println(
+							"\nSie haben die maximale Anzahl an Spielzügen genutzt.\nDer Spielzug wurde beendet.");
+					break;
+				}
+				System.out.println(
+						"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
+				menuEingabe = LogikHelper.menuEingabe(5);
+				Roboter r = gastmannschaft.menuSpieler(menuEingabe);
+				if (r == null) {
+					break;
+				}
+				System.out.println(
+						"\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen\n6. Ball aufheben");
+				menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
 
-		}
-		System.out.println("\nBitte wählen Sie die Aktionenen für " + gastmannschaft.getName() + ".");
-		while (true) {
-			System.out.println(
-					"\n0. Stürmer\n1. Mittelfeldspieler\n2. Mittelfeldspieler2\n3. Verteidiger\n4. Torwart\n5. Spielzug beenden");
-			menuEingabe = LogikHelper.menuEingabe(5);
-			Roboter r = gastmannschaft.menuSpieler(menuEingabe);
-			if (r == null) {
-				break;
 			}
-			System.out.println(
-					"\n0. Keine Aktion\n1. Laufen\n2. Passen\n3. Torschuss\n4. Blocken\n5. Energie aufladen\n6. Ball aufheben");
-			menuSpielzug(r, LogikHelper.menuEingabe(6), ball, heimmannschaft);
 
+			heimmannschaft.ausfallen();
+			gastmannschaft.ausfallen();
+
+			ball.spieldauer--;
+			return true;
 		}
-
-		heimmannschaft.ausfallen();
-		gastmannschaft.ausfallen();
-
-		ball.spieldauer--;
-		return true;
 	}
 
 	private static void menuSpielzug(Roboter r, int menuOption, Ball ball, Mannschaft mannschaft) {
-		if (anzahlSpielzuege == 3) {
-			anzahlSpielzuege = 0;
-			menuOption = -1;
-		}
 		switch (menuOption) {
-
-		case -1:
-			System.out.println(
-					"\nSie haben die maximale Anzahl an Spielzügen genutzt.\nBitte beenden Sie Ihren Spielzug.");
 		case 0:
 			// Keine Aktion
 			break;
